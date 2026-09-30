@@ -54,6 +54,7 @@ from ..const import RAW_REGISTER_ENTITIES
 from ..const import ROUND_SENSOR_VALUES
 from .entity_factory import ENTITY_DESCRIPTION_KWARGS
 from .entity_factory import EntityFactory
+from .entity_nomenclature import apply_entity_nomenclature
 from .inverter_model_spec import EntitySpec
 from .inverter_model_spec import InverterModelSpec
 from .inverter_model_spec import ModbusAddressesSpec
@@ -1720,7 +1721,7 @@ def apply_discovered_registers(
     result.extend(_NAMED)
     result.extend(_DEVELOPER)
     result.extend(_RAW)
-    return _add_unified_map(result)
+    return apply_entity_nomenclature(_add_unified_map(result))
 
 
 # EXPERIMENTAL unified map (Inv.UNIFIED_SET): the H3_193 entities which only use the new map. Read-only for now: the

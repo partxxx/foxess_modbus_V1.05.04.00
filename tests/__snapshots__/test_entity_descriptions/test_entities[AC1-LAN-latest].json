@@ -4,7 +4,7 @@
       31019
     ],
     "key": "ambtemp",
-    "name": "Ambient Temp",
+    "name": "Inverter Ambient Temperature",
     "scale": 0.1,
     "signed": true,
     "type": "sensor"
@@ -14,7 +14,7 @@
       31022
     ],
     "key": "battery_charge",
-    "name": "Battery Charge",
+    "name": "Inverter BAT Power Charge",
     "scale": 0.001,
     "signed": true,
     "type": "sensor"
@@ -22,7 +22,7 @@
   {
     "key": "battery_charge_total",
     "method": "left",
-    "name": "Battery Charge Total",
+    "name": "Inverter BAT Energy Charge Total",
     "source": "battery_charge",
     "type": "integration-sensor",
     "unit_time": "h"
@@ -32,7 +32,7 @@
       31022
     ],
     "key": "battery_discharge",
-    "name": "Battery Discharge",
+    "name": "Inverter BAT Power Discharge",
     "scale": 0.001,
     "signed": true,
     "type": "sensor"
@@ -40,7 +40,7 @@
   {
     "key": "battery_discharge_total",
     "method": "left",
-    "name": "Battery Discharge Total",
+    "name": "Inverter BAT Energy Discharge Total",
     "source": "battery_discharge",
     "type": "integration-sensor",
     "unit_time": "h"
@@ -50,7 +50,7 @@
       31024
     ],
     "key": "battery_soc",
-    "name": "Battery SoC",
+    "name": "BMS BAT SoC",
     "scale": null,
     "signed": false,
     "type": "sensor"
@@ -60,7 +60,7 @@
       31023
     ],
     "key": "battery_temp",
-    "name": "Battery Temp",
+    "name": "BMS BAT Temperature",
     "scale": 0.1,
     "signed": true,
     "type": "sensor"
@@ -70,7 +70,7 @@
       31025
     ],
     "key": "bms_charge_rate",
-    "name": "BMS Charge Rate",
+    "name": "BMS BAT Current Charge",
     "scale": 0.1,
     "signed": false,
     "type": "sensor"
@@ -80,7 +80,7 @@
       31026
     ],
     "key": "bms_discharge_rate",
-    "name": "BMS Discharge Rate",
+    "name": "BMS BAT Current Discharge",
     "scale": 0.1,
     "signed": false,
     "type": "sensor"
@@ -90,7 +90,7 @@
       31015
     ],
     "key": "ct2_meter",
-    "name": "CT2 Meter",
+    "name": "Meter CT2 Power",
     "scale": 0.001,
     "signed": true,
     "type": "sensor"
@@ -140,7 +140,7 @@
       31014
     ],
     "key": "feed_in",
-    "name": "Feed-in",
+    "name": "Grid Power Export",
     "scale": 0.001,
     "signed": true,
     "type": "sensor"
@@ -148,7 +148,7 @@
   {
     "key": "feed_in_energy_total",
     "method": "left",
-    "name": "Feed-in Total",
+    "name": "Grid Energy Export Total",
     "source": "feed_in",
     "type": "integration-sensor",
     "unit_time": "h"
@@ -158,7 +158,7 @@
       31014
     ],
     "key": "grid_consumption",
-    "name": "Grid Consumption",
+    "name": "Grid Power Import",
     "scale": 0.001,
     "signed": true,
     "type": "sensor"
@@ -166,7 +166,7 @@
   {
     "key": "grid_consumption_energy_total",
     "method": "left",
-    "name": "Grid Consumption Total",
+    "name": "Grid Energy Import Total",
     "source": "grid_consumption",
     "type": "integration-sensor",
     "unit_time": "h"
@@ -176,7 +176,7 @@
       31014
     ],
     "key": "grid_ct",
-    "name": "Grid CT",
+    "name": "Meter CT1 Power",
     "scale": 0.001,
     "signed": true,
     "type": "sensor"
@@ -186,7 +186,7 @@
       31021
     ],
     "key": "invbatcurrent",
-    "name": "Inverter Battery Current",
+    "name": "Inverter BAT Current",
     "scale": 0.1,
     "signed": true,
     "type": "sensor"
@@ -196,7 +196,7 @@
       31022
     ],
     "key": "invbatpower",
-    "name": "Inverter Battery Power",
+    "name": "Inverter BAT Power",
     "scale": 0.001,
     "signed": true,
     "type": "sensor"
@@ -206,7 +206,7 @@
       31020
     ],
     "key": "invbatvolt",
-    "name": "Inverter Battery Voltage",
+    "name": "Inverter BAT Voltage",
     "scale": 0.1,
     "signed": true,
     "type": "sensor"
@@ -374,7 +374,7 @@
       31018
     ],
     "key": "invtemp",
-    "name": "Inverter Temp",
+    "name": "Inverter Temperature",
     "scale": 0.1,
     "signed": true,
     "type": "sensor"
@@ -403,7 +403,7 @@
     ],
     "is_hex": false,
     "key": "manager_version",
-    "name": "Version: Manager",
+    "name": "Inverter Manager Version",
     "type": "sensor"
   },
   {
@@ -412,7 +412,7 @@
     ],
     "is_hex": false,
     "key": "master_version",
-    "name": "Version: Master",
+    "name": "Inverter Master Version",
     "type": "sensor"
   },
   {
@@ -428,7 +428,7 @@
   {
     "key": "pv1_energy_total",
     "method": "left",
-    "name": "PV1 Power Total",
+    "name": "PV1 Energy Total",
     "source": "pv1_power",
     "type": "integration-sensor",
     "unit_time": "h"
@@ -466,7 +466,7 @@
   {
     "key": "pv2_energy_total",
     "method": "left",
-    "name": "PV2 Power Total",
+    "name": "PV2 Energy Total",
     "source": "pv2_power",
     "type": "integration-sensor",
     "unit_time": "h"
@@ -546,7 +546,7 @@
     ],
     "is_hex": false,
     "key": "slave_version",
-    "name": "Version: Slave",
+    "name": "Inverter Slave Version",
     "type": "sensor"
   }
 ]

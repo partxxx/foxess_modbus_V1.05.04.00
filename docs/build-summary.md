@@ -122,8 +122,11 @@ Writes were only made with the owner's explicit approval.
 - 10 frame-repair tests pass;
 - the unified map passes on all 13 offered models;
 - the patch reproduces the build exactly on a clean v1.16.0b2.
-- Python 3.13 / Home Assistant 2025.8.0: 54 pytest tests and 37 snapshots pass; all pre-commit hooks pass.
+- Python 3.13 / Home Assistant 2025.8.0: 82 pytest tests and 37 snapshots pass; all pre-commit hooks pass.
   The 15 new regression cases cover the Smart model suffix, dependent sensor creation and device lookup.
+  A further 28 cases cover entity nomenclature, BMS versus inverter inputs, and preservation of non-name fields.
+  All 37 snapshots differ from the pre-naming build in names only; identifiers, values, units and controls are unchanged.
+  The complete display-name mapping is in [entity-name-changes.md](entity-name-changes.md).
 
 **Home Assistant:** an earlier stage of this build (the lag workaround) ran in Home Assistant on the H3.
 The current build has not been run in Home Assistant yet, because the integration was kept disabled during the

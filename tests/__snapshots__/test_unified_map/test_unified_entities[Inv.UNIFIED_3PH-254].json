@@ -5,7 +5,7 @@
       39228
     ],
     "key": "bat_current",
-    "name": "Battery Current",
+    "name": "Inverter BAT1 Current",
     "scale": 0.001,
     "signed": true,
     "type": "sensor"
@@ -15,7 +15,7 @@
       37610
     ],
     "key": "bat_current_1",
-    "name": "Battery 1 Current",
+    "name": "BMS1 BAT Current",
     "scale": 0.1,
     "signed": true,
     "type": "sensor"
@@ -26,7 +26,7 @@
       39237
     ],
     "key": "battery_charge",
-    "name": "Battery Charge",
+    "name": "Inverter BAT Power Charge",
     "scale": 0.001,
     "signed": true,
     "type": "sensor"
@@ -37,7 +37,7 @@
       39230
     ],
     "key": "battery_charge_1",
-    "name": "Battery 1 Charge",
+    "name": "Inverter BAT1 Power Charge",
     "scale": 0.001,
     "signed": true,
     "type": "sensor"
@@ -48,7 +48,7 @@
       39607
     ],
     "key": "battery_charge_today",
-    "name": "Battery Charge Today",
+    "name": "Inverter BAT Energy Charge Today",
     "scale": 0.01,
     "signed": false,
     "type": "sensor"
@@ -59,7 +59,7 @@
       39605
     ],
     "key": "battery_charge_total",
-    "name": "Battery Charge Total",
+    "name": "Inverter BAT Energy Charge Total",
     "scale": 0.01,
     "signed": false,
     "type": "sensor"
@@ -70,7 +70,7 @@
       39237
     ],
     "key": "battery_discharge",
-    "name": "Battery Discharge",
+    "name": "Inverter BAT Power Discharge",
     "scale": 0.001,
     "signed": true,
     "type": "sensor"
@@ -81,7 +81,7 @@
       39230
     ],
     "key": "battery_discharge_1",
-    "name": "Battery 1 Discharge",
+    "name": "Inverter BAT1 Power Discharge",
     "scale": 0.001,
     "signed": true,
     "type": "sensor"
@@ -92,7 +92,7 @@
       39611
     ],
     "key": "battery_discharge_today",
-    "name": "Battery Discharge Today",
+    "name": "Inverter BAT Energy Discharge Today",
     "scale": 0.01,
     "signed": false,
     "type": "sensor"
@@ -103,7 +103,7 @@
       39609
     ],
     "key": "battery_discharge_total",
-    "name": "Battery Discharge Total",
+    "name": "Inverter BAT Energy Discharge Total",
     "scale": 0.01,
     "signed": false,
     "type": "sensor"
@@ -113,7 +113,7 @@
       37612
     ],
     "key": "battery_soc",
-    "name": "Battery SoC",
+    "name": "BMS1 BAT SoC",
     "scale": null,
     "signed": false,
     "type": "sensor"
@@ -123,7 +123,7 @@
       37624
     ],
     "key": "battery_soh",
-    "name": "Battery SoH",
+    "name": "BMS1 BAT SoH",
     "scale": null,
     "signed": false,
     "type": "sensor"
@@ -133,7 +133,7 @@
       37624
     ],
     "key": "battery_soh_1",
-    "name": "Battery 1 SoH",
+    "name": "BMS1 BAT SoH",
     "scale": null,
     "signed": false,
     "type": "sensor"
@@ -143,7 +143,7 @@
       37611
     ],
     "key": "battery_temp",
-    "name": "Battery Temp",
+    "name": "BMS1 BAT Temperature",
     "scale": 0.1,
     "signed": true,
     "type": "sensor"
@@ -153,7 +153,7 @@
       37611
     ],
     "key": "battery_temp_1",
-    "name": "Battery 1 Temp",
+    "name": "BMS1 BAT Temperature",
     "scale": 0.1,
     "signed": true,
     "type": "sensor"
@@ -163,7 +163,7 @@
       39227
     ],
     "key": "batvolt",
-    "name": "Battery Voltage",
+    "name": "Inverter BAT1 Voltage",
     "scale": 0.1,
     "signed": true,
     "type": "sensor"
@@ -173,7 +173,7 @@
       37609
     ],
     "key": "batvolt_1",
-    "name": "Battery 1 Voltage",
+    "name": "BMS1 BAT Voltage",
     "scale": 0.1,
     "signed": false,
     "type": "sensor"
@@ -183,7 +183,7 @@
       37003
     ],
     "key": "bms1_master_version",
-    "name": "BMS1 Master Version (37003)",
+    "name": "BMS1 BAT Master Version",
     "scale": null,
     "signed": true,
     "type": "sensor"
@@ -193,7 +193,7 @@
       37619
     ],
     "key": "bms_cell_mv_high",
-    "name": "BMS Cell mV High",
+    "name": "BMS1 BAT Cell Voltage Max",
     "scale": null,
     "signed": false,
     "type": "sensor"
@@ -203,7 +203,7 @@
       37619
     ],
     "key": "bms_cell_mv_high_1",
-    "name": "BMS 1 Cell mV High",
+    "name": "BMS1 BAT Cell Voltage Max",
     "scale": null,
     "signed": false,
     "type": "sensor"
@@ -213,7 +213,7 @@
       37620
     ],
     "key": "bms_cell_mv_low",
-    "name": "BMS Cell mV Low",
+    "name": "BMS1 BAT Cell Voltage Min",
     "scale": null,
     "signed": false,
     "type": "sensor"
@@ -223,7 +223,7 @@
       37620
     ],
     "key": "bms_cell_mv_low_1",
-    "name": "BMS 1 Cell mV Low",
+    "name": "BMS1 BAT Cell Voltage Min",
     "scale": null,
     "signed": false,
     "type": "sensor"
@@ -233,7 +233,7 @@
       37617
     ],
     "key": "bms_cell_temp_high",
-    "name": "BMS Cell Temp High",
+    "name": "BMS1 BAT Cell Temperature Max",
     "scale": 0.1,
     "signed": true,
     "type": "sensor"
@@ -243,7 +243,7 @@
       37617
     ],
     "key": "bms_cell_temp_high_1",
-    "name": "BMS 1 Cell Temp High",
+    "name": "BMS1 BAT Cell Temperature Max",
     "scale": 0.1,
     "signed": true,
     "type": "sensor"
@@ -253,7 +253,7 @@
       37618
     ],
     "key": "bms_cell_temp_low",
-    "name": "BMS Cell Temp Low",
+    "name": "BMS1 BAT Cell Temperature Min",
     "scale": 0.1,
     "signed": true,
     "type": "sensor"
@@ -263,7 +263,7 @@
       37618
     ],
     "key": "bms_cell_temp_low_1",
-    "name": "BMS 1 Cell Temp Low",
+    "name": "BMS1 BAT Cell Temperature Min",
     "scale": 0.1,
     "signed": true,
     "type": "sensor"
@@ -273,7 +273,7 @@
       37632
     ],
     "key": "bms_kwh_remaining",
-    "name": "BMS kWh Remaining",
+    "name": "BMS1 BAT Energy Remaining",
     "scale": 0.01,
     "signed": false,
     "type": "sensor"
@@ -283,7 +283,7 @@
       37632
     ],
     "key": "bms_kwh_remaining_1",
-    "name": "BMS 1 kWh Remaining",
+    "name": "BMS1 BAT Energy Remaining",
     "scale": 0.01,
     "signed": false,
     "type": "sensor"
@@ -303,7 +303,7 @@
       46612
     ],
     "key": "eps_frequency_select",
-    "name": "EPS Frequency (46612)",
+    "name": "EPS Frequency Setting",
     "scale": null,
     "signed": true,
     "type": "sensor"
@@ -313,7 +313,7 @@
       46613
     ],
     "key": "eps_output_mode",
-    "name": "EPS Output (46613)",
+    "name": "EPS Output Mode",
     "scale": null,
     "signed": true,
     "type": "sensor"
@@ -324,7 +324,7 @@
       39210
     ],
     "key": "eps_power_R",
-    "name": "EPS Power R",
+    "name": "EPS R Power",
     "scale": 0.001,
     "signed": true,
     "type": "sensor"
@@ -335,7 +335,7 @@
       39212
     ],
     "key": "eps_power_S",
-    "name": "EPS Power S",
+    "name": "EPS S Power",
     "scale": 0.001,
     "signed": true,
     "type": "sensor"
@@ -346,7 +346,7 @@
       39214
     ],
     "key": "eps_power_T",
-    "name": "EPS Power T",
+    "name": "EPS T Power",
     "scale": 0.001,
     "signed": true,
     "type": "sensor"
@@ -357,7 +357,7 @@
       39204
     ],
     "key": "eps_rcurrent_R",
-    "name": "EPS Current R",
+    "name": "EPS R Current",
     "scale": 0.001,
     "signed": true,
     "type": "sensor"
@@ -368,7 +368,7 @@
       39206
     ],
     "key": "eps_rcurrent_S",
-    "name": "EPS Current S",
+    "name": "EPS S Current",
     "scale": 0.001,
     "signed": true,
     "type": "sensor"
@@ -379,7 +379,7 @@
       39208
     ],
     "key": "eps_rcurrent_T",
-    "name": "EPS Current T",
+    "name": "EPS T Current",
     "scale": 0.001,
     "signed": true,
     "type": "sensor"
@@ -389,7 +389,7 @@
       39201
     ],
     "key": "eps_rvolt_R",
-    "name": "EPS Voltage_R",
+    "name": "EPS R Voltage",
     "scale": 0.1,
     "signed": false,
     "type": "sensor"
@@ -399,7 +399,7 @@
       39202
     ],
     "key": "eps_rvolt_S",
-    "name": "EPS Voltage_S",
+    "name": "EPS S Voltage",
     "scale": 0.1,
     "signed": false,
     "type": "sensor"
@@ -409,7 +409,7 @@
       39203
     ],
     "key": "eps_rvolt_T",
-    "name": "EPS Voltage_T",
+    "name": "EPS T Voltage",
     "scale": 0.1,
     "signed": false,
     "type": "sensor"
@@ -420,7 +420,7 @@
       46616
     ],
     "key": "export_power_limit",
-    "name": "Export Power Limit",
+    "name": "Inverter Power Export Limit",
     "scale": null,
     "signed": true,
     "type": "sensor"
@@ -431,7 +431,7 @@
       38814
     ],
     "key": "feed_in",
-    "name": "Feed-in",
+    "name": "Grid Power Export",
     "scale": 0.0001,
     "signed": true,
     "type": "sensor"
@@ -442,7 +442,7 @@
       38816
     ],
     "key": "feed_in_R",
-    "name": "Feed-in R",
+    "name": "Grid R Power Export",
     "scale": 0.0001,
     "signed": true,
     "type": "sensor"
@@ -453,7 +453,7 @@
       38818
     ],
     "key": "feed_in_S",
-    "name": "Feed-in S",
+    "name": "Grid S Power Export",
     "scale": 0.0001,
     "signed": true,
     "type": "sensor"
@@ -464,7 +464,7 @@
       38820
     ],
     "key": "feed_in_T",
-    "name": "Feed-in T",
+    "name": "Grid T Power Export",
     "scale": 0.0001,
     "signed": true,
     "type": "sensor"
@@ -475,7 +475,7 @@
       39615
     ],
     "key": "feed_in_energy_today",
-    "name": "Feed-in Today",
+    "name": "Grid Energy Export Today",
     "scale": 0.01,
     "signed": false,
     "type": "sensor"
@@ -486,7 +486,7 @@
       39613
     ],
     "key": "feed_in_energy_total",
-    "name": "Feed-in Total",
+    "name": "Grid Energy Export Total",
     "scale": 0.01,
     "signed": false,
     "type": "sensor"
@@ -497,7 +497,7 @@
       38814
     ],
     "key": "grid_consumption",
-    "name": "Grid Consumption",
+    "name": "Grid Power Import",
     "scale": 0.0001,
     "signed": true,
     "type": "sensor"
@@ -508,7 +508,7 @@
       38816
     ],
     "key": "grid_consumption_R",
-    "name": "Grid Consumption R",
+    "name": "Grid R Power Import",
     "scale": 0.0001,
     "signed": true,
     "type": "sensor"
@@ -519,7 +519,7 @@
       38818
     ],
     "key": "grid_consumption_S",
-    "name": "Grid Consumption S",
+    "name": "Grid S Power Import",
     "scale": 0.0001,
     "signed": true,
     "type": "sensor"
@@ -530,7 +530,7 @@
       38820
     ],
     "key": "grid_consumption_T",
-    "name": "Grid Consumption T",
+    "name": "Grid T Power Import",
     "scale": 0.0001,
     "signed": true,
     "type": "sensor"
@@ -541,7 +541,7 @@
       39619
     ],
     "key": "grid_consumption_energy_today",
-    "name": "Grid Consumption Today",
+    "name": "Grid Energy Import Today",
     "scale": 0.01,
     "signed": false,
     "type": "sensor"
@@ -552,7 +552,7 @@
       39617
     ],
     "key": "grid_consumption_energy_total",
-    "name": "Grid Consumption Total",
+    "name": "Grid Energy Import Total",
     "scale": 0.01,
     "signed": false,
     "type": "sensor"
@@ -563,7 +563,7 @@
       38814
     ],
     "key": "grid_ct",
-    "name": "Grid CT",
+    "name": "Meter CT1 Power",
     "scale": 0.0001,
     "signed": true,
     "type": "sensor"
@@ -574,7 +574,7 @@
       38816
     ],
     "key": "grid_ct_R",
-    "name": "Grid CT R",
+    "name": "Meter CT1 R Power",
     "scale": 0.0001,
     "signed": true,
     "type": "sensor"
@@ -585,7 +585,7 @@
       38818
     ],
     "key": "grid_ct_S",
-    "name": "Grid CT S",
+    "name": "Meter CT1 S Power",
     "scale": 0.0001,
     "signed": true,
     "type": "sensor"
@@ -596,7 +596,7 @@
       38820
     ],
     "key": "grid_ct_T",
-    "name": "Grid CT T",
+    "name": "Meter CT1 T Power",
     "scale": 0.0001,
     "signed": true,
     "type": "sensor"
@@ -607,7 +607,7 @@
       38838
     ],
     "key": "grid_ct_pf",
-    "name": "Grid CT Power Factor",
+    "name": "Meter CT1 Power Factor",
     "scale": 0.001,
     "signed": true,
     "type": "sensor"
@@ -618,7 +618,7 @@
       38840
     ],
     "key": "grid_ct_pf_R",
-    "name": "Grid CT Power Factor R",
+    "name": "Meter CT1 R Power Factor",
     "scale": 0.001,
     "signed": true,
     "type": "sensor"
@@ -629,7 +629,7 @@
       38842
     ],
     "key": "grid_ct_pf_S",
-    "name": "Grid CT Power Factor S",
+    "name": "Meter CT1 S Power Factor",
     "scale": 0.001,
     "signed": true,
     "type": "sensor"
@@ -640,7 +640,7 @@
       38844
     ],
     "key": "grid_ct_pf_T",
-    "name": "Grid CT Power Factor T",
+    "name": "Meter CT1 T Power Factor",
     "scale": 0.001,
     "signed": true,
     "type": "sensor"
@@ -650,7 +650,7 @@
       49079
     ],
     "key": "grid_standard",
-    "name": "Grid Standard (49079)",
+    "name": "Grid Standard",
     "scale": null,
     "signed": true,
     "type": "sensor"
@@ -660,7 +660,7 @@
       39123
     ],
     "key": "grid_voltage_R",
-    "name": "Grid Voltage R",
+    "name": "Grid R Voltage",
     "scale": 0.1,
     "signed": true,
     "type": "sensor"
@@ -670,7 +670,7 @@
       39124
     ],
     "key": "grid_voltage_S",
-    "name": "Grid Voltage S",
+    "name": "Grid S Voltage",
     "scale": 0.1,
     "signed": true,
     "type": "sensor"
@@ -680,7 +680,7 @@
       39125
     ],
     "key": "grid_voltage_T",
-    "name": "Grid Voltage T",
+    "name": "Grid T Voltage",
     "scale": 0.1,
     "signed": true,
     "type": "sensor"
@@ -691,7 +691,7 @@
       46501
     ],
     "key": "import_power_limit",
-    "name": "Import Power Limit",
+    "name": "Inverter Power Import Limit",
     "scale": null,
     "signed": true,
     "type": "sensor"
@@ -702,7 +702,7 @@
       39627
     ],
     "key": "input_energy_today",
-    "name": "Input Energy Today",
+    "name": "Inverter Input Energy Today",
     "scale": 0.01,
     "signed": false,
     "type": "sensor"
@@ -713,7 +713,7 @@
       39625
     ],
     "key": "input_energy_total",
-    "name": "Input Energy Total",
+    "name": "Inverter Input Energy Total",
     "scale": 0.01,
     "signed": false,
     "type": "sensor"
@@ -724,7 +724,7 @@
       39126
     ],
     "key": "inv_current_R",
-    "name": "Inverter Current R",
+    "name": "Inverter R Current",
     "scale": 0.001,
     "signed": true,
     "type": "sensor"
@@ -735,7 +735,7 @@
       39128
     ],
     "key": "inv_current_S",
-    "name": "Inverter Current S",
+    "name": "Inverter S Current",
     "scale": 0.001,
     "signed": true,
     "type": "sensor"
@@ -746,7 +746,7 @@
       39130
     ],
     "key": "inv_current_T",
-    "name": "Inverter Current T",
+    "name": "Inverter T Current",
     "scale": 0.001,
     "signed": true,
     "type": "sensor"
@@ -757,7 +757,7 @@
       39248
     ],
     "key": "inv_power_R",
-    "name": "Inverter Power R",
+    "name": "Inverter R Power",
     "scale": 0.001,
     "signed": true,
     "type": "sensor"
@@ -768,7 +768,7 @@
       39250
     ],
     "key": "inv_power_S",
-    "name": "Inverter Power S",
+    "name": "Inverter S Power",
     "scale": 0.001,
     "signed": true,
     "type": "sensor"
@@ -779,7 +779,7 @@
       39252
     ],
     "key": "inv_power_T",
-    "name": "Inverter Power T",
+    "name": "Inverter T Power",
     "scale": 0.001,
     "signed": true,
     "type": "sensor"
@@ -790,7 +790,7 @@
       39228
     ],
     "key": "invbatcurrent_1",
-    "name": "Inverter Battery 1 Current",
+    "name": "Inverter BAT1 Current",
     "scale": 0.001,
     "signed": true,
     "type": "sensor"
@@ -801,7 +801,7 @@
       39237
     ],
     "key": "invbatpower",
-    "name": "Inverter Battery Power",
+    "name": "Inverter BAT Power",
     "scale": 0.001,
     "signed": true,
     "type": "sensor"
@@ -812,7 +812,7 @@
       39230
     ],
     "key": "invbatpower_1",
-    "name": "Inverter Battery 1 Power",
+    "name": "Inverter BAT1 Power",
     "scale": 0.001,
     "signed": true,
     "type": "sensor"
@@ -822,7 +822,7 @@
       39227
     ],
     "key": "invbatvolt_1",
-    "name": "Inverter Battery 1 Voltage",
+    "name": "Inverter BAT1 Voltage",
     "scale": 0.1,
     "signed": true,
     "type": "sensor"
@@ -837,7 +837,7 @@
       49227
     ],
     "key": "inverter_date_time",
-    "name": "Inverter Date / Time (49222)",
+    "name": "Inverter Date Time",
     "scale": null,
     "signed": true,
     "type": "sensor"
@@ -923,7 +923,7 @@
       39141
     ],
     "key": "invtemp",
-    "name": "Inverter Temp",
+    "name": "Inverter Temperature",
     "scale": 0.1,
     "signed": true,
     "type": "sensor"
@@ -956,7 +956,7 @@
       39219
     ],
     "key": "load_power_R",
-    "name": "Load Power R",
+    "name": "Load R Power",
     "scale": 0.001,
     "signed": true,
     "type": "sensor"
@@ -967,7 +967,7 @@
       39221
     ],
     "key": "load_power_S",
-    "name": "Load Power S",
+    "name": "Load S Power",
     "scale": 0.001,
     "signed": true,
     "type": "sensor"
@@ -978,7 +978,7 @@
       39223
     ],
     "key": "load_power_T",
-    "name": "Load Power T",
+    "name": "Load T Power",
     "scale": 0.001,
     "signed": true,
     "type": "sensor"
@@ -1000,7 +1000,7 @@
     ],
     "is_hex": true,
     "key": "manager_version",
-    "name": "Version: Manager",
+    "name": "Inverter Manager Version",
     "type": "sensor"
   },
   {
@@ -1009,7 +1009,7 @@
     ],
     "is_hex": false,
     "key": "master_version",
-    "name": "Version: Master",
+    "name": "Inverter Master Version",
     "type": "sensor"
   },
   {
@@ -1017,7 +1017,7 @@
       46607
     ],
     "key": "max_charge_current",
-    "name": "Max Charge Current",
+    "name": "Inverter BAT Current Charge Max",
     "scale": 0.1,
     "signed": true,
     "type": "sensor"
@@ -1027,7 +1027,7 @@
       46608
     ],
     "key": "max_discharge_current",
-    "name": "Max Discharge Current",
+    "name": "Inverter BAT Current Discharge Max",
     "scale": 0.1,
     "signed": true,
     "type": "sensor"
@@ -1037,7 +1037,7 @@
       46610
     ],
     "key": "max_soc",
-    "name": "Max SoC",
+    "name": "Inverter BAT SoC Max",
     "scale": null,
     "signed": false,
     "type": "sensor"
@@ -1047,7 +1047,7 @@
       49207
     ],
     "key": "meter1_ct1_type",
-    "name": "Meter1 / CT1 Type (49207)",
+    "name": "Meter1/CT1 Type",
     "scale": null,
     "signed": true,
     "type": "sensor"
@@ -1057,7 +1057,7 @@
       46609
     ],
     "key": "min_soc",
-    "name": "Min SoC",
+    "name": "Inverter BAT SoC Min",
     "scale": null,
     "signed": false,
     "type": "sensor"
@@ -1067,7 +1067,7 @@
       46611
     ],
     "key": "min_soc_on_grid",
-    "name": "Min SoC (On Grid)",
+    "name": "Inverter BAT SoC Min On Grid",
     "scale": null,
     "signed": false,
     "type": "sensor"
@@ -1078,7 +1078,7 @@
       39001
     ],
     "key": "modbus_protocol_version",
-    "name": "Modbus Protocol Version (39000)",
+    "name": "Modbus Protocol Version",
     "scale": null,
     "signed": true,
     "type": "sensor"
@@ -1096,7 +1096,7 @@
   {
     "key": "pv1_energy_total",
     "method": "left",
-    "name": "PV1 Power Total",
+    "name": "PV1 Energy Total",
     "source": "pv1_power",
     "type": "integration-sensor",
     "unit_time": "h"
@@ -1135,7 +1135,7 @@
   {
     "key": "pv2_energy_total",
     "method": "left",
-    "name": "PV2 Power Total",
+    "name": "PV2 Energy Total",
     "source": "pv2_power",
     "type": "integration-sensor",
     "unit_time": "h"
@@ -1174,7 +1174,7 @@
   {
     "key": "pv3_energy_total",
     "method": "left",
-    "name": "PV3 Power Total",
+    "name": "PV3 Energy Total",
     "source": "pv3_power",
     "type": "integration-sensor",
     "unit_time": "h"
@@ -1205,7 +1205,7 @@
       37615
     ],
     "key": "reg_37615_bms_max_current_candidate",
-    "name": "BMS Max Current candidate (37615)",
+    "name": "BMS1 BAT Current Max Candidate",
     "scale": 0.1,
     "signed": false,
     "type": "sensor"
@@ -1215,7 +1215,7 @@
       37626
     ],
     "key": "reg_37626_bms1_fault1",
-    "name": "BMS1 Fault1 (37626)",
+    "name": "BMS1 BAT Fault1 Raw",
     "scale": null,
     "signed": false,
     "type": "sensor"
@@ -1225,7 +1225,7 @@
       37627
     ],
     "key": "reg_37627_bms1_fault2",
-    "name": "BMS1 Fault2 (37627)",
+    "name": "BMS1 BAT Fault2 Raw",
     "scale": null,
     "signed": false,
     "type": "sensor"
@@ -1235,7 +1235,7 @@
       37628
     ],
     "key": "reg_37628_bms1_fault3",
-    "name": "BMS1 Fault3 (37628)",
+    "name": "BMS1 BAT Fault3 Raw",
     "scale": null,
     "signed": false,
     "type": "sensor"
@@ -1245,7 +1245,7 @@
       37629
     ],
     "key": "reg_37629_bms1_fault4",
-    "name": "BMS1 Fault4 (37629)",
+    "name": "BMS1 BAT Fault4 Raw",
     "scale": null,
     "signed": false,
     "type": "sensor"
@@ -1255,7 +1255,7 @@
       37630
     ],
     "key": "reg_37630_bms1_fault5",
-    "name": "BMS1 Fault5 (37630)",
+    "name": "BMS1 BAT Fault5 Raw",
     "scale": null,
     "signed": false,
     "type": "sensor"
@@ -1265,7 +1265,7 @@
       37631
     ],
     "key": "reg_37631_bms1_fault6",
-    "name": "BMS1 Fault6 (37631)",
+    "name": "BMS1 BAT Fault6 Raw",
     "scale": null,
     "signed": false,
     "type": "sensor"
@@ -1275,7 +1275,7 @@
       37633
     ],
     "key": "reg_37633_bms1_fcc_capacity",
-    "name": "BMS1 FCC Capacity (37633)",
+    "name": "BMS1 BAT Capacity Full Charge",
     "scale": 0.1,
     "signed": false,
     "type": "sensor"
@@ -1285,7 +1285,7 @@
       37635
     ],
     "key": "reg_37635_bms1_design_energy",
-    "name": "BMS1 Design Energy (37635)",
+    "name": "BMS1 BAT Energy Design",
     "scale": 10.0,
     "signed": false,
     "type": "sensor"
@@ -1296,7 +1296,7 @@
       38802
     ],
     "key": "reg_38802_grid_ct1_r_phase_voltage",
-    "name": "Grid CT1 R Phase Voltage (38802)",
+    "name": "Meter CT1 R Voltage",
     "scale": 0.1,
     "signed": true,
     "type": "sensor"
@@ -1307,7 +1307,7 @@
       38804
     ],
     "key": "reg_38804_grid_ct1_s_phase_voltage",
-    "name": "Grid CT1 S Phase Voltage (38804)",
+    "name": "Meter CT1 S Voltage",
     "scale": 0.1,
     "signed": true,
     "type": "sensor"
@@ -1318,7 +1318,7 @@
       38806
     ],
     "key": "reg_38806_grid_ct1_t_phase_voltage",
-    "name": "Grid CT1 T Phase Voltage (38806)",
+    "name": "Meter CT1 T Voltage",
     "scale": 0.1,
     "signed": true,
     "type": "sensor"
@@ -1329,7 +1329,7 @@
       38808
     ],
     "key": "reg_38808_grid_ct1_r_phase_current",
-    "name": "Grid CT1 R Phase Current (38808)",
+    "name": "Meter CT1 R Current",
     "scale": 0.001,
     "signed": true,
     "type": "sensor"
@@ -1340,7 +1340,7 @@
       38810
     ],
     "key": "reg_38810_grid_ct1_s_phase_current",
-    "name": "Grid CT1 S Phase Current (38810)",
+    "name": "Meter CT1 S Current",
     "scale": 0.001,
     "signed": true,
     "type": "sensor"
@@ -1351,7 +1351,7 @@
       38812
     ],
     "key": "reg_38812_grid_ct1_t_phase_current",
-    "name": "Grid CT1 T Phase Current (38812)",
+    "name": "Meter CT1 T Current",
     "scale": 0.001,
     "signed": true,
     "type": "sensor"
@@ -1362,7 +1362,7 @@
       38822
     ],
     "key": "reg_38822_grid_ct1_combined_reactive",
-    "name": "Grid CT1 Combined Reactive (38822)",
+    "name": "Meter CT1 Reactive Power",
     "scale": 0.1,
     "signed": true,
     "type": "sensor"
@@ -1373,7 +1373,7 @@
       38824
     ],
     "key": "reg_38824_grid_ct1_r_phase_reactive",
-    "name": "Grid CT1 R Phase Reactive (38824)",
+    "name": "Meter CT1 R Reactive Power",
     "scale": 0.1,
     "signed": true,
     "type": "sensor"
@@ -1384,7 +1384,7 @@
       38826
     ],
     "key": "reg_38826_grid_ct1_s_phase_reactive",
-    "name": "Grid CT1 S Phase Reactive (38826)",
+    "name": "Meter CT1 S Reactive Power",
     "scale": 0.1,
     "signed": true,
     "type": "sensor"
@@ -1395,7 +1395,7 @@
       38828
     ],
     "key": "reg_38828_grid_ct1_t_phase_reactive",
-    "name": "Grid CT1 T Phase Reactive (38828)",
+    "name": "Meter CT1 T Reactive Power",
     "scale": 0.1,
     "signed": true,
     "type": "sensor"
@@ -1406,7 +1406,7 @@
       38830
     ],
     "key": "reg_38830_grid_ct1_combined_apparent",
-    "name": "Grid CT1 Combined Apparent (38830)",
+    "name": "Meter CT1 Apparent Power",
     "scale": 0.1,
     "signed": true,
     "type": "sensor"
@@ -1417,7 +1417,7 @@
       38832
     ],
     "key": "reg_38832_grid_ct1_r_phase_apparent",
-    "name": "Grid CT1 R Phase Apparent (38832)",
+    "name": "Meter CT1 R Apparent Power",
     "scale": 0.1,
     "signed": true,
     "type": "sensor"
@@ -1428,7 +1428,7 @@
       38834
     ],
     "key": "reg_38834_grid_ct1_s_phase_apparent",
-    "name": "Grid CT1 S Phase Apparent (38834)",
+    "name": "Meter CT1 S Apparent Power",
     "scale": 0.1,
     "signed": true,
     "type": "sensor"
@@ -1439,7 +1439,7 @@
       38836
     ],
     "key": "reg_38836_grid_ct1_t_phase_apparent",
-    "name": "Grid CT1 T Phase Apparent (38836)",
+    "name": "Meter CT1 T Apparent Power",
     "scale": 0.1,
     "signed": true,
     "type": "sensor"
@@ -1450,7 +1450,7 @@
       38846
     ],
     "key": "reg_38846_grid_ct1_freq",
-    "name": "Grid CT1 Freq (38846)",
+    "name": "Meter CT1 Frequency",
     "scale": 0.01,
     "signed": true,
     "type": "sensor"
@@ -1460,7 +1460,7 @@
       39051
     ],
     "key": "reg_39051_number_of_strings",
-    "name": "Number of strings (39051)",
+    "name": "PV String Count",
     "scale": null,
     "signed": false,
     "type": "sensor"
@@ -1470,7 +1470,7 @@
       39052
     ],
     "key": "reg_39052_number_of_mppts",
-    "name": "Number of MPPTs (39052)",
+    "name": "MPPT Count",
     "scale": null,
     "signed": false,
     "type": "sensor"
@@ -1481,7 +1481,7 @@
       39053
     ],
     "key": "reg_39053_rated_power_pn",
-    "name": "Rated power (Pn) (39053)",
+    "name": "Inverter Power Rated",
     "scale": 0.001,
     "signed": true,
     "type": "sensor"
@@ -1492,7 +1492,7 @@
       39055
     ],
     "key": "reg_39055_maximum_active_power_pmax",
-    "name": "Maximum active power (Pmax) (39055)",
+    "name": "Inverter Active Power Max",
     "scale": 0.001,
     "signed": true,
     "type": "sensor"
@@ -1503,7 +1503,7 @@
       39057
     ],
     "key": "reg_39057_max_apparent_power_smax",
-    "name": "Max apparent power (Smax) (39057)",
+    "name": "Inverter Apparent Power Max",
     "scale": 0.001,
     "signed": true,
     "type": "sensor"
@@ -1514,7 +1514,7 @@
       39059
     ],
     "key": "reg_39059_max_reactive_power_fed_qmax",
-    "name": "Max reactive power fed (Qmax) (39059)",
+    "name": "Inverter Reactive Power Export Max",
     "scale": 0.001,
     "signed": true,
     "type": "sensor"
@@ -1525,7 +1525,7 @@
       39061
     ],
     "key": "reg_39061_max_reactive_power_absorbed_qmax",
-    "name": "Max reactive power absorbed (Qmax) (39061)",
+    "name": "Inverter Reactive Power Import Max",
     "scale": 0.001,
     "signed": true,
     "type": "sensor"
@@ -1535,7 +1535,7 @@
       39067
     ],
     "key": "reg_39067_alarm_1",
-    "name": "Alarm 1 (39067)",
+    "name": "Inverter Alarm1 Raw",
     "scale": null,
     "signed": false,
     "type": "sensor"
@@ -1545,7 +1545,7 @@
       39068
     ],
     "key": "reg_39068_alarm_2",
-    "name": "Alarm 2 (39068)",
+    "name": "Inverter Alarm2 Raw",
     "scale": null,
     "signed": false,
     "type": "sensor"
@@ -1555,7 +1555,7 @@
       39069
     ],
     "key": "reg_39069_alarm_3",
-    "name": "Alarm 3 (39069)",
+    "name": "Inverter Alarm3 Raw",
     "scale": null,
     "signed": false,
     "type": "sensor"
@@ -1566,7 +1566,7 @@
       39118
     ],
     "key": "reg_39118_total_pv_input_power",
-    "name": "Total PV Input Power (39118)",
+    "name": "PV Power",
     "scale": 0.001,
     "signed": true,
     "type": "sensor"
@@ -1576,7 +1576,7 @@
       39142
     ],
     "key": "reg_39142_ambtemp_candidate",
-    "name": "Ambient Temperature candidate (39142)",
+    "name": "Inverter Ambient Temperature Candidate",
     "scale": 0.1,
     "signed": true,
     "type": "sensor"
@@ -1587,7 +1587,7 @@
       39149
     ],
     "key": "reg_39149_cumulative_power_generation",
-    "name": "Cumulative power generation (39149)",
+    "name": "Inverter Energy Generation Total",
     "scale": 0.01,
     "signed": false,
     "type": "sensor"
@@ -1598,7 +1598,7 @@
       39151
     ],
     "key": "reg_39151_power_generation_on_the_day",
-    "name": "Power generation on the day (39151)",
+    "name": "Inverter Energy Generation Today",
     "scale": 0.01,
     "signed": false,
     "type": "sensor"
@@ -1609,7 +1609,7 @@
       39216
     ],
     "key": "reg_39216_eps_combined_power",
-    "name": "EPS Combined Power (39216)",
+    "name": "EPS Power",
     "scale": null,
     "signed": true,
     "type": "sensor"
@@ -1620,7 +1620,7 @@
       39219
     ],
     "key": "reg_39219_load_r_phase_power",
-    "name": "Load R Phase Power (39219)",
+    "name": "Load R Power",
     "scale": null,
     "signed": true,
     "type": "sensor"
@@ -1631,7 +1631,7 @@
       39221
     ],
     "key": "reg_39221_load_s_phase_power",
-    "name": "Load S Phase Power (39221)",
+    "name": "Load S Power",
     "scale": null,
     "signed": true,
     "type": "sensor"
@@ -1642,7 +1642,7 @@
       39223
     ],
     "key": "reg_39223_load_t_phase_power",
-    "name": "Load T Phase Power (39223)",
+    "name": "Load T Power",
     "scale": null,
     "signed": true,
     "type": "sensor"
@@ -1653,7 +1653,7 @@
       39225
     ],
     "key": "reg_39225_load_combined_power",
-    "name": "Load Combined Power (39225)",
+    "name": "Load Power",
     "scale": null,
     "signed": true,
     "type": "sensor"
@@ -1664,7 +1664,7 @@
       39270
     ],
     "key": "reg_39270_combined_apparent",
-    "name": "Combined Apparent (39270)",
+    "name": "Inverter Apparent Power",
     "scale": null,
     "signed": true,
     "type": "sensor"
@@ -1674,7 +1674,7 @@
       39272
     ],
     "key": "reg_39272_inv_frequency_r",
-    "name": "INV Frequency R (39272)",
+    "name": "Inverter R Frequency",
     "scale": 0.01,
     "signed": true,
     "type": "sensor"
@@ -1684,7 +1684,7 @@
       39273
     ],
     "key": "reg_39273_inv_frequency_s",
-    "name": "INV Frequency S (39273)",
+    "name": "Inverter S Frequency",
     "scale": 0.01,
     "signed": true,
     "type": "sensor"
@@ -1694,7 +1694,7 @@
       39274
     ],
     "key": "reg_39274_inv_frequency_t",
-    "name": "INV Frequency T (39274)",
+    "name": "Inverter T Frequency",
     "scale": 0.01,
     "signed": true,
     "type": "sensor"
@@ -1705,7 +1705,7 @@
       39275
     ],
     "key": "reg_39275_available_import_power",
-    "name": "Available Import Power (39275)",
+    "name": "Inverter Power Import Available",
     "scale": null,
     "signed": true,
     "type": "sensor"
@@ -1716,7 +1716,7 @@
       39277
     ],
     "key": "reg_39277_available_export_power",
-    "name": "Available Export Power (39277)",
+    "name": "Inverter Power Export Available",
     "scale": null,
     "signed": true,
     "type": "sensor"
@@ -1726,7 +1726,7 @@
       39327
     ],
     "key": "reg_39327_mppt1_voltage",
-    "name": "MPPT1 Voltage (39327)",
+    "name": "MPPT1 Voltage",
     "scale": 0.1,
     "signed": true,
     "type": "sensor"
@@ -1736,7 +1736,7 @@
       39328
     ],
     "key": "reg_39328_mppt1_current",
-    "name": "MPPT1 Current (39328)",
+    "name": "MPPT1 Current",
     "scale": 0.01,
     "signed": true,
     "type": "sensor"
@@ -1747,7 +1747,7 @@
       39329
     ],
     "key": "reg_39329_mppt1_power",
-    "name": "MPPT1 Power (39329)",
+    "name": "MPPT1 Power",
     "scale": null,
     "signed": true,
     "type": "sensor"
@@ -1757,7 +1757,7 @@
       39331
     ],
     "key": "reg_39331_mppt2_voltage",
-    "name": "MPPT2 Voltage (39331)",
+    "name": "MPPT2 Voltage",
     "scale": 0.1,
     "signed": true,
     "type": "sensor"
@@ -1767,7 +1767,7 @@
       39332
     ],
     "key": "reg_39332_mppt2_current",
-    "name": "MPPT2 Current (39332)",
+    "name": "MPPT2 Current",
     "scale": 0.01,
     "signed": true,
     "type": "sensor"
@@ -1778,7 +1778,7 @@
       39333
     ],
     "key": "reg_39333_mppt2_power",
-    "name": "MPPT2 Power (39333)",
+    "name": "MPPT2 Power",
     "scale": null,
     "signed": true,
     "type": "sensor"
@@ -1788,7 +1788,7 @@
       46002
     ],
     "key": "reg_46002_remote_timeout_set",
-    "name": "Remote Timeout_Set (46002)",
+    "name": "Inverter Remote Control Timeout",
     "scale": null,
     "signed": false,
     "type": "sensor"
@@ -1799,7 +1799,7 @@
       46003
     ],
     "key": "reg_46003_control_active_power",
-    "name": "Control Active Power (46003)",
+    "name": "Inverter Active Power Setpoint",
     "scale": null,
     "signed": true,
     "type": "sensor"
@@ -1810,7 +1810,7 @@
       46005
     ],
     "key": "reg_46005_control_reactive_power",
-    "name": "Control Reactive Power (46005)",
+    "name": "Inverter Reactive Power Setpoint",
     "scale": null,
     "signed": true,
     "type": "sensor"
@@ -1820,7 +1820,7 @@
       46007
     ],
     "key": "reg_46007_remote_timeout_countdown",
-    "name": "Remote Timeout Countdown (46007)",
+    "name": "Inverter Remote Control Countdown",
     "scale": null,
     "signed": false,
     "type": "sensor"
@@ -1831,7 +1831,7 @@
       46018
     ],
     "key": "reg_46018_pwr_limit_bat_up",
-    "name": "Pwr_limit Bat_Up (46018)",
+    "name": "Inverter BAT Power Discharge Available",
     "scale": null,
     "signed": true,
     "type": "sensor"
@@ -1842,7 +1842,7 @@
       46020
     ],
     "key": "reg_46020_pwr_limit_bat_dn",
-    "name": "Pwr_limit Bat_Dn (46020)",
+    "name": "Inverter BAT Power Charge Available",
     "scale": null,
     "signed": true,
     "type": "sensor"
@@ -1852,7 +1852,7 @@
       46503
     ],
     "key": "reg_46503_threshold_soc",
-    "name": "Threshold SOC (46503)",
+    "name": "Inverter BAT SoC Threshold",
     "scale": null,
     "signed": false,
     "type": "sensor"
@@ -1863,7 +1863,7 @@
       46504
     ],
     "key": "reg_46504_export_peak_limit",
-    "name": "Export Peak Limit (46504)",
+    "name": "Inverter Power Export Peak Limit",
     "scale": null,
     "signed": true,
     "type": "sensor"
@@ -1873,7 +1873,7 @@
       46607
     ],
     "key": "reg_46607_max_charging_current_setting",
-    "name": "Max charging current setting (46607)",
+    "name": "Inverter BAT Current Charge Max",
     "scale": 0.1,
     "signed": true,
     "type": "sensor"
@@ -1883,7 +1883,7 @@
       46608
     ],
     "key": "reg_46608_max_discharge_current_setting",
-    "name": "Max discharge current setting (46608)",
+    "name": "Inverter BAT Current Discharge Max",
     "scale": 0.1,
     "signed": true,
     "type": "sensor"
@@ -1893,7 +1893,7 @@
       46609
     ],
     "key": "reg_46609_minimum_soc",
-    "name": "Minimum SoC (46609)",
+    "name": "Inverter BAT SoC Min",
     "scale": null,
     "signed": false,
     "type": "sensor"
@@ -1903,7 +1903,7 @@
       46610
     ],
     "key": "reg_46610_maximum_soc",
-    "name": "Maximum SoC (46610)",
+    "name": "Inverter BAT SoC Max",
     "scale": null,
     "signed": false,
     "type": "sensor"
@@ -1913,7 +1913,7 @@
       46611
     ],
     "key": "reg_46611_minimum_soc_ongrid",
-    "name": "Minimum SoC OnGrid (46611)",
+    "name": "Inverter BAT SoC Min On Grid",
     "scale": null,
     "signed": false,
     "type": "sensor"
@@ -1924,7 +1924,7 @@
       46616
     ],
     "key": "reg_46616_export_power_limit",
-    "name": "Export Power Limit (46616)",
+    "name": "Inverter Power Export Limit",
     "scale": null,
     "signed": true,
     "type": "sensor"
@@ -1934,7 +1934,7 @@
       46618
     ],
     "key": "reg_46618_import_current_limit",
-    "name": "Import Current Limit (46618)",
+    "name": "Inverter Current Import Limit",
     "scale": 0.1,
     "signed": true,
     "type": "sensor"
@@ -1944,7 +1944,7 @@
       46619
     ],
     "key": "reg_46619_export_current_limit",
-    "name": "Export Current Limit (46619)",
+    "name": "Inverter Current Export Limit",
     "scale": 0.1,
     "signed": true,
     "type": "sensor"
@@ -1954,7 +1954,7 @@
       46620
     ],
     "key": "reg_46620_maximum_soc_from_grid",
-    "name": "Maximum SoC From Grid (46620)",
+    "name": "Inverter BAT SoC Max From Grid",
     "scale": null,
     "signed": false,
     "type": "sensor"
@@ -1964,7 +1964,7 @@
       48015
     ],
     "key": "reg_48015_time_group_n_fc_fdsoc",
-    "name": "Time Group (N) FC/FDSOC (48015)",
+    "name": "Time Group1 FC/FD SoC Candidate",
     "scale": null,
     "signed": false,
     "type": "sensor"
@@ -1974,7 +1974,7 @@
       48016
     ],
     "key": "reg_48016_time_group_n_fc_fdpwr",
-    "name": "Time Group (N) FC/FDPWR (48016)",
+    "name": "Time Group1 FC/FD Power Candidate",
     "scale": null,
     "signed": false,
     "type": "sensor"
@@ -1984,7 +1984,7 @@
       49007
     ],
     "key": "reg_49007_active_power_percentage",
-    "name": "Active power percentage (49007)",
+    "name": "Inverter Active Power Percentage",
     "scale": 0.1,
     "signed": true,
     "type": "sensor"
@@ -1995,7 +1995,7 @@
       49008
     ],
     "key": "reg_49008_fixed_active_power_dispatch",
-    "name": "Fixed active power (dispatch) (49008)",
+    "name": "Inverter Active Power Dispatch Setpoint",
     "scale": null,
     "signed": false,
     "type": "sensor"
@@ -2006,7 +2006,7 @@
       49010
     ],
     "key": "reg_49010_night_reactive_power",
-    "name": "Night Reactive power (49010)",
+    "name": "Inverter Reactive Power Night",
     "scale": 0.001,
     "signed": true,
     "type": "sensor"
@@ -2017,7 +2017,7 @@
       49136
     ],
     "key": "reg_49136_grid_point_power_limit",
-    "name": "Grid point power limit (49136)",
+    "name": "Grid Connection Power Limit",
     "scale": null,
     "signed": true,
     "type": "sensor"
@@ -2027,7 +2027,7 @@
       49221
     ],
     "key": "reg_49221_brightness_level",
-    "name": "Brightness Level (49221)",
+    "name": "Inverter Display Brightness",
     "scale": null,
     "signed": false,
     "type": "sensor"
@@ -2037,7 +2037,7 @@
       49230
     ],
     "key": "reg_49230_idle_loadpower_threshold",
-    "name": "Idle Loadpower Threshold (49230)",
+    "name": "Load Power Idle Threshold",
     "scale": null,
     "signed": false,
     "type": "sensor"
@@ -2047,7 +2047,7 @@
       49243
     ],
     "key": "reg_49243_k1_power_ratio",
-    "name": "K1 Power Ratio (49243)",
+    "name": "K1 Power Ratio",
     "scale": null,
     "signed": false,
     "type": "sensor"
@@ -2057,7 +2057,7 @@
       49244
     ],
     "key": "reg_49244_k2_power_ratio",
-    "name": "K2 Power Ratio (49244)",
+    "name": "K2 Power Ratio",
     "scale": null,
     "signed": false,
     "type": "sensor"
@@ -2067,7 +2067,7 @@
       49245
     ],
     "key": "reg_49245_k3_power_ratio",
-    "name": "K3 Power Ratio (49245)",
+    "name": "K3 Power Ratio",
     "scale": null,
     "signed": false,
     "type": "sensor"
@@ -2077,7 +2077,7 @@
       49246
     ],
     "key": "reg_49246_k4_power_ratio",
-    "name": "K4 Power Ratio (49246)",
+    "name": "K4 Power Ratio",
     "scale": null,
     "signed": false,
     "type": "sensor"
@@ -2087,7 +2087,7 @@
       49248
     ],
     "key": "reg_49248_meter_compensation",
-    "name": "Meter Compensation (49248)",
+    "name": "Meter Power Compensation",
     "scale": null,
     "signed": true,
     "type": "sensor"
@@ -2097,7 +2097,7 @@
       49249
     ],
     "key": "reg_49249_gfci_current",
-    "name": "GFCI Current (49249)",
+    "name": "Inverter GFCI Current",
     "scale": 0.01,
     "signed": true,
     "type": "sensor"
@@ -2107,7 +2107,7 @@
       37004
     ],
     "key": "register_37004_raw",
-    "name": "Register 37004 raw",
+    "name": "Register 37004 Raw",
     "scale": null,
     "signed": false,
     "type": "sensor"
@@ -2117,7 +2117,7 @@
       37032
     ],
     "key": "register_37032_raw",
-    "name": "Register 37032 raw",
+    "name": "Register 37032 Raw",
     "scale": null,
     "signed": false,
     "type": "sensor"
@@ -2127,7 +2127,7 @@
       37033
     ],
     "key": "register_37033_raw",
-    "name": "Register 37033 raw",
+    "name": "Register 37033 Raw",
     "scale": null,
     "signed": false,
     "type": "sensor"
@@ -2137,7 +2137,7 @@
       37034
     ],
     "key": "register_37034_raw",
-    "name": "Register 37034 raw",
+    "name": "Register 37034 Raw",
     "scale": null,
     "signed": false,
     "type": "sensor"
@@ -2147,7 +2147,7 @@
       37636
     ],
     "key": "register_37636_raw",
-    "name": "Register 37636 raw",
+    "name": "Register 37636 Raw",
     "scale": null,
     "signed": false,
     "type": "sensor"
@@ -2157,7 +2157,7 @@
       38801
     ],
     "key": "register_38801_raw",
-    "name": "Register 38801 raw",
+    "name": "Register 38801 Raw",
     "scale": null,
     "signed": false,
     "type": "sensor"
@@ -2167,7 +2167,7 @@
       39050
     ],
     "key": "register_39050_raw",
-    "name": "Register 39050 raw",
+    "name": "Register 39050 Raw",
     "scale": null,
     "signed": false,
     "type": "sensor"
@@ -2178,7 +2178,7 @@
       39134
     ],
     "key": "register_39134_raw",
-    "name": "Register 39134 raw",
+    "name": "Register 39134 Raw",
     "scale": null,
     "signed": false,
     "type": "sensor"
@@ -2189,7 +2189,7 @@
       39136
     ],
     "key": "register_39136_raw",
-    "name": "Register 39136 raw",
+    "name": "Register 39136 Raw",
     "scale": null,
     "signed": false,
     "type": "sensor"
@@ -2199,7 +2199,7 @@
       39138
     ],
     "key": "register_39138_raw",
-    "name": "Register 39138 raw",
+    "name": "Register 39138 Raw",
     "scale": null,
     "signed": false,
     "type": "sensor"
@@ -2210,7 +2210,7 @@
       39162
     ],
     "key": "register_39162_raw",
-    "name": "Register 39162 raw",
+    "name": "Register 39162 Raw",
     "scale": null,
     "signed": false,
     "type": "sensor"
@@ -2221,7 +2221,7 @@
       39168
     ],
     "key": "register_39168_raw",
-    "name": "Register 39168 raw",
+    "name": "Register 39168 Raw",
     "scale": null,
     "signed": false,
     "type": "sensor"
@@ -2232,7 +2232,7 @@
       39256
     ],
     "key": "register_39256_raw",
-    "name": "Register 39256 raw",
+    "name": "Register 39256 Raw",
     "scale": null,
     "signed": false,
     "type": "sensor"
@@ -2243,7 +2243,7 @@
       39258
     ],
     "key": "register_39258_raw",
-    "name": "Register 39258 raw",
+    "name": "Register 39258 Raw",
     "scale": null,
     "signed": false,
     "type": "sensor"
@@ -2254,7 +2254,7 @@
       39260
     ],
     "key": "register_39260_raw",
-    "name": "Register 39260 raw",
+    "name": "Register 39260 Raw",
     "scale": null,
     "signed": false,
     "type": "sensor"
@@ -2264,7 +2264,7 @@
       46001
     ],
     "key": "register_46001_raw",
-    "name": "Register 46001 raw",
+    "name": "Register 46001 Raw",
     "scale": null,
     "signed": false,
     "type": "sensor"
@@ -2274,7 +2274,7 @@
       46506
     ],
     "key": "register_46506_raw",
-    "name": "Register 46506 raw",
+    "name": "Register 46506 Raw",
     "scale": null,
     "signed": false,
     "type": "sensor"
@@ -2284,7 +2284,7 @@
       46507
     ],
     "key": "register_46507_raw",
-    "name": "Register 46507 raw",
+    "name": "Register 46507 Raw",
     "scale": null,
     "signed": false,
     "type": "sensor"
@@ -2294,7 +2294,7 @@
       46508
     ],
     "key": "register_46508_raw",
-    "name": "Register 46508 raw",
+    "name": "Register 46508 Raw",
     "scale": null,
     "signed": false,
     "type": "sensor"
@@ -2304,7 +2304,7 @@
       46509
     ],
     "key": "register_46509_raw",
-    "name": "Register 46509 raw",
+    "name": "Register 46509 Raw",
     "scale": null,
     "signed": false,
     "type": "sensor"
@@ -2314,7 +2314,7 @@
       46510
     ],
     "key": "register_46510_raw",
-    "name": "Register 46510 raw",
+    "name": "Register 46510 Raw",
     "scale": null,
     "signed": false,
     "type": "sensor"
@@ -2324,7 +2324,7 @@
       46511
     ],
     "key": "register_46511_raw",
-    "name": "Register 46511 raw",
+    "name": "Register 46511 Raw",
     "scale": null,
     "signed": false,
     "type": "sensor"
@@ -2334,7 +2334,7 @@
       46512
     ],
     "key": "register_46512_raw",
-    "name": "Register 46512 raw",
+    "name": "Register 46512 Raw",
     "scale": null,
     "signed": false,
     "type": "sensor"
@@ -2344,7 +2344,7 @@
       46513
     ],
     "key": "register_46513_raw",
-    "name": "Register 46513 raw",
+    "name": "Register 46513 Raw",
     "scale": null,
     "signed": false,
     "type": "sensor"
@@ -2354,7 +2354,7 @@
       46514
     ],
     "key": "register_46514_raw",
-    "name": "Register 46514 raw",
+    "name": "Register 46514 Raw",
     "scale": null,
     "signed": false,
     "type": "sensor"
@@ -2364,7 +2364,7 @@
       46614
     ],
     "key": "register_46614_raw",
-    "name": "Register 46614 raw",
+    "name": "Register 46614 Raw",
     "scale": null,
     "signed": false,
     "type": "sensor"
@@ -2374,7 +2374,7 @@
       46615
     ],
     "key": "register_46615_raw",
-    "name": "Register 46615 raw",
+    "name": "Register 46615 Raw",
     "scale": null,
     "signed": false,
     "type": "sensor"
@@ -2384,7 +2384,7 @@
       48000
     ],
     "key": "register_48000_raw",
-    "name": "Register 48000 raw",
+    "name": "Register 48000 Raw",
     "scale": null,
     "signed": false,
     "type": "sensor"
@@ -2394,7 +2394,7 @@
       48010
     ],
     "key": "register_48010_raw",
-    "name": "Register 48010 raw",
+    "name": "Register 48010 Raw",
     "scale": null,
     "signed": false,
     "type": "sensor"
@@ -2404,7 +2404,7 @@
       48011
     ],
     "key": "register_48011_raw",
-    "name": "Register 48011 raw",
+    "name": "Register 48011 Raw",
     "scale": null,
     "signed": false,
     "type": "sensor"
@@ -2414,7 +2414,7 @@
       48012
     ],
     "key": "register_48012_raw",
-    "name": "Register 48012 raw",
+    "name": "Register 48012 Raw",
     "scale": null,
     "signed": false,
     "type": "sensor"
@@ -2424,7 +2424,7 @@
       48013
     ],
     "key": "register_48013_raw",
-    "name": "Register 48013 raw",
+    "name": "Register 48013 Raw",
     "scale": null,
     "signed": false,
     "type": "sensor"
@@ -2435,7 +2435,7 @@
       49000
     ],
     "key": "register_49000_raw",
-    "name": "Register 49000 raw",
+    "name": "Register 49000 Raw",
     "scale": null,
     "signed": false,
     "type": "sensor"
@@ -2445,7 +2445,7 @@
       49005
     ],
     "key": "register_49005_raw",
-    "name": "Register 49005 raw",
+    "name": "Register 49005 Raw",
     "scale": null,
     "signed": false,
     "type": "sensor"
@@ -2455,7 +2455,7 @@
       49006
     ],
     "key": "register_49006_raw",
-    "name": "Register 49006 raw",
+    "name": "Register 49006 Raw",
     "scale": null,
     "signed": false,
     "type": "sensor"
@@ -2465,7 +2465,7 @@
       49077
     ],
     "key": "register_49077_raw",
-    "name": "Register 49077 raw",
+    "name": "Register 49077 Raw",
     "scale": null,
     "signed": false,
     "type": "sensor"
@@ -2475,7 +2475,7 @@
       49078
     ],
     "key": "register_49078_raw",
-    "name": "Register 49078 raw",
+    "name": "Register 49078 Raw",
     "scale": null,
     "signed": false,
     "type": "sensor"
@@ -2485,7 +2485,7 @@
       49206
     ],
     "key": "register_49206_raw",
-    "name": "Register 49206 raw",
+    "name": "Register 49206 Raw",
     "scale": null,
     "signed": false,
     "type": "sensor"
@@ -2495,7 +2495,7 @@
       49209
     ],
     "key": "register_49209_raw",
-    "name": "Register 49209 raw",
+    "name": "Register 49209 Raw",
     "scale": null,
     "signed": false,
     "type": "sensor"
@@ -2505,7 +2505,7 @@
       49210
     ],
     "key": "register_49210_raw",
-    "name": "Register 49210 raw",
+    "name": "Register 49210 Raw",
     "scale": null,
     "signed": false,
     "type": "sensor"
@@ -2515,7 +2515,7 @@
       49211
     ],
     "key": "register_49211_raw",
-    "name": "Register 49211 raw",
+    "name": "Register 49211 Raw",
     "scale": null,
     "signed": false,
     "type": "sensor"
@@ -2525,7 +2525,7 @@
       49212
     ],
     "key": "register_49212_raw",
-    "name": "Register 49212 raw",
+    "name": "Register 49212 Raw",
     "scale": null,
     "signed": false,
     "type": "sensor"
@@ -2535,7 +2535,7 @@
       49228
     ],
     "key": "register_49228_raw",
-    "name": "Register 49228 raw",
+    "name": "Register 49228 Raw",
     "scale": null,
     "signed": false,
     "type": "sensor"
@@ -2545,7 +2545,7 @@
       49229
     ],
     "key": "register_49229_raw",
-    "name": "Register 49229 raw",
+    "name": "Register 49229 Raw",
     "scale": null,
     "signed": false,
     "type": "sensor"
@@ -2555,7 +2555,7 @@
       49240
     ],
     "key": "register_49240_raw",
-    "name": "Register 49240 raw",
+    "name": "Register 49240 Raw",
     "scale": null,
     "signed": false,
     "type": "sensor"
@@ -2565,7 +2565,7 @@
       49241
     ],
     "key": "register_49241_raw",
-    "name": "Register 49241 raw",
+    "name": "Register 49241 Raw",
     "scale": null,
     "signed": false,
     "type": "sensor"
@@ -2575,7 +2575,7 @@
       49242
     ],
     "key": "register_49242_raw",
-    "name": "Register 49242 raw",
+    "name": "Register 49242 Raw",
     "scale": null,
     "signed": false,
     "type": "sensor"
@@ -2585,7 +2585,7 @@
       49247
     ],
     "key": "register_49247_raw",
-    "name": "Register 49247 raw",
+    "name": "Register 49247 Raw",
     "scale": null,
     "signed": false,
     "type": "sensor"
@@ -2606,7 +2606,7 @@
       39264
     ],
     "key": "rpower_S_R",
-    "name": "Inverter Power (Apparent) R",
+    "name": "Inverter R Apparent Power",
     "scale": 0.001,
     "signed": true,
     "type": "sensor"
@@ -2617,7 +2617,7 @@
       39266
     ],
     "key": "rpower_S_S",
-    "name": "Inverter Power (Apparent) S",
+    "name": "Inverter S Apparent Power",
     "scale": 0.001,
     "signed": true,
     "type": "sensor"
@@ -2628,7 +2628,7 @@
       39268
     ],
     "key": "rpower_S_T",
-    "name": "Inverter Power (Apparent) T",
+    "name": "Inverter T Apparent Power",
     "scale": 0.001,
     "signed": true,
     "type": "sensor"
@@ -2639,7 +2639,7 @@
     ],
     "is_hex": false,
     "key": "slave_version",
-    "name": "Version: Slave",
+    "name": "Inverter Slave Version",
     "type": "sensor"
   },
   {
@@ -2648,7 +2648,7 @@
       39603
     ],
     "key": "solar_energy_today",
-    "name": "Solar Generation Today",
+    "name": "PV Energy Today",
     "scale": 0.01,
     "signed": false,
     "type": "sensor"
@@ -2659,7 +2659,7 @@
       39601
     ],
     "key": "solar_energy_total",
-    "name": "Solar Generation Total",
+    "name": "PV Energy Total",
     "scale": 0.01,
     "signed": false,
     "type": "sensor"
@@ -2669,7 +2669,7 @@
       48014
     ],
     "key": "time_group_1_max_soc_from_grid",
-    "name": "Time Group 1 Max SoC From Grid (48014)",
+    "name": "Time Group1 SoC Max From Grid",
     "scale": null,
     "signed": false,
     "type": "sensor"
@@ -2679,7 +2679,7 @@
       48014
     ],
     "key": "time_group_1_min_soc_on_grid",
-    "name": "Time Group 1 Min SoC On Grid (48014)",
+    "name": "Time Group1 SoC Min On Grid",
     "scale": null,
     "signed": false,
     "type": "sensor"
@@ -2690,7 +2690,7 @@
       39623
     ],
     "key": "total_yield_today",
-    "name": "Yield Today",
+    "name": "Inverter Yield Energy Today",
     "scale": 0.01,
     "signed": false,
     "type": "sensor"
@@ -2701,7 +2701,7 @@
       39621
     ],
     "key": "total_yield_total",
-    "name": "Yield Total",
+    "name": "Inverter Yield Energy Total",
     "scale": 0.01,
     "signed": false,
     "type": "sensor"

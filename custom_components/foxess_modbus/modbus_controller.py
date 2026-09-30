@@ -260,7 +260,15 @@ class ModbusController(EntityController, UnloadController):
                     value = _UINT16_MAX + value + 1
                 values[i] = value
 
-            await self._client.write_registers(start_address, values, self._slave)
+            end_address = start_address + len(values) - 1
+            if len(values) > 1 and self._connection_type_profile.requires_single_register_writes(
+                self, start_address, end_address
+            ):
+                # Issued in ascending address order, the same order a multi-register write lands in
+                for i, value in enumerate(values):
+                    await self._client.write_registers(start_address + i, [value], self._slave)
+            else:
+                await self._client.write_registers(start_address, values, self._slave)
 
             changed_addresses = set()
             for i, value in enumerate(values):
@@ -453,7 +461,7 @@ class ModbusController(EntityController, UnloadController):
 
             # This register must be read in a single individual read. Yield any ranges we've found so far,
             # and yield just this register on its own
-            if self._connection_type_profile.is_individual_read(address):
+            if self._connection_type_profile.is_individual_read(address, self):
                 if start_address is not None:
                     yield (start_address, read_size)
                     start_address, read_size = None, 0
@@ -465,7 +473,7 @@ class ModbusController(EntityController, UnloadController):
             # inside invalid ranges, tested in __init__). This also assumes that read_size != max_read here.
             elif address == start_address + 1 or (
                 address <= start_address + max_read - 1
-                and not self._connection_type_profile.overlaps_invalid_range(start_address, address - 1)
+                and not self._connection_type_profile.overlaps_invalid_range(start_address, address - 1, self)
             ):
                 # There's a previous read which we can extend
                 read_size = address - start_address + 1
@@ -492,25 +500,20 @@ class ModbusController(EntityController, UnloadController):
 
         read_values: list[tuple[int, Iterable[int | None]]] = []
 
-        read_ranges = self._create_read_ranges(
-            self._max_read, is_initial_connection=self._connection_state != ConnectionState.CONNECTED
-        )
-        for start_address, num_reads in read_ranges:
-            _LOGGER.debug(
-                "Reading addresses on %s %s: (%s, %s)",
-                self._client,
-                self._slave,
-                start_address,
-                num_reads,
+        read_ranges = list(
+            self._create_read_ranges(
+                self._max_read, is_initial_connection=self._connection_state != ConnectionState.CONNECTED
             )
+        )
+        _LOGGER.debug("Reading addresses on %s %s: %s", self._client, self._slave, read_ranges)
+        results = await self._client.read_registers_pipelined(
+            read_ranges, self._connection_type_profile.register_type, self._slave
+        )
+        for (start_address, num_reads), result in zip(read_ranges, results, strict=True):
             try:
-                reads = await self._client.read_registers(
-                    start_address,
-                    num_reads,
-                    self._connection_type_profile.register_type,
-                    self._slave,
-                )
-                read_values.append((start_address, reads))
+                if isinstance(result, ModbusClientFailedError):
+                    raise result
+                read_values.append((start_address, result))
 
             except ModbusClientFailedError as ex:
                 if not _is_illegal_address(ex):
@@ -558,9 +561,9 @@ class ModbusController(EntityController, UnloadController):
     def register_modbus_entity(self, listener: ModbusControllerEntity) -> None:
         self._update_listeners.add(listener)
         for address in listener.addresses:
-            assert not self._connection_type_profile.overlaps_invalid_range(address, address), (
+            assert not self._connection_type_profile.overlaps_invalid_range(address, address, self), (
                 f"Entity {listener} address {address} overlaps an invalid range in "
-                f"{self._connection_type_profile.special_registers.invalid_register_ranges}"
+                f"{self._connection_type_profile.special_registers_for(self).invalid_register_ranges}"
             )
             if address not in self._data:
                 self._data[address] = RegisterValue(poll_type=listener.register_poll_type)

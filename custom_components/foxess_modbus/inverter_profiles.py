@@ -15,6 +15,7 @@ from .common.types import ConnectionType
 from .common.types import Inv
 from .common.types import InverterModel
 from .common.types import RegisterType
+from .const import EXPERIMENTAL_UNIFIED_MAP
 from .const import INVERTER_BASE
 from .const import INVERTER_CONN
 from .const import INVERTER_VERSION
@@ -77,15 +78,48 @@ class SpecialRegisterConfig:
         self.individual_read_register_ranges = individual_read_register_ranges
 
 
+# H3 Manager >= 1.93 (Master 2.23) only accepts single-register writes (FC 0x06) on these remote control registers,
+# see https://github.com/nathanmarlor/foxess_modbus/issues/1124 (comment by mickymouso, 2026-09-04)
+_SINGLE_REGISTER_WRITE_RANGES: list[tuple[tuple[int, int], Inv]] = [
+    ((44002, 44003), Inv.H3_193),
+    ((44007, 44013), Inv.H3_193),
+]
+
 H1_AC1_REGISTERS = SpecialRegisterConfig(invalid_register_ranges=[(11096, 39999)])
 # See https://github.com/nathanmarlor/foxess_modbus/discussions/503
 H3_REGISTERS = SpecialRegisterConfig(
-    invalid_register_ranges=[(41001, 41006), (41012, 41013), (41015, 41015)],
+    invalid_register_ranges=[(41001, 41006), (41015, 41015)],
+    individual_read_register_ranges=[(41000, 41999)],
+)
+H3_193_REGISTERS = SpecialRegisterConfig(
+    # The new-map ranges answer IllegalAddress on H3 Manager 1.93+ (measured 2026-09-30, every address and both
+    # neighbours of each range read individually), see
+    # entities/discovered_registers.py. Listed so that no read range spans them.
+    invalid_register_ranges=[
+        (41001, 41006),
+        (41015, 41015),
+        (39185, 39199),
+        (39422, 39424),
+        (39633, 39641),
+        (45005, 45008),
+        (46008, 46017),
+        (49184, 49201),
+        (49205, 49205),
+        (49213, 49220),
+        (49231, 49231),
+        (49250, 49252),
+        (53399, 53416),
+    ],
     individual_read_register_ranges=[(41000, 41999)],
 )
 # H3_REGISTERS with an extra range, see https://github.com/nathanmarlor/foxess_modbus/issues/692
 H3_PRO_REGISTERS = SpecialRegisterConfig(
-    invalid_register_ranges=[(37633, 37699), (41001, 41006), (41012, 41013), (41015, 41015)],
+    invalid_register_ranges=[
+        (37633, 37699),
+        (41001, 41006),
+        (41012, 41013),
+        (41015, 41015),
+    ],
     individual_read_register_ranges=[(41000, 41999)],
 )
 # See https://github.com/nathanmarlor/foxess_modbus/discussions/792
@@ -96,12 +130,34 @@ H3_SMART_REGISTERS = SpecialRegisterConfig(
 )
 # See https://github.com/nathanmarlor/foxess_modbus/pull/512
 KH_REGISTERS = SpecialRegisterConfig(
-    invalid_register_ranges=[(41001, 41006), (41012, 41012), (41019, 43999), (31055, 31999)],
+    invalid_register_ranges=[
+        (41001, 41006),
+        (41012, 41012),
+        (41019, 43999),
+        (31055, 31999),
+    ],
     individual_read_register_ranges=[(41000, 41999)],
 )
 # See https://github.com/nathanmarlor/foxess_modbus/discussions/553
 H1_G2_REGISTERS = SpecialRegisterConfig(
     individual_read_register_ranges=[(41000, 41999)],
+)
+
+
+# The families which can be switched to the EXPERIMENTAL unified map (Inv.UNIFIED_SET), by the Inv of their latest
+# firmware. Older families (H1 G1/LAN, H3 before 1.80 and its clones) don't have the new map.
+_UNIFIED_SINGLE_PHASE = Inv.H1_G2_SET | Inv.KH_SET | Inv.EVO
+_UNIFIED_THREE_PHASE = Inv.H3_193 | Inv.H3_180 | Inv.H3_PRO_SET | Inv.H3_SMART
+
+
+def _is_new_map_range(r: tuple[int, int]) -> bool:
+    return r[0] >= 36000 and not 40000 <= r[0] <= 44999
+
+
+# The unified map's invalid ranges, measured on an H3 with Manager 1.95 (see H3_193_REGISTERS). Each family adds its
+# own known ranges within the new map, see InverterModelConnectionTypeProfile.
+UNIFIED_REGISTERS = SpecialRegisterConfig(
+    invalid_register_ranges=[r for r in H3_193_REGISTERS.invalid_register_ranges if _is_new_map_range(r)],
 )
 
 
@@ -151,7 +207,34 @@ class InverterModelConnectionTypeProfile:
 
         assert None in versions
 
+        latest = versions[None]
+        self.unified_inv: Inv | None = None
+        if register_type == RegisterType.HOLDING:
+            if latest & _UNIFIED_SINGLE_PHASE:
+                self.unified_inv = Inv.UNIFIED_1PH
+            elif latest & _UNIFIED_THREE_PHASE:
+                self.unified_inv = Inv.UNIFIED_3PH
+        self.unified_special_registers = SpecialRegisterConfig(
+            invalid_register_ranges=UNIFIED_REGISTERS.invalid_register_ranges
+            + [r for r in special_registers.invalid_register_ranges if _is_new_map_range(r)],
+            individual_read_register_ranges=[
+                r for r in special_registers.individual_read_register_ranges if _is_new_map_range(r)
+            ],
+        )
+
+    def uses_unified_map(self, inverter_details: dict[str, Any]) -> bool:
+        return self.unified_inv is not None and bool(inverter_details.get(EXPERIMENTAL_UNIFIED_MAP, False))
+
+    def special_registers_for(self, controller: EntityController | None) -> SpecialRegisterConfig:
+        if controller is not None and self.uses_unified_map(controller.inverter_details):
+            return self.unified_special_registers
+        return self.special_registers
+
     def _get_inv(self, controller: EntityController) -> Inv:
+        if self.uses_unified_map(controller.inverter_details):
+            assert self.unified_inv is not None
+            return self.unified_inv
+
         version_from_config = controller.inverter_details.get(INVERTER_VERSION)
 
         inverter_version = Version.parse(version_from_config) if version_from_config is not None else None
@@ -169,14 +252,32 @@ class InverterModelConnectionTypeProfile:
         matched_version = next((x for x in versions if x[0] <= version), versions[0])  # type: ignore[operator]
         return matched_version[1]
 
-    def overlaps_invalid_range(self, start_address: int, end_address: int) -> bool:
+    def overlaps_invalid_range(
+        self,
+        start_address: int,
+        end_address: int,
+        controller: EntityController | None = None,
+    ) -> bool:
         """Determines whether the given inclusive address range overlaps any invalid address ranges"""
         return any(
-            r[0] <= end_address and start_address <= r[1] for r in self.special_registers.invalid_register_ranges
+            r[0] <= end_address and start_address <= r[1]
+            for r in self.special_registers_for(controller).invalid_register_ranges
         )
 
-    def is_individual_read(self, address: int) -> bool:
-        return any(r[0] <= address <= r[1] for r in self.special_registers.individual_read_register_ranges)
+    def is_individual_read(self, address: int, controller: EntityController | None = None) -> bool:
+        return any(
+            r[0] <= address <= r[1] for r in self.special_registers_for(controller).individual_read_register_ranges
+        )
+
+    def requires_single_register_writes(
+        self, controller: EntityController, start_address: int, end_address: int
+    ) -> bool:
+        """Whether a multi-register write over this inclusive range must be split into FC 0x06 writes"""
+        inv = self._get_inv(controller)
+        return any(
+            inv & models and r[0] <= end_address and start_address <= r[1]
+            for r, models in _SINGLE_REGISTER_WRITE_RANGES
+        )
 
     def create_entities(
         self,
@@ -200,8 +301,19 @@ class InverterModelConnectionTypeProfile:
             entity = entity_factory.create_entity_if_supported(
                 controller, self._get_inv(controller), self.register_type
             )
-            if entity is not None:
-                result.append(entity)
+            if entity is None:
+                continue
+            # The unified map is shared by several families, which don't all answer every register of it
+            if self.uses_unified_map(controller.inverter_details) and any(
+                self.overlaps_invalid_range(address, address, controller)
+                for address in getattr(entity, "addresses", [])
+            ):
+                _LOGGER.debug(
+                    "Skipping %s on the unified map: it overlaps an invalid range",
+                    entity_factory,
+                )
+                continue
+            result.append(entity)
 
         return result
 
@@ -226,7 +338,12 @@ class InverterModelConnectionTypeProfile:
 class InverterModelProfile:
     """Describes the capabilities of an inverter model"""
 
-    def __init__(self, model: InverterModel, model_pattern: str, capacity_parser: CapacityParser | None = None) -> None:
+    def __init__(
+        self,
+        model: InverterModel,
+        model_pattern: str,
+        capacity_parser: CapacityParser | None = None,
+    ) -> None:
         self.model = model
         self.model_pattern = model_pattern
         self._capacity_parser = capacity_parser if capacity_parser is not None else CapacityParser.DEFAULT
@@ -349,7 +466,7 @@ _INVERTER_PROFILES_LIST = [
     # The "-M" suffix (e.g. H3-10.0-M) is an OEM/installer variant of the H3-Smart (Gen2), confirmed
     # by FoxESS - see https://github.com/nathanmarlor/foxess_modbus/issues/1023. Without this it falls
     # through to the plain H3 profile and reads the wrong (legacy) register map.
-    InverterModelProfile(InverterModel.H3_SMART, r"^H3-([\d\.]+)-(?:Smart|M)").add_connection_type(
+    InverterModelProfile(InverterModel.H3_SMART, r"^H3-([\d\.]+)-(?:(?i:Smart)|M)").add_connection_type(
         ConnectionType.AUX,
         RegisterType.HOLDING,
         versions={None: Inv.H3_SMART},
@@ -366,8 +483,13 @@ _INVERTER_PROFILES_LIST = [
     InverterModelProfile(InverterModel.H3, r"^H3-([\d\.]+)").add_connection_type(
         ConnectionType.AUX,
         RegisterType.HOLDING,
-        versions={Version(1, 80): Inv.H3_PRE180, None: Inv.H3_180},
-        special_registers=H3_REGISTERS,
+        # Manager 1.93+ (shipped with Master 2.23, 2026) changed the Modbus interface, see #1124
+        versions={
+            Version(1, 80): Inv.H3_PRE180,
+            Version(1, 92): Inv.H3_180,
+            None: Inv.H3_193,
+        },
+        special_registers=H3_193_REGISTERS,
     ),
     InverterModelProfile(InverterModel.AC3, r"^AC3-([\d\.]+)").add_connection_type(
         ConnectionType.AUX,
@@ -490,7 +612,9 @@ assert all(ConnectionType.AUX in x.connection_types for x in _INVERTER_PROFILES_
 
 
 def create_entities(
-    entity_type: type[Entity], controller: EntityController, filter_depends_on_other_entites: bool | None = None
+    entity_type: type[Entity],
+    controller: EntityController,
+    filter_depends_on_other_entites: bool | None = None,
 ) -> list[Entity]:
     """Create all of the entities which support the inverter described by the given configuration object"""
 
@@ -499,7 +623,9 @@ def create_entities(
     )
 
 
-def inverter_connection_type_profile_from_config(inverter_config: dict[str, Any]) -> InverterModelConnectionTypeProfile:
+def inverter_connection_type_profile_from_config(
+    inverter_config: dict[str, Any],
+) -> InverterModelConnectionTypeProfile:
     """Fetches a InverterConnectionTypeProfile for a given configuration object"""
     inverter_model = inverter_config[INVERTER_BASE]
     connection_type = inverter_config[INVERTER_CONN]

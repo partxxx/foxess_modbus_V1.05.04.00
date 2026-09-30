@@ -86,10 +86,13 @@ class Inv(Flag):
 
     H3_PRE180 = auto()
     H3_180 = auto()
+    # Manager >= 1.93 (Master 2.23): battery today registers 32005/32008 hold total mod 65536, and most values moved
+    # to the new register map, see entities/discovered_registers.py
+    H3_193 = auto()
     AIO_H3_PRE101 = auto()
     AIO_H3_101 = auto()
     KUARA_H3 = auto()
-    H3_SET = H3_180 | H3_PRE180 | AIO_H3_101 | AIO_H3_PRE101 | KUARA_H3
+    H3_SET = H3_193 | H3_180 | H3_PRE180 | AIO_H3_101 | AIO_H3_PRE101 | KUARA_H3
 
     H3_PRO_PRE122 = auto()
     H3_PRO_122 = auto()
@@ -100,6 +103,12 @@ class Inv(Flag):
     EVO = auto()
 
     ALL = H1_LAN | H1_G1 | H1_G2_SET | KH_SET | H3_SET | H3_PRO_SET | H3_SMART | EVO
+
+    # EXPERIMENTAL: the unified FoxESS Modbus map (V1.05.04.00), selectable instead of the model's own. Deliberately
+    # not part of ALL: entities only support it where discovered_registers.py adds it explicitly
+    UNIFIED_1PH = auto()
+    UNIFIED_3PH = auto()
+    UNIFIED_SET = UNIFIED_1PH | UNIFIED_3PH
 
 
 class RegisterPollType(IntEnum):

@@ -41,6 +41,11 @@ POLL_RATE = "poll_rate"
 MAX_READ = "max_read"
 ADAPTER_ID = "adapter_id"
 ROUND_SENSOR_VALUES = "round_sensor_values"
+# Developer option: create "Register xxxxx raw" entities for registers whose meaning isn't known yet, and entities
+# comparing new-map registers with legacy ones
+RAW_REGISTER_ENTITIES = "raw_register_entities"
+# EXPERIMENTAL: use the unified FoxESS Modbus map (V1.05.04.00) instead of the model's own, see Inv.UNIFIED_SET
+EXPERIMENTAL_UNIFIED_MAP = "experimental_unified_map"
 # Used as a key in the inverter config to indicate that the adapter was migrated from config version 1
 ADAPTER_WAS_MIGRATED = "adapter_was_migrated"
 

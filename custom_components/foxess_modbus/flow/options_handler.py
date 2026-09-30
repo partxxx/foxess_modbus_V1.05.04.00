@@ -8,11 +8,13 @@ from homeassistant.helpers.selector import selector
 
 from ..const import ADAPTER_ID
 from ..const import CONFIG_ENTRY_TITLE
+from ..const import EXPERIMENTAL_UNIFIED_MAP
 from ..const import INVERTER_VERSION
 from ..const import INVERTERS
 from ..const import MAX_READ
 from ..const import MODBUS_TYPE
 from ..const import POLL_RATE
+from ..const import RAW_REGISTER_ENTITIES
 from ..const import ROUND_SENSOR_VALUES
 from ..inverter_adapters import ADAPTERS
 from ..inverter_profiles import Version
@@ -202,6 +204,16 @@ class OptionsHandler(FlowHandlerMixin, config_entries.OptionsFlow):
             else:
                 options.pop(ROUND_SENSOR_VALUES, None)
 
+            if user_input.get("raw_register_entities", False):
+                options[RAW_REGISTER_ENTITIES] = True
+            else:
+                options.pop(RAW_REGISTER_ENTITIES, None)
+
+            if user_input.get("experimental_unified_map", False):
+                options[EXPERIMENTAL_UNIFIED_MAP] = True
+            else:
+                options.pop(EXPERIMENTAL_UNIFIED_MAP, None)
+
             max_read = user_input.get("max_read")
             if max_read is not None:
                 options[MAX_READ] = max_read
@@ -215,6 +227,19 @@ class OptionsHandler(FlowHandlerMixin, config_entries.OptionsFlow):
         schema_parts[vol.Required("round_sensor_values", default=options.get(ROUND_SENSOR_VALUES, False))] = selector(
             {"boolean": {}}
         )
+        schema_parts[
+            vol.Required(
+                "raw_register_entities",
+                default=options.get(RAW_REGISTER_ENTITIES, False),
+            )
+        ] = selector({"boolean": {}})
+        if inverter_connection_type_profile_from_config(combined_config_options).unified_inv is not None:
+            schema_parts[
+                vol.Required(
+                    "experimental_unified_map",
+                    default=options.get(EXPERIMENTAL_UNIFIED_MAP, False),
+                )
+            ] = selector({"boolean": {}})
         schema_parts[
             vol.Optional(
                 "poll_rate",

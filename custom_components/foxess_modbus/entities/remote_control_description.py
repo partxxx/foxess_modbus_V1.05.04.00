@@ -105,7 +105,30 @@ REMOTE_CONTROL_DESCRIPTION = ModbusRemoteControlFactory(
                 pwr_limit_bat_up=None,
                 pv_voltages=[31000, 31003],
             ),
-            models=Inv.H3_SET & ~Inv.KUARA_H3 & ~Inv.AIO_H3_101 & ~Inv.AIO_H3_PRE101,
+            models=Inv.H3_SET & ~Inv.KUARA_H3 & ~Inv.AIO_H3_101 & ~Inv.AIO_H3_PRE101 & ~Inv.H3_193,
+        ),
+        RemoteControlAddressSpec(
+            # H3 Manager >= 1.93 answers on the new register map, the same layout as the H3-Pro / H3-Smart below.
+            # Measured on an H3-5.0-E (2026-09-30): 46001-46004 accept FC 0x06 and FC 0x10 writes, mirror the legacy
+            # 44000-44001, and the countdown in 46007 runs. The legacy 44002 turned out to hold the low word of the
+            # setpoint, not the high word the legacy spec above assumes.
+            holding=ModbusRemoteControlAddressConfig(
+                remote_enable=46001,
+                timeout_set=46002,
+                active_power=[46004, 46003],
+                work_mode=49203,
+                work_mode_map={
+                    WorkMode.SELF_USE: 1,
+                    WorkMode.FEED_IN_FIRST: 2,
+                    WorkMode.BACK_UP: 3,
+                },
+                max_soc=46610,
+                invbatpower=[39238, 39237],
+                battery_soc=[37612],
+                pwr_limit_bat_up=[46019, 46018],
+                pv_voltages=[39070, 39072],
+            ),
+            models=Inv.H3_193,
         ),
         RemoteControlAddressSpec(
             # The H3 doesn't support anything above 44005, and the active/reactive power regisers are 2 values

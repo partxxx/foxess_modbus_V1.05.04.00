@@ -113,6 +113,16 @@
   },
   {
     "addresses": [
+      31039
+    ],
+    "key": "bms_max_current",
+    "name": "BMS Max Current",
+    "scale": 0.1,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
       31025
     ],
     "key": "eps_frequency",
@@ -568,7 +578,17 @@
   },
   {
     "addresses": [
-      31029
+      31127
+    ],
+    "key": "load_power",
+    "name": "Load Power",
+    "scale": 0.001,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      31129
     ],
     "key": "load_power_R",
     "name": "Load Power R",
@@ -578,7 +598,7 @@
   },
   {
     "addresses": [
-      31030
+      31131
     ],
     "key": "load_power_S",
     "name": "Load Power S",
@@ -588,7 +608,7 @@
   },
   {
     "addresses": [
-      31031
+      31133
     ],
     "key": "load_power_T",
     "name": "Load Power T",

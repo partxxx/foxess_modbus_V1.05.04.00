@@ -149,11 +149,15 @@
         "description": "Options for \"{inverter}\".",
         "data": {
           "round_sensor_values": "Round sensor values",
+          "raw_register_entities": "Create raw register entities",
+          "experimental_unified_map": "EXPERIMENTAL: use the unified FoxESS Modbus map (V1.05.04.00)",
           "poll_rate": "Poll rate (seconds)",
           "max_read": "Max read"
         },
         "data_description": {
           "round_sensor_values": "Reduces Home Assistant database size by rounding and filtering sensor values",
+          "raw_register_entities": "Developer option for H3 Manager 1.93 and later, and the unified map. Creates disabled diagnostic entities for discovered registers whose meaning is not yet known, and for comparing new registers with legacy ones.",
+          "experimental_unified_map": "For testing only. Reads the inverter through the new register map documented by FoxESS instead of the one this integration normally uses for your model. Read-only: no work mode, charge/discharge settings, charge periods or remote control. Overrides the firmware version setting. Some entities differ from the normal set for your model (single-phase models get the R-phase entities). Verified on an H3 (Manager 1.95) only.",
           "poll_rate": "The default for your adapter type is {default_poll_rate} seconds. Leave empty to use the default",
           "max_read": "The default for your adapter type is {default_max_read}. Leave empty to use the default. Warning: Look at the debug log for problems if you increase this!"
         }

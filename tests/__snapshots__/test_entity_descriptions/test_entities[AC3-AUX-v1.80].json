@@ -11,6 +11,19 @@
   },
   {
     "addresses": [
+      41025
+    ],
+    "key": "balance_mode",
+    "name": "Balance Mode",
+    "type": "select",
+    "values": {
+      "0": "Disabled",
+      "1": "Total",
+      "2": "Per Phase"
+    }
+  },
+  {
+    "addresses": [
       31035
     ],
     "key": "bat_current",
@@ -113,6 +126,16 @@
   },
   {
     "addresses": [
+      31039
+    ],
+    "key": "bms_max_current",
+    "name": "BMS Max Current",
+    "scale": 0.1,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
       31025
     ],
     "key": "eps_frequency",
@@ -150,6 +173,27 @@
     "scale": 0.001,
     "signed": true,
     "type": "sensor"
+  },
+  {
+    "addresses": [
+      41013,
+      41012
+    ],
+    "key": "export_power_limit",
+    "name": "Export Power Limit",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      41013,
+      41012
+    ],
+    "key": "export_power_limit",
+    "name": "Export Power Limit",
+    "scale": null,
+    "type": "number"
   },
   {
     "addresses": [
@@ -568,7 +612,17 @@
   },
   {
     "addresses": [
-      31029
+      31127
+    ],
+    "key": "load_power",
+    "name": "Load Power",
+    "scale": 0.001,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      31129
     ],
     "key": "load_power_R",
     "name": "Load Power R",
@@ -578,7 +632,7 @@
   },
   {
     "addresses": [
-      31030
+      31131
     ],
     "key": "load_power_S",
     "name": "Load Power S",
@@ -588,7 +642,7 @@
   },
   {
     "addresses": [
-      31031
+      31133
     ],
     "key": "load_power_T",
     "name": "Load Power T",

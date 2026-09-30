@@ -107,7 +107,7 @@ class ModbusInverterStateSensor(ModbusEntityMixin, SensorEntity):
 class ModbusG2InverterStateSensorDescription(SensorEntityDescription, EntityFactory):  # type: ignore[misc]
     """Description for ModbusInverterStateSensor"""
 
-    # Fault 1 code, fault 3 code
+    # Status 1, Status 3 (optionally both words of Status 3)
     addresses: list[ModbusAddressesSpec]
 
     @property
@@ -145,7 +145,7 @@ class ModbusG2InverterStateSensor(ModbusEntityMixin, SensorEntity):
         entity_description: ModbusG2InverterStateSensorDescription,
         addresses: list[int],
     ) -> None:
-        assert len(addresses) == 2
+        assert len(addresses) in (2, 3)
 
         self._attr_device_class = SensorDeviceClass.ENUM
         self._attr_options = ["Fault", "Off Grid", "On Grid", "Standby"]
@@ -163,6 +163,13 @@ class ModbusG2InverterStateSensor(ModbusEntityMixin, SensorEntity):
         status3 = self._controller.read(self._addresses[1], signed=False)
         if status1 is None or status3 is None:
             return None
+        if len(self._addresses) == 3:
+            # Status 3 is documented as 32 bits over two registers without saying which word holds bit 0. The
+            # bit 0 of the other word is reserved, so look at both.
+            status3_other = self._controller.read(self._addresses[2], signed=False)
+            if status3_other is None:
+                return None
+            status3 |= status3_other
 
         if (status1 & 0x40) > 0:
             return "Fault"

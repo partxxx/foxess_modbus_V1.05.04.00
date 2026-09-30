@@ -57,9 +57,9 @@ The switch appears only for models whose current firmware is expected to use the
 
 | Map              | Models                                                                                                                                  | Entities                                       |
 | ---------------- | --------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
-| Unified, 3-phase | H3 (any firmware setting; expected to work from Manager 1.93), AC3, H3-Smart / H3-M, P3-S (P3-x.x-SH), SK-HWR-Smart, Enpal I-X, 1KOMMA5 | 254                                            |
-| Unified, 3-phase | H3-Pro / P3-Pro                                                                                                                         | 251 (37633–37699 are left out, see issue #692) |
-| Unified, 1-phase | KH, H1-G2, AC1-G2, P1, EVO                                                                                                              | 218                                            |
+| Unified, 3-phase | H3 (any firmware setting; expected to work from Manager 1.93), AC3, H3-Smart / H3-M, P3-S (P3-x.x-SH), SK-HWR-Smart, Enpal I-X, 1KOMMA5 | 235                                            |
+| Unified, 3-phase | H3-Pro / P3-Pro                                                                                                                         | 232 (37633–37699 are left out, see issue #692) |
+| Unified, 1-phase | KH, H1-G2, AC1-G2, P1, EVO                                                                                                              | 201                                            |
 | Not offered      | H1 / AC1 / AIO-H1 / AIO-AC1 (G1 and LAN), AIO-H3, Kuara H3, SK-HWR, STAR-H3, Solavita, Atronix                                          | —                                              |
 
 Model names follow FoxESS' own documentation: the P3-S series (P3-5.0-SH … P3-15.0-SH, P3-10.0-SH1) shares
@@ -148,7 +148,7 @@ whether a value has the right magnitude but the wrong sign.
 | Versions             | `master_version`, `slave_version`, `manager_version`                                                                                           | Must match the app exactly (36001 and 36002 are read as decimal, 36003 as hex digits) |
 | Inverter state       | `inverter_state`                                                                                                                               | On Grid / Off Grid / Standby / Fault, as expected                                     |
 | Faults               | `inverter_fault_code`                                                                                                                          | Normally empty; report anything unexpected                                            |
-| PV                   | `pv1_voltage`, `pv1_current`, `pv1_power`, `pv2_*`, `pv3_*`, `reg_39118_total_pv_input_power`                                                  | Per string and total, vs app                                                          |
+| PV                   | `pv1_voltage`, `pv1_current`, `pv1_power`, `pv2_*`, `pv3_*`, `pv_power_now`                                                                    | Per string and total, vs app                                                          |
 | Grid / meter         | `grid_ct_R`/`S`/`T`, `feed_in*`, `grid_consumption*`, `grid_voltage_*`, `rfreq`                                                                | Direction (import vs export), magnitude                                               |
 | Load                 | `load_power`, `load_power_R`/`S`/`T`                                                                                                           | vs app "load"                                                                         |
 | Battery              | `battery_soc`, `bat_current`, `batvolt`, `battery_charge`/`battery_discharge`, `invbatpower`                                                   | Sign while charging vs discharging                                                    |
@@ -217,7 +217,8 @@ the release version through HACS, and restart.
   observed yet.
 - **PV strings:** PV1–PV3 are included (39070–39075, 39279–39284). PV3 was taken over from the H3-Smart /
   KH / EVO definitions and is 0 on the two-string reference H3. PV4 (documented at 39076/39077,
-  39285–39286) is not included yet. The total PV power (39118) is included.
+  39285–39286) is not included yet. "PV Power" (`pv_power_now`) is the inverter's own total PV input power
+  (39118–39119), not a sum of the strings.
 - **Single-phase keys** end in `_R` (e.g. `grid_voltage_R`), unlike the family's normal keys.
   Dashboards and automations that use the normal keys need adjusting while testing.
 - **Charge periods / time groups** are not available on the unified map yet (48014+ are only shown as
@@ -244,5 +245,5 @@ the release version through HACS, and restart.
   An entity overlapping these ranges is not created for that family. Registers that answer
   _IllegalAddress_ at runtime are excluded automatically and listed in the repair notice.
 
-- Measured on the H3, with 254 entities and a read-only full poll: the default entities take 13 Modbus
-  exchanges in 0.85 s; with all entities, including developer ones, 26 exchanges in 1.8 s; no errors.
+- Measured on the H3, with 235 entities and a read-only full poll: the default entities take 13 Modbus
+  exchanges in 0.87 s; with all entities, including developer ones, 26 exchanges in 1.8 s; no errors.

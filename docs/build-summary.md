@@ -56,8 +56,8 @@ with the PR author.
 - **FC06-only writes** for 44002–44003 and 44007–44013 on H3 Manager 1.93+.
 - **Local H3 additions** kept from the previous custom build: Balance Mode, BMS Max Current and Export Power
   Limit control. These are ported to the new map on 1.93+, see section 3.
-- **"PV Power" (sum of PV1 and PV2) removed on H3 Manager 1.93+**, as requested. The inverter's own total PV
-  power (39118) is available instead.
+- **"PV Power" on H3 Manager 1.93+ is read from the inverter** (total PV input power, 39118–39119) instead of
+  being computed as PV1 + PV2. The entity (`pv_power_now`) is unchanged.
 
 ## 3. Port to "Modbus definition (V1.05.04.00)" (H3 Manager 1.93+)
 
@@ -73,7 +73,7 @@ legacy register first.
 | Remote control moved             | 1       | 46001–46004 (enable, timeout, active power), plus the new-map battery, work mode and limit registers                                                                                                                                                                             |
 | Inverter state                   | 1       | Decoded from Status 1 / Status 3 (39063, 39065–39066). Replaces the raw state code 31041.                                                                                                                                                                                        |
 | Decoded text entities            | 9       | BMS and protocol version, EPS frequency and output mode, grid standard (98 codes), meter/CT type, date/time, time group 1 SoC                                                                                                                                                    |
-| Further documented entities      | 75 + 29 | Named new-map sensors, plus H3-Smart definitions that answer correctly on the H3 (disabled by default)                                                                                                                                                                           |
+| Further documented entities      | 64 + 20 | Named new-map sensors, plus H3-Smart definitions that answer correctly on the H3 (disabled by default)                                                                                                                                                                           |
 | Developer entities               | 18      | New-map counterparts of the values kept on legacy registers, for comparison over time                                                                                                                                                                                            |
 | Raw entities                     | 48      | Registers whose meaning isn't confirmed yet (developer option, disabled)                                                                                                                                                                                                         |
 | Still on legacy registers        | 3       | Ambient temperature 31033 (no documented register), BMS max current 31039 (undocumented 37615 candidate), fault codes 31044–31051 (bit mapping of 39067–39069 not confirmed)                                                                                                     |
@@ -86,9 +86,9 @@ Invalid ranges were measured address by address: 39185–39199, 39422–39424, 3
 There is an opt-in, read-only switch in _Advanced options_: "EXPERIMENTAL: use the unified FoxESS Modbus map
 (V1.05.04.00)". It is offered for 13 models:
 
-- **3-phase, 254 entities:** H3, AC3, H3-Smart / H3-M, P3-S (P3-x.x-SH), SK-HWR-Smart, Enpal I-X and 1KOMMA5;
-  H3-Pro / P3-Pro get 251.
-- **1-phase, 218 entities:** KH, H1-G2, AC1-G2, P1 and EVO.
+- **3-phase, 235 entities:** H3, AC3, H3-Smart / H3-M, P3-S (P3-x.x-SH), SK-HWR-Smart, Enpal I-X and 1KOMMA5;
+  H3-Pro / P3-Pro get 232.
+- **1-phase, 201 entities:** KH, H1-G2, AC1-G2, P1 and EVO.
 
 With the switch off, every model and firmware version keeps a byte-identical entity set. **So far it has only
 been tested on the H3 above.** Testing guide: [unified-map-testing.md](unified-map-testing.md). Entity list:
@@ -112,12 +112,12 @@ Writes were only made with the owner's explicit approval.
 | 15:52             | 10 legacy → new swaps (battery voltage, current, temperature, SoH, BMS cells, remaining energy, EPS frequency) | All equal over three rounds, with 6 A battery current and the same sign                                                                                                |
 | 16:05             | Inverter state                                                                                                 | Status 1 = 0x0004 (Operation) while legacy 31041 = 2 (On Grid) → "On Grid"                                                                                             |
 | 16:09             | Developer comparison registers                                                                                 | 37615 = 31039 = 14 A; 39142 = 0 vs 31033 = 49 °C; all fault words 0                                                                                                    |
-| 17:1x             | Unified map, full read-only cycle                                                                              | 254 entities, no legacy address; 13 exchanges / 0.85 s; 0 errors                                                                                                       |
+| 19:4x             | Unified map, full read-only cycle                                                                              | 235 entities, no legacy address; 13 exchanges / 0.87 s; 0 errors                                                                                                       |
 
 **Offline checks:**
 
-- all 35 model/firmware combinations serialize without an invalid address or duplicate key (3272 entities);
-- 181 numeric H3 entities match the PDF in address, word order, sign and scale;
+- all 35 model/firmware combinations serialize without an invalid address or duplicate key (3253 entities);
+- 162 numeric H3 entities match the PDF in address, word order, sign and scale;
 - controller read ranges pass in 20 variants;
 - 10 frame-repair tests pass;
 - the unified map passes on all 13 offered models;

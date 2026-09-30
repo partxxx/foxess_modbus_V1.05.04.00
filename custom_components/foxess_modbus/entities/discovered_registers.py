@@ -4,7 +4,8 @@ Registers of FoxESS H3 on Manager 1.93+ (Inv.H3_193), read from the "new" regist
 
 - _SWAPS: existing entities verified against the legacy map or an independent consistency check (load phase
   sum; grid values against a HomeWizard P1 meter). On H3_193 these entities read the new register instead.
-- _REMOVE: entities dropped on H3_193 (pv_power_now; state_code, replaced by the decoded inverter_state).
+- _REMOVE: entities dropped on H3_193 (the computed pv_power_now, replaced by _PV_POWER read from 39118;
+  state_code, replaced by the decoded inverter_state).
 - _VERSIONS: the Master / Slave / Manager versions from 36001-36003 (the legacy 30016-30018 hold serial number
   characters on this firmware).
 - _WRITABLE_PORTS / _SELECT_PORTS: the writable settings (charge/discharge current, SoC limits, export limit,
@@ -134,7 +135,8 @@ _SWAPS: dict[str, tuple[list[int], float | None, bool]] = {
     "total_yield_total": ([39622, 39621], 0.01, False),
 }
 
-# Entities which don't apply to H3_193: computed (pv_power_now = PV1 + PV2, see 39118 instead)
+# Entities which don't apply to H3_193: computed (pv_power_now = PV1 + PV2, read from 39118 instead, see
+# _PV_POWER)
 # state_code (31041, a bare number) is replaced by the decoded inverter_state below
 _REMOVE = {"pv_power_now", "state_code"}
 
@@ -193,14 +195,7 @@ _TEMPLATE_SIGNED = {
 
 _FROM_H3_SMART = [
     "bat_current_1",
-    "battery_soh_1",
-    "battery_temp_1",
     "batvolt_1",
-    "bms_cell_mv_high_1",
-    "bms_cell_mv_low_1",
-    "bms_cell_temp_high_1",
-    "bms_cell_temp_low_1",
-    "bms_kwh_remaining_1",
     "eps_rcurrent_R",
     "eps_rcurrent_S",
     "eps_rcurrent_T",
@@ -210,8 +205,6 @@ _FROM_H3_SMART = [
     "grid_ct",
     "feed_in",
     "grid_consumption",
-    "invbatcurrent_1",
-    "invbatvolt_1",
     "invbatpower_1",
     "battery_charge_1",
     "battery_discharge_1",
@@ -555,6 +548,19 @@ def _developer(
     )
 
 
+# PV Power on H3_193: the inverter's own total PV input power instead of the computed PV1 + PV2 sum
+_PV_POWER = ModbusSensorDescription(
+    key="pv_power_now",
+    addresses=[ModbusAddressesSpec(holding=[39119, 39118], models=Inv.H3_193)],
+    name="PV Power",
+    device_class=SensorDeviceClass.POWER,
+    state_class=SensorStateClass.MEASUREMENT,
+    native_unit_of_measurement="kW",
+    scale=0.001,
+    signed=True,
+    icon="mdi:solar-power-variant-outline",
+)
+
 _NAMED = [
     _named(
         37633,
@@ -846,18 +852,6 @@ _NAMED = [
         poll_once=True,
     ),
     _named(
-        39118,
-        [39119, 39118],
-        "Total PV Input Power (39118)",
-        key="reg_39118_total_pv_input_power",
-        unit="kW",
-        device_class=SensorDeviceClass.POWER,
-        state_class=SensorStateClass.MEASUREMENT,
-        scale=0.001,
-        signed=True,
-        poll_once=False,
-    ),
-    _named(
         39149,
         [39150, 39149],
         "Cumulative power generation (39149)",
@@ -886,54 +880,6 @@ _NAMED = [
         [39217, 39216],
         "EPS Combined Power (39216)",
         key="reg_39216_eps_combined_power",
-        unit="W",
-        device_class=SensorDeviceClass.POWER,
-        state_class=SensorStateClass.MEASUREMENT,
-        scale=None,
-        signed=True,
-        poll_once=False,
-    ),
-    _named(
-        39219,
-        [39220, 39219],
-        "Load R Phase Power (39219)",
-        key="reg_39219_load_r_phase_power",
-        unit="W",
-        device_class=SensorDeviceClass.POWER,
-        state_class=SensorStateClass.MEASUREMENT,
-        scale=None,
-        signed=True,
-        poll_once=False,
-    ),
-    _named(
-        39221,
-        [39222, 39221],
-        "Load S Phase Power (39221)",
-        key="reg_39221_load_s_phase_power",
-        unit="W",
-        device_class=SensorDeviceClass.POWER,
-        state_class=SensorStateClass.MEASUREMENT,
-        scale=None,
-        signed=True,
-        poll_once=False,
-    ),
-    _named(
-        39223,
-        [39224, 39223],
-        "Load T Phase Power (39223)",
-        key="reg_39223_load_t_phase_power",
-        unit="W",
-        device_class=SensorDeviceClass.POWER,
-        state_class=SensorStateClass.MEASUREMENT,
-        scale=None,
-        signed=True,
-        poll_once=False,
-    ),
-    _named(
-        39225,
-        [39226, 39225],
-        "Load Combined Power (39225)",
-        key="reg_39225_load_combined_power",
         unit="W",
         device_class=SensorDeviceClass.POWER,
         state_class=SensorStateClass.MEASUREMENT,
@@ -1174,78 +1120,6 @@ _NAMED = [
         [46505, 46504],
         "Export Peak Limit (46504)",
         key="reg_46504_export_peak_limit",
-        unit="W",
-        device_class=SensorDeviceClass.POWER,
-        state_class=None,
-        scale=None,
-        signed=True,
-        poll_once=False,
-    ),
-    _named(
-        46607,
-        [46607],
-        "Max charging current setting (46607)",
-        key="reg_46607_max_charging_current_setting",
-        unit="A",
-        device_class=SensorDeviceClass.CURRENT,
-        state_class=None,
-        scale=0.1,
-        signed=True,
-        poll_once=False,
-    ),
-    _named(
-        46608,
-        [46608],
-        "Max discharge current setting (46608)",
-        key="reg_46608_max_discharge_current_setting",
-        unit="A",
-        device_class=SensorDeviceClass.CURRENT,
-        state_class=None,
-        scale=0.1,
-        signed=True,
-        poll_once=False,
-    ),
-    _named(
-        46609,
-        [46609],
-        "Minimum SoC (46609)",
-        key="reg_46609_minimum_soc",
-        unit="%",
-        device_class=None,
-        state_class=None,
-        scale=None,
-        signed=False,
-        poll_once=False,
-    ),
-    _named(
-        46610,
-        [46610],
-        "Maximum SoC (46610)",
-        key="reg_46610_maximum_soc",
-        unit="%",
-        device_class=None,
-        state_class=None,
-        scale=None,
-        signed=False,
-        poll_once=False,
-    ),
-    _named(
-        46611,
-        [46611],
-        "Minimum SoC OnGrid (46611)",
-        key="reg_46611_minimum_soc_ongrid",
-        unit="%",
-        device_class=None,
-        state_class=None,
-        scale=None,
-        signed=False,
-        poll_once=False,
-    ),
-    _named(
-        46616,
-        [46617, 46616],
-        "Export Power Limit (46616)",
-        key="reg_46616_export_power_limit",
         unit="W",
         device_class=SensorDeviceClass.POWER,
         state_class=None,
@@ -1717,6 +1591,7 @@ def apply_discovered_registers(
         )
     )
 
+    result.append(_PV_POWER)
     result.extend(_DECODED)
     result.extend(_NAMED)
     result.extend(_DEVELOPER)

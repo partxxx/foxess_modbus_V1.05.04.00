@@ -266,6 +266,7 @@ class ModbusClient:
         # to its own request (offset 0) or to the one before (offset 1). If the start and end offsets differ, or a
         # probe answer doesn't fit either, nothing from the batch is used and every range is read on its own below.
         probe_address = next((a for a, n in ranges if n >= 2), None)
+        connection_error: Exception | None = None
         if probe_address is None:
             candidates: list[list[Any]] = [[] for _ in ranges]
             responses: list[Any] = []
@@ -307,6 +308,9 @@ class ModbusClient:
                         time.sleep(self._poll_delay)
                     start_address, num_registers = request(i)
                     answers.append(call(start_address, num_registers, slave))
+                    # No connection (e.g. timeout): the rest of the batch would only wait for timeouts as well
+                    if isinstance(answers[-1], Exception):
+                        break
                 return answers
 
             async with self._lock:
@@ -322,8 +326,12 @@ class ModbusClient:
                         return offset
                 return None
 
-            offsets = {offset_at(j) for j, i in enumerate(sequence) if i == probe_1}
             candidates = [[] for _ in ranges]
+            if len(responses) < len(sequence):
+                connection_error = responses[-1]
+                offsets: set[int | None] = set()
+            else:
+                offsets = {offset_at(j) for j, i in enumerate(sequence) if i == probe_1}
             if len(offsets) == 1 and None not in offsets:
                 offset = offsets.pop()
                 assert offset is not None
@@ -350,6 +358,14 @@ class ModbusClient:
                 and (needed == 1 or agree(answers[0], answers[1]))
             )
             if not accepted:
+                if connection_error is not None:
+                    # Like reading range by range: the first connection error ends the poll
+                    message = (
+                        f"Error reading registers. Type: {register_type}; start: {start_address}; "
+                        f"count: {num_registers}; slave: {slave}"
+                    )
+                    results.append(ModbusClientFailedError(message, self, connection_error))
+                    continue
                 _LOGGER.debug(
                     "Re-reading (%s, %s) on %s: pipelined answer rejected",
                     start_address,
@@ -360,6 +376,8 @@ class ModbusClient:
                     results.append(await self.read_registers(start_address, num_registers, register_type, slave))
                 except ModbusClientFailedError as ex:
                     results.append(ex)
+                    if isinstance(ex.response, Exception):
+                        connection_error = ex.response
                 continue
             results.append(cast(list[int], answers[-1].registers))
         return results
@@ -486,6 +504,10 @@ class ModbusClient:
                     time.sleep(self._poll_delay)
                 response = call(*args)
                 responses.append(response)
+                # No connection (e.g. timeout): repeating only waits for more timeouts. The gateway's own error
+                # codes are exception responses instead, and are repeated
+                if isinstance(response, Exception):
+                    return response
                 # The first answer belongs to whatever the inverter was asked before
                 if attempt == 0 or not fits(response):
                     continue

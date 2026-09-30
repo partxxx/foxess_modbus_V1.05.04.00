@@ -361,7 +361,7 @@
       39216
     ],
     "key": "eps_power_T",
-    "name": "EPS Power",
+    "name": "EPS T Power",
     "scale": 0.001,
     "signed": true,
     "type": "sensor"

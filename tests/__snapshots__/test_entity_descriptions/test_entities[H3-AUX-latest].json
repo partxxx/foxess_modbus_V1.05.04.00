@@ -2360,16 +2360,6 @@
   },
   {
     "addresses": [
-      46614
-    ],
-    "key": "register_46614_raw",
-    "name": "Register 46614 Raw",
-    "scale": null,
-    "signed": false,
-    "type": "sensor"
-  },
-  {
-    "addresses": [
       46615
     ],
     "key": "register_46615_raw",

@@ -57,9 +57,9 @@ The switch appears only for models whose current firmware is expected to use the
 
 | Map              | Models                                                                                                                                  | Entities                                       |
 | ---------------- | --------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
-| Unified, 3-phase | H3 (any firmware setting; expected to work from Manager 1.93), AC3, H3-Smart / H3-M, P3-S (P3-x.x-SH), SK-HWR-Smart, Enpal I-X, 1KOMMA5 | 235                                            |
-| Unified, 3-phase | H3-Pro / P3-Pro                                                                                                                         | 232 (37633–37699 are left out, see issue #692) |
-| Unified, 1-phase | KH, H1-G2, AC1-G2, P1, EVO                                                                                                              | 201                                            |
+| Unified, 3-phase | H3 (any firmware setting; expected to work from Manager 1.93), AC3, H3-Smart / H3-M, P3-S (P3-x.x-SH), SK-HWR-Smart, Enpal I-X, 1KOMMA5 | 234                                            |
+| Unified, 3-phase | H3-Pro / P3-Pro                                                                                                                         | 231 (37633–37699 are left out, see issue #692) |
+| Unified, 1-phase | KH, H1-G2, AC1-G2, P1, EVO                                                                                                              | 200                                            |
 | Not offered      | H1 / AC1 / AIO-H1 / AIO-AC1 (G1 and LAN), AIO-H3, Kuara H3, SK-HWR, STAR-H3, Solavita, Atronix                                          | —                                              |
 
 Model names follow FoxESS' own documentation: the P3-S series (P3-5.0-SH … P3-15.0-SH, P3-10.0-SH1) shares
@@ -245,5 +245,5 @@ the release version through HACS, and restart.
   An entity overlapping these ranges is not created for that family. Registers that answer
   _IllegalAddress_ at runtime are excluded automatically and listed in the repair notice.
 
-- Measured on the H3, with 235 entities and a read-only full poll: the default entities take 13 Modbus
-  exchanges in 0.87 s; with all entities, including developer ones, 26 exchanges in 1.8 s; no errors.
+- Measured on the H3, with 234 entities and a read-only full poll: the default entities take 13 Modbus
+  exchanges in 0.9 s; with all entities, including developer ones, 26 exchanges in 1.8 s; no errors.

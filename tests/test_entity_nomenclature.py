@@ -52,6 +52,15 @@ from custom_components.foxess_modbus.entities.remote_control_description import 
         ("reg_46020_pwr_limit_bat_dn", "Pwr_limit Bat_Dn (46020)", 46020, "Inverter BAT Power Charge Available"),
         ("time_period_1_start", "Period 1 - Start", None, "Time Period1 Start"),
         ("register_39134_raw", "Register 39134 raw", 39134, "Register 39134 Raw"),
+        ("ambtemp", "Ambient Temp", 39142, "Inverter Ambient Temperature"),
+        (
+            "reg_39142_ambtemp_candidate",
+            "Ambient Temperature candidate (39142)",
+            39142,
+            "Inverter Ambient Temperature Candidate",
+        ),
+        ("eps_power_T", "EPS Power T", 39216, "EPS T Power"),
+        ("reg_39216_eps_combined_power", "EPS Combined Power (39216)", 39216, "EPS Power"),
     ],
 )
 def test_display_name(key: str, old_name: str, address: int | None, expected: str) -> None:
@@ -137,3 +146,16 @@ def test_names_follow_nomenclature() -> None:
         assert not re.search(r"^(?:Inverter|Grid|EPS|Load|Meter CT[12]) .+ [RST]$", name), name
         if getattr(factory, "native_unit_of_measurement", None) in ("Wh", "kWh"):
             assert "Energy" in name, (description.key, name)
+
+
+def test_names_agree_with_their_key() -> None:
+    """A register-based name must not contradict what the entity key says it is"""
+    for factory in entity_descriptions.ENTITIES:
+        description = cast(EntityDescription, factory)
+        name = description.name
+        assert isinstance(name, str)
+        if "Candidate" in name:
+            assert description.key.startswith("reg_"), (description.key, name)
+        phase = re.fullmatch(r"(?:eps_power|load_power|grid_voltage|inv_power|inv_current)_([RST])", description.key)
+        if phase:
+            assert re.search(rf"\b{phase[1]}\b", name), (description.key, name)

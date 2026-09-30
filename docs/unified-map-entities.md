@@ -5,7 +5,7 @@ Generated from the integration code (`Inv.UNIFIED_3PH` / `Inv.UNIFIED_1PH`). Add
 _Enabled_: `default` = enabled when created, `disabled` = created disabled (enable it in HA to test it),
 `developer` = only created with the _Create raw register entities_ option, and disabled.
 
-Three-phase models: 254 entities; single-phase models: 218 (the rows marked _3-phase only_ are left out).
+Three-phase models: 235 entities; single-phase models: 201 (the rows marked _3-phase only_ are left out).
 
 | Key                                          | Name                                    | Register(s)                              | Scale          | Unit | Signed | Phases       | Enabled   |
 | -------------------------------------------- | --------------------------------------- | ---------------------------------------- | -------------- | ---- | ------ | ------------ | --------- |
@@ -23,19 +23,13 @@ Three-phase models: 254 entities; single-phase models: 218 (the rows marked _3-p
 | `batvolt_1`                                  | BMS1 BAT Voltage                        | 37609                                    | × 0.1          | V    |        |              | disabled  |
 | `bat_current_1`                              | BMS1 BAT Current                        | 37610                                    | × 0.1          | A    | signed |              | disabled  |
 | `battery_temp`                               | BMS1 BAT Temperature                    | 37611                                    | × 0.1          | °C   | signed |              | default   |
-| `battery_temp_1`                             | BMS1 BAT Temperature                    | 37611                                    | × 0.1          | °C   | signed |              | disabled  |
 | `battery_soc`                                | BMS1 BAT SoC                            | 37612                                    |                | %    |        |              | default   |
 | `reg_37615_bms_max_current_candidate`        | BMS1 BAT Current Max Candidate          | 37615                                    | × 0.1          | A    |        |              | developer |
 | `bms_cell_temp_high`                         | BMS1 BAT Cell Temperature Max           | 37617                                    | × 0.1          | °C   | signed |              | default   |
-| `bms_cell_temp_high_1`                       | BMS1 BAT Cell Temperature Max           | 37617                                    | × 0.1          | °C   | signed |              | disabled  |
 | `bms_cell_temp_low`                          | BMS1 BAT Cell Temperature Min           | 37618                                    | × 0.1          | °C   | signed |              | default   |
-| `bms_cell_temp_low_1`                        | BMS1 BAT Cell Temperature Min           | 37618                                    | × 0.1          | °C   | signed |              | disabled  |
 | `bms_cell_mv_high`                           | BMS1 BAT Cell Voltage Max               | 37619                                    |                | mV   |        |              | default   |
-| `bms_cell_mv_high_1`                         | BMS1 BAT Cell Voltage Max               | 37619                                    |                | mV   |        |              | disabled  |
 | `bms_cell_mv_low`                            | BMS1 BAT Cell Voltage Min               | 37620                                    |                | mV   |        |              | default   |
-| `bms_cell_mv_low_1`                          | BMS1 BAT Cell Voltage Min               | 37620                                    |                | mV   |        |              | disabled  |
 | `battery_soh`                                | BMS1 BAT SoH                            | 37624                                    |                | %    |        |              | default   |
-| `battery_soh_1`                              | BMS1 BAT SoH                            | 37624                                    |                | %    |        |              | disabled  |
 | `reg_37626_bms1_fault1`                      | BMS1 BAT Fault1 Raw                     | 37626                                    |                |      |        |              | developer |
 | `reg_37627_bms1_fault2`                      | BMS1 BAT Fault2 Raw                     | 37627                                    |                |      |        |              | developer |
 | `reg_37628_bms1_fault3`                      | BMS1 BAT Fault3 Raw                     | 37628                                    |                |      |        |              | developer |
@@ -43,7 +37,6 @@ Three-phase models: 254 entities; single-phase models: 218 (the rows marked _3-p
 | `reg_37630_bms1_fault5`                      | BMS1 BAT Fault5 Raw                     | 37630                                    |                |      |        |              | developer |
 | `reg_37631_bms1_fault6`                      | BMS1 BAT Fault6 Raw                     | 37631                                    |                |      |        |              | developer |
 | `bms_kwh_remaining`                          | BMS1 BAT Energy Remaining               | 37632                                    | × 0.01         | kWh  |        |              | default   |
-| `bms_kwh_remaining_1`                        | BMS1 BAT Energy Remaining               | 37632                                    | × 0.01         | kWh  |        |              | disabled  |
 | `reg_37633_bms1_fcc_capacity`                | BMS1 BAT Capacity Full Charge           | 37633                                    | × 0.1          | Ah   |        |              | disabled  |
 | `reg_37635_bms1_design_energy`               | BMS1 BAT Energy Design                  | 37635                                    | × 10           | Wh   |        |              | disabled  |
 | `register_37636_raw`                         | Register 37636 Raw                      | 37636                                    |                |      |        |              | developer |
@@ -99,7 +92,7 @@ Three-phase models: 254 entities; single-phase models: 218 (the rows marked _3-p
 | `pv2_current`                                | PV2 Current                             | 39073                                    | × 0.01         | A    | signed |              | default   |
 | `pv3_voltage`                                | PV3 Voltage                             | 39074                                    | × 0.1          | V    | signed |              | default   |
 | `pv3_current`                                | PV3 Current                             | 39075                                    | × 0.01         | A    | signed |              | default   |
-| `reg_39118_total_pv_input_power`             | PV Power                                | 39118–39119 (32-bit, high word first)    | × 0.001        | kW   | signed |              | disabled  |
+| `pv_power_now`                               | PV Power                                | 39118–39119 (32-bit, high word first)    | × 0.001        | kW   | signed |              | default   |
 | `grid_voltage_R`                             | Grid R Voltage                          | 39123                                    | × 0.1          | V    | signed |              | disabled  |
 | `grid_voltage_S`                             | Grid S Voltage                          | 39124                                    | × 0.1          | V    | signed | 3-phase only | disabled  |
 | `grid_voltage_T`                             | Grid T Voltage                          | 39125                                    | × 0.1          | V    | signed | 3-phase only | disabled  |
@@ -128,17 +121,11 @@ Three-phase models: 254 entities; single-phase models: 218 (the rows marked _3-p
 | `reg_39216_eps_combined_power`               | EPS Power                               | 39216–39217 (32-bit, high word first)    |                | W    | signed |              | disabled  |
 | `eps_frequency`                              | EPS Frequency                           | 39218                                    | × 0.01         | Hz   | signed |              | disabled  |
 | `load_power_R`                               | Load R Power                            | 39219–39220 (32-bit, high word first)    | × 0.001        | kW   | signed |              | default   |
-| `reg_39219_load_r_phase_power`               | Load R Power                            | 39219–39220 (32-bit, high word first)    |                | W    | signed |              | disabled  |
 | `load_power_S`                               | Load S Power                            | 39221–39222 (32-bit, high word first)    | × 0.001        | kW   | signed | 3-phase only | default   |
-| `reg_39221_load_s_phase_power`               | Load S Power                            | 39221–39222 (32-bit, high word first)    |                | W    | signed | 3-phase only | disabled  |
 | `load_power_T`                               | Load T Power                            | 39223–39224 (32-bit, high word first)    | × 0.001        | kW   | signed | 3-phase only | default   |
-| `reg_39223_load_t_phase_power`               | Load T Power                            | 39223–39224 (32-bit, high word first)    |                | W    | signed | 3-phase only | disabled  |
 | `load_power`                                 | Load Power                              | 39225–39226 (32-bit, high word first)    | × 0.001        | kW   | signed |              | default   |
-| `reg_39225_load_combined_power`              | Load Power                              | 39225–39226 (32-bit, high word first)    |                | W    | signed |              | disabled  |
 | `batvolt`                                    | Inverter BAT1 Voltage                   | 39227                                    | × 0.1          | V    | signed |              | default   |
-| `invbatvolt_1`                               | Inverter BAT1 Voltage                   | 39227                                    | × 0.1          | V    | signed |              | disabled  |
 | `bat_current`                                | Inverter BAT1 Current                   | 39228–39229 (32-bit, high word first)    | × 0.001        | A    | signed |              | default   |
-| `invbatcurrent_1`                            | Inverter BAT1 Current                   | 39228–39229 (32-bit, high word first)    | × 0.001        | A    | signed |              | disabled  |
 | `battery_charge_1`                           | Inverter BAT1 Power Charge              | 39230–39231 (32-bit, high word first)    | × 0.001        | kW   | signed |              | disabled  |
 | `battery_discharge_1`                        | Inverter BAT1 Power Discharge           | 39230–39231 (32-bit, high word first)    | × 0.001        | kW   | signed |              | disabled  |
 | `invbatpower_1`                              | Inverter BAT1 Power                     | 39230–39231 (32-bit, high word first)    | × 0.001        | kW   | signed |              | disabled  |
@@ -205,21 +192,15 @@ Three-phase models: 254 entities; single-phase models: 218 (the rows marked _3-p
 | `register_46513_raw`                         | Register 46513 Raw                      | 46513                                    |                |      |        |              | developer |
 | `register_46514_raw`                         | Register 46514 Raw                      | 46514                                    |                |      |        |              | developer |
 | `max_charge_current`                         | Inverter BAT Current Charge Max         | 46607                                    | × 0.1          | A    | signed |              | default   |
-| `reg_46607_max_charging_current_setting`     | Inverter BAT Current Charge Max         | 46607                                    | × 0.1          | A    | signed |              | disabled  |
 | `max_discharge_current`                      | Inverter BAT Current Discharge Max      | 46608                                    | × 0.1          | A    | signed |              | default   |
-| `reg_46608_max_discharge_current_setting`    | Inverter BAT Current Discharge Max      | 46608                                    | × 0.1          | A    | signed |              | disabled  |
 | `min_soc`                                    | Inverter BAT SoC Min                    | 46609                                    |                | %    |        |              | default   |
-| `reg_46609_minimum_soc`                      | Inverter BAT SoC Min                    | 46609                                    |                | %    |        |              | disabled  |
 | `max_soc`                                    | Inverter BAT SoC Max                    | 46610                                    |                | %    |        |              | default   |
-| `reg_46610_maximum_soc`                      | Inverter BAT SoC Max                    | 46610                                    |                | %    |        |              | disabled  |
 | `min_soc_on_grid`                            | Inverter BAT SoC Min On Grid            | 46611                                    |                | %    |        |              | default   |
-| `reg_46611_minimum_soc_ongrid`               | Inverter BAT SoC Min On Grid            | 46611                                    |                | %    |        |              | disabled  |
 | `eps_frequency_select`                       | EPS Frequency Setting                   | 46612                                    | decoded text   |      |        |              | disabled  |
 | `eps_output_mode`                            | EPS Output Mode                         | 46613                                    | decoded text   |      |        |              | disabled  |
 | `register_46614_raw`                         | Register 46614 Raw                      | 46614                                    |                |      |        |              | developer |
 | `register_46615_raw`                         | Register 46615 Raw                      | 46615                                    |                |      |        |              | developer |
 | `export_power_limit`                         | Inverter Power Export Limit             | 46616–46617 (32-bit, high word first)    |                | W    | signed |              | default   |
-| `reg_46616_export_power_limit`               | Inverter Power Export Limit             | 46616–46617 (32-bit, high word first)    |                | W    | signed |              | disabled  |
 | `reg_46618_import_current_limit`             | Inverter Current Import Limit           | 46618                                    | × 0.1          | A    | signed |              | disabled  |
 | `reg_46619_export_current_limit`             | Inverter Current Export Limit           | 46619                                    | × 0.1          | A    | signed |              | disabled  |
 | `reg_46620_maximum_soc_from_grid`            | Inverter BAT SoC Max From Grid          | 46620                                    |                | %    |        |              | disabled  |

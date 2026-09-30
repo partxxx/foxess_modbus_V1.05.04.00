@@ -1,5 +1,6 @@
 """Offline coverage for the opt-in unified map; no real Modbus connections."""
 
+from collections import defaultdict
 from typing import Any
 from unittest.mock import MagicMock
 
@@ -24,7 +25,7 @@ from custom_components.foxess_modbus.entities.entity_descriptions import ENTITIE
 from custom_components.foxess_modbus.inverter_profiles import INVERTER_PROFILES
 
 
-@pytest.mark.parametrize("inv,expected_count", [(Inv.UNIFIED_1PH, 218), (Inv.UNIFIED_3PH, 254)])
+@pytest.mark.parametrize("inv,expected_count", [(Inv.UNIFIED_1PH, 201), (Inv.UNIFIED_3PH, 235)])
 def test_unified_entities(inv: Inv, expected_count: int, snapshot: SnapshotAssertion) -> None:
     entities: list[dict[str, Any]] = []
     for factory in ENTITIES:
@@ -75,3 +76,40 @@ async def test_unified_profiles_are_read_only(hass: HomeAssistant) -> None:
                     assert address >= 36000 and not 40000 <= address <= 44999
                     assert not connection_profile.overlaps_invalid_range(address, address, controller)
     assert offered == 13
+
+
+# Sensors which read the same registers on purpose: one signed value split by direction, and the two bytes of 48014
+_SHARED_REGISTER_GROUPS = [
+    {"grid_ct", "feed_in", "grid_consumption"},
+    *({f"grid_ct_{phase}", f"feed_in_{phase}", f"grid_consumption_{phase}"} for phase in "RST"),
+    {"invbatpower", "battery_charge", "battery_discharge"},
+    {"invbatpower_1", "battery_charge_1", "battery_discharge_1"},
+    {"time_group_1_max_soc_from_grid", "time_group_1_min_soc_on_grid"},
+]
+
+
+@pytest.mark.parametrize("inv", [Inv.H3_193, Inv.UNIFIED_1PH, Inv.UNIFIED_3PH])
+def test_no_duplicate_register_sensors(inv: Inv) -> None:
+    keys_by_addresses: dict[tuple[int, ...], set[str]] = defaultdict(set)
+    for factory in ENTITIES:
+        serialized = factory.serialize(inv, RegisterType.HOLDING)
+        if serialized is not None and serialized["type"] == "sensor":
+            keys_by_addresses[tuple(sorted(serialized["addresses"]))].add(serialized["key"])
+    for keys in keys_by_addresses.values():
+        if len(keys) > 1:
+            assert any(keys <= group for group in _SHARED_REGISTER_GROUPS), keys
+
+
+@pytest.mark.parametrize("inv", [Inv.H3_193, Inv.UNIFIED_1PH, Inv.UNIFIED_3PH])
+def test_pv_power_is_read_from_the_inverter(inv: Inv) -> None:
+    serialized = [factory.serialize(inv, RegisterType.HOLDING) for factory in ENTITIES]
+    assert [item for item in serialized if item is not None and item["key"] == "pv_power_now"] == [
+        {
+            "type": "sensor",
+            "key": "pv_power_now",
+            "name": "PV Power",
+            "addresses": [39119, 39118],
+            "scale": 0.001,
+            "signed": True,
+        }
+    ]

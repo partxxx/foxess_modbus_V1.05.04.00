@@ -153,29 +153,9 @@
   },
   {
     "addresses": [
-      37624
-    ],
-    "key": "battery_soh_1",
-    "name": "BMS1 BAT SoH",
-    "scale": null,
-    "signed": false,
-    "type": "sensor"
-  },
-  {
-    "addresses": [
       37611
     ],
     "key": "battery_temp",
-    "name": "BMS1 BAT Temperature",
-    "scale": 0.1,
-    "signed": true,
-    "type": "sensor"
-  },
-  {
-    "addresses": [
-      37611
-    ],
-    "key": "battery_temp_1",
     "name": "BMS1 BAT Temperature",
     "scale": 0.1,
     "signed": true,
@@ -223,29 +203,9 @@
   },
   {
     "addresses": [
-      37619
-    ],
-    "key": "bms_cell_mv_high_1",
-    "name": "BMS1 BAT Cell Voltage Max",
-    "scale": null,
-    "signed": false,
-    "type": "sensor"
-  },
-  {
-    "addresses": [
       37620
     ],
     "key": "bms_cell_mv_low",
-    "name": "BMS1 BAT Cell Voltage Min",
-    "scale": null,
-    "signed": false,
-    "type": "sensor"
-  },
-  {
-    "addresses": [
-      37620
-    ],
-    "key": "bms_cell_mv_low_1",
     "name": "BMS1 BAT Cell Voltage Min",
     "scale": null,
     "signed": false,
@@ -263,16 +223,6 @@
   },
   {
     "addresses": [
-      37617
-    ],
-    "key": "bms_cell_temp_high_1",
-    "name": "BMS1 BAT Cell Temperature Max",
-    "scale": 0.1,
-    "signed": true,
-    "type": "sensor"
-  },
-  {
-    "addresses": [
       37618
     ],
     "key": "bms_cell_temp_low",
@@ -283,29 +233,9 @@
   },
   {
     "addresses": [
-      37618
-    ],
-    "key": "bms_cell_temp_low_1",
-    "name": "BMS1 BAT Cell Temperature Min",
-    "scale": 0.1,
-    "signed": true,
-    "type": "sensor"
-  },
-  {
-    "addresses": [
       37632
     ],
     "key": "bms_kwh_remaining",
-    "name": "BMS1 BAT Energy Remaining",
-    "scale": 0.01,
-    "signed": false,
-    "type": "sensor"
-  },
-  {
-    "addresses": [
-      37632
-    ],
-    "key": "bms_kwh_remaining_1",
     "name": "BMS1 BAT Energy Remaining",
     "scale": 0.01,
     "signed": false,
@@ -829,17 +759,6 @@
   },
   {
     "addresses": [
-      39229,
-      39228
-    ],
-    "key": "invbatcurrent_1",
-    "name": "Inverter BAT1 Current",
-    "scale": 0.001,
-    "signed": true,
-    "type": "sensor"
-  },
-  {
-    "addresses": [
       39238,
       39237
     ],
@@ -857,16 +776,6 @@
     "key": "invbatpower_1",
     "name": "Inverter BAT1 Power",
     "scale": 0.001,
-    "signed": true,
-    "type": "sensor"
-  },
-  {
-    "addresses": [
-      39227
-    ],
-    "key": "invbatvolt_1",
-    "name": "Inverter BAT1 Voltage",
-    "scale": 0.1,
     "signed": true,
     "type": "sensor"
   },
@@ -1327,6 +1236,17 @@
   },
   {
     "addresses": [
+      39119,
+      39118
+    ],
+    "key": "pv_power_now",
+    "name": "PV Power",
+    "scale": 0.001,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
       31044
     ],
     "key": "reg_31044_legacy_fault_word",
@@ -1757,17 +1677,6 @@
   },
   {
     "addresses": [
-      39119,
-      39118
-    ],
-    "key": "reg_39118_total_pv_input_power",
-    "name": "PV Power",
-    "scale": 0.001,
-    "signed": true,
-    "type": "sensor"
-  },
-  {
-    "addresses": [
       39142
     ],
     "key": "reg_39142_ambtemp_candidate",
@@ -1805,50 +1714,6 @@
     ],
     "key": "reg_39216_eps_combined_power",
     "name": "EPS Power",
-    "scale": null,
-    "signed": true,
-    "type": "sensor"
-  },
-  {
-    "addresses": [
-      39220,
-      39219
-    ],
-    "key": "reg_39219_load_r_phase_power",
-    "name": "Load R Power",
-    "scale": null,
-    "signed": true,
-    "type": "sensor"
-  },
-  {
-    "addresses": [
-      39222,
-      39221
-    ],
-    "key": "reg_39221_load_s_phase_power",
-    "name": "Load S Power",
-    "scale": null,
-    "signed": true,
-    "type": "sensor"
-  },
-  {
-    "addresses": [
-      39224,
-      39223
-    ],
-    "key": "reg_39223_load_t_phase_power",
-    "name": "Load T Power",
-    "scale": null,
-    "signed": true,
-    "type": "sensor"
-  },
-  {
-    "addresses": [
-      39226,
-      39225
-    ],
-    "key": "reg_39225_load_combined_power",
-    "name": "Load Power",
     "scale": null,
     "signed": true,
     "type": "sensor"
@@ -2059,67 +1924,6 @@
     ],
     "key": "reg_46504_export_peak_limit",
     "name": "Inverter Power Export Peak Limit",
-    "scale": null,
-    "signed": true,
-    "type": "sensor"
-  },
-  {
-    "addresses": [
-      46607
-    ],
-    "key": "reg_46607_max_charging_current_setting",
-    "name": "Inverter BAT Current Charge Max",
-    "scale": 0.1,
-    "signed": true,
-    "type": "sensor"
-  },
-  {
-    "addresses": [
-      46608
-    ],
-    "key": "reg_46608_max_discharge_current_setting",
-    "name": "Inverter BAT Current Discharge Max",
-    "scale": 0.1,
-    "signed": true,
-    "type": "sensor"
-  },
-  {
-    "addresses": [
-      46609
-    ],
-    "key": "reg_46609_minimum_soc",
-    "name": "Inverter BAT SoC Min",
-    "scale": null,
-    "signed": false,
-    "type": "sensor"
-  },
-  {
-    "addresses": [
-      46610
-    ],
-    "key": "reg_46610_maximum_soc",
-    "name": "Inverter BAT SoC Max",
-    "scale": null,
-    "signed": false,
-    "type": "sensor"
-  },
-  {
-    "addresses": [
-      46611
-    ],
-    "key": "reg_46611_minimum_soc_ongrid",
-    "name": "Inverter BAT SoC Min On Grid",
-    "scale": null,
-    "signed": false,
-    "type": "sensor"
-  },
-  {
-    "addresses": [
-      46617,
-      46616
-    ],
-    "key": "reg_46616_export_power_limit",
-    "name": "Inverter Power Export Limit",
     "scale": null,
     "signed": true,
     "type": "sensor"

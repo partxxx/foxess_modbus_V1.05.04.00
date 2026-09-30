@@ -25,7 +25,7 @@ from custom_components.foxess_modbus.entities.entity_descriptions import ENTITIE
 from custom_components.foxess_modbus.inverter_profiles import INVERTER_PROFILES
 
 
-@pytest.mark.parametrize("inv,expected_count", [(Inv.UNIFIED_1PH, 201), (Inv.UNIFIED_3PH, 235)])
+@pytest.mark.parametrize("inv,expected_count", [(Inv.UNIFIED_1PH, 200), (Inv.UNIFIED_3PH, 234)])
 def test_unified_entities(inv: Inv, expected_count: int, snapshot: SnapshotAssertion) -> None:
     entities: list[dict[str, Any]] = []
     for factory in ENTITIES:
@@ -113,3 +113,22 @@ def test_pv_power_is_read_from_the_inverter(inv: Inv) -> None:
             "signed": True,
         }
     ]
+
+
+@pytest.mark.parametrize("inv", [Inv.H3_193, Inv.UNIFIED_1PH, Inv.UNIFIED_3PH])
+def test_raw_entities_only_read_otherwise_unused_registers(inv: Inv) -> None:
+    """Raw / developer entities are for registers nothing else reads, except the raw fault and alarm words kept for
+    comparison with the fault sensor which decodes them"""
+    used: set[int] = set()
+    raw: dict[str, list[int]] = {}
+    for factory in ENTITIES:
+        serialized = factory.serialize(inv, RegisterType.HOLDING)
+        if serialized is None or not isinstance(serialized.get("addresses"), list):
+            continue
+        if serialized["key"].startswith(("register_", "reg_")) and getattr(factory, "raw", False):
+            raw[serialized["key"]] = serialized["addresses"]
+        else:
+            used.update(serialized["addresses"])
+    for key, addresses in raw.items():
+        if not key.endswith("_legacy_fault_word") and "_alarm_" not in key:
+            assert not used.intersection(addresses), key

@@ -5,7 +5,7 @@ Generated from the integration code (`Inv.UNIFIED_3PH` / `Inv.UNIFIED_1PH`). Add
 _Enabled_: `default` = enabled when created, `disabled` = created disabled (enable it in HA to test it),
 `developer` = only created with the _Create raw register entities_ option, and disabled.
 
-Three-phase models: 235 entities; single-phase models: 201 (the rows marked _3-phase only_ are left out).
+Three-phase models: 234 entities; single-phase models: 200 (the rows marked _3-phase only_ are left out).
 
 | Key                                          | Name                                    | Register(s)                              | Scale          | Unit | Signed | Phases       | Enabled   |
 | -------------------------------------------- | --------------------------------------- | ---------------------------------------- | -------------- | ---- | ------ | ------------ | --------- |
@@ -198,7 +198,6 @@ Three-phase models: 235 entities; single-phase models: 201 (the rows marked _3-p
 | `min_soc_on_grid`                            | Inverter BAT SoC Min On Grid            | 46611                                    |                | %    |        |              | default   |
 | `eps_frequency_select`                       | EPS Frequency Setting                   | 46612                                    | decoded text   |      |        |              | disabled  |
 | `eps_output_mode`                            | EPS Output Mode                         | 46613                                    | decoded text   |      |        |              | disabled  |
-| `register_46614_raw`                         | Register 46614 Raw                      | 46614                                    |                |      |        |              | developer |
 | `register_46615_raw`                         | Register 46615 Raw                      | 46615                                    |                |      |        |              | developer |
 | `export_power_limit`                         | Inverter Power Export Limit             | 46616–46617 (32-bit, high word first)    |                | W    | signed |              | default   |
 | `reg_46618_import_current_limit`             | Inverter Current Import Limit           | 46618                                    | × 0.1          | A    | signed |              | disabled  |

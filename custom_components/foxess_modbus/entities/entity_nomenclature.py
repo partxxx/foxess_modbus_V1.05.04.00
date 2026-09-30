@@ -13,9 +13,11 @@ from .inverter_model_spec import ModbusAddressSpecBase
 
 # Register-specific names take precedence over historical keys. In particular, 39423 is System SoC,
 # although the existing EVO entity key is battery_soh. This does not change its value or identifier.
+# Only registers whose meaning is the same for every entity reading them belong here: candidates are named by
+# their developer key (EVO reads 39142 as its ambient temperature), and 39216 is the EPS T phase on the
+# H3-Pro / H3-Smart (see #669).
 _REGISTER_NAMES = {
     37003: "BMS1 BAT Master Version",
-    37615: "BMS1 BAT Current Max Candidate",
     37633: "BMS1 BAT Capacity Full Charge",
     37635: "BMS1 BAT Energy Design",
     39051: "PV String Count",
@@ -26,10 +28,8 @@ _REGISTER_NAMES = {
     39059: "Inverter Reactive Power Export Max",
     39061: "Inverter Reactive Power Import Max",
     39118: "PV Power",
-    39142: "Inverter Ambient Temperature Candidate",
     39149: "Inverter Energy Generation Total",
     39151: "Inverter Energy Generation Today",
-    39216: "EPS Power",
     39219: "Load R Power",
     39221: "Load S Power",
     39223: "Load T Power",
@@ -75,6 +75,8 @@ _REGISTER_NAMES = {
 }
 
 _KEY_NAMES = {
+    "reg_37615_bms_max_current_candidate": "BMS1 BAT Current Max Candidate",
+    "reg_39142_ambtemp_candidate": "Inverter Ambient Temperature Candidate",
     "ambtemp": "Inverter Ambient Temperature",
     "balance_mode": "Inverter Balance Mode",
     "bms_charge_rate": "BMS BAT Current Charge",

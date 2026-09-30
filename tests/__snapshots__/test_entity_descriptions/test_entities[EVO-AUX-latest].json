@@ -4,7 +4,7 @@
       39142
     ],
     "key": "ambtemp",
-    "name": "Inverter Ambient Temperature Candidate",
+    "name": "Inverter Ambient Temperature",
     "scale": 0.1,
     "signed": true,
     "type": "sensor"

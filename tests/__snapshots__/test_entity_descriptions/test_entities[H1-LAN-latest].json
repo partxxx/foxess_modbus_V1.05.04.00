@@ -70,7 +70,7 @@
       31025
     ],
     "key": "bms_charge_rate",
-    "name": "BMS BAT Current Charge",
+    "name": "BMS BAT Current Charge Max",
     "scale": 0.1,
     "signed": false,
     "type": "sensor"
@@ -80,7 +80,7 @@
       31026
     ],
     "key": "bms_discharge_rate",
-    "name": "BMS BAT Current Discharge",
+    "name": "BMS BAT Current Discharge Max",
     "scale": 0.1,
     "signed": false,
     "type": "sensor"

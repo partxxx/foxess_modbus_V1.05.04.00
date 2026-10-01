@@ -166,7 +166,7 @@
       31025
     ],
     "key": "bms_charge_rate",
-    "name": "BMS BAT Current Charge",
+    "name": "BMS BAT Current Charge Max",
     "scale": 0.1,
     "signed": false,
     "type": "sensor"
@@ -176,7 +176,7 @@
       31026
     ],
     "key": "bms_discharge_rate",
-    "name": "BMS BAT Current Discharge",
+    "name": "BMS BAT Current Discharge Max",
     "scale": 0.1,
     "signed": false,
     "type": "sensor"
@@ -318,7 +318,7 @@
       32020
     ],
     "key": "input_energy_today",
-    "name": "Inverter Input Energy Today",
+    "name": "Inverter Energy Input Today",
     "scale": 0.1,
     "signed": true,
     "type": "sensor"
@@ -329,7 +329,7 @@
       32018
     ],
     "key": "input_energy_total",
-    "name": "Inverter Input Energy Total",
+    "name": "Inverter Energy Input Total",
     "scale": 0.1,
     "signed": false,
     "type": "sensor"
@@ -777,7 +777,7 @@
       32017
     ],
     "key": "total_yield_today",
-    "name": "Inverter Yield Energy Today",
+    "name": "Inverter Energy Yield Today",
     "scale": 0.1,
     "signed": true,
     "type": "sensor"
@@ -788,7 +788,7 @@
       32015
     ],
     "key": "total_yield_total",
-    "name": "Inverter Yield Energy Total",
+    "name": "Inverter Energy Yield Total",
     "scale": 0.1,
     "signed": false,
     "type": "sensor"

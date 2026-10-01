@@ -133,7 +133,7 @@
       37611
     ],
     "key": "battery_temp",
-    "name": "BMS1 BAT Temperature",
+    "name": "BMS1 Temperature",
     "scale": 0.1,
     "signed": true,
     "type": "sensor"

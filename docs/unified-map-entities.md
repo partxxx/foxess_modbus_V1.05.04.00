@@ -22,7 +22,7 @@ Three-phase models: 234 entities; single-phase models: 200 (the rows marked _3-p
 | `register_37034_raw`                         | Register 37034 Raw                      | 37034                                    |                |      |        |              | developer |
 | `batvolt_1`                                  | BMS1 BAT Voltage                        | 37609                                    | × 0.1          | V    |        |              | disabled  |
 | `bat_current_1`                              | BMS1 BAT Current                        | 37610                                    | × 0.1          | A    | signed |              | disabled  |
-| `battery_temp`                               | BMS1 BAT Temperature                    | 37611                                    | × 0.1          | °C   | signed |              | default   |
+| `battery_temp`                               | BMS1 Temperature                        | 37611                                    | × 0.1          | °C   | signed |              | default   |
 | `battery_soc`                                | BMS1 BAT SoC                            | 37612                                    |                | %    |        |              | default   |
 | `reg_37615_bms_max_current_candidate`        | BMS1 BAT Current Max Candidate          | 37615                                    | × 0.1          | A    |        |              | developer |
 | `bms_cell_temp_high`                         | BMS1 BAT Cell Temperature Max           | 37617                                    | × 0.1          | °C   | signed |              | default   |

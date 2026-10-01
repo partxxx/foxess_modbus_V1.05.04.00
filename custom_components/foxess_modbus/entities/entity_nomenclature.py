@@ -113,6 +113,9 @@ _BMS_QUANTITIES = {
 }
 
 
+_BMS_ELECTRONICS_TEMPERATURE = (37611, 38309, 31037)
+
+
 def _battery_name(key: str, address: int | None) -> str | None:
     """BMS indices and inverter BAT input indices are independent namespaces."""
     match = re.fullmatch(r"(.+?)(?:_([12]))?", key)
@@ -121,6 +124,10 @@ def _battery_name(key: str, address: int | None) -> str | None:
     bms_index = "1" if address is not None and 37002 <= address <= 37636 else None
     if address is not None and 37700 <= address <= 38334:
         bms_index = "2"
+    if base == "battery_temp" and address in _BMS_ELECTRONICS_TEMPERATURE:
+        # The BMS's own (electronics) temperature, not a cell temperature: "BMS1 Ambient Temperature" in the Modbus
+        # definition; the legacy H3 31037 reads the same value as 37611 (checked live)
+        return f"BMS{bms_index or index or ''} Temperature"
     if base in _BMS_QUANTITIES:
         return f"BMS{bms_index or index or ''} BAT {_BMS_QUANTITIES[base]}"
 

@@ -1,5 +1,6 @@
 from homeassistant.components.sensor import SensorEntity
 from homeassistant.components.sensor import SensorEntityDescription
+from homeassistant.const import EntityCategory
 from homeassistant.const import Platform
 
 from ..common.entity_controller import EntityController
@@ -14,6 +15,7 @@ class ConnectionStatusSensor(ModbusEntityMixin, SensorEntity):
         self.entity_description = SensorEntityDescription(
             key="connection_status",
             name="Connection Status",
+            entity_category=EntityCategory.DIAGNOSTIC,
         )
         self._controller = controller
         self.entity_id = self._get_entity_id(Platform.SENSOR)

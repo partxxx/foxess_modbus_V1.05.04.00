@@ -27,15 +27,15 @@
 | BMS Cell mV High                           | BMS1 BAT Cell Voltage Max               |
 | BMS Cell mV Low                            | BMS BAT Cell Voltage Min                |
 | BMS Cell mV Low                            | BMS1 BAT Cell Voltage Min               |
-| BMS Charge Rate                            | BMS BAT Current Charge                  |
+| BMS Charge Rate                            | BMS BAT Current Charge Max              |
 | BMS Cycle Count                            | BMS BAT Cycle Count                     |
-| BMS Discharge Rate                         | BMS BAT Current Discharge               |
+| BMS Discharge Rate                         | BMS BAT Current Discharge Max           |
 | BMS Energy Throughput                      | BMS BAT Energy Throughput Total         |
 | BMS Max Current                            | BMS BAT Current Max                     |
 | BMS Max Current candidate (37615)          | BMS1 BAT Current Max Candidate          |
 | BMS kWh Remaining                          | BMS BAT Energy Remaining                |
 | BMS kWh Remaining                          | BMS1 BAT Energy Remaining               |
-| BMS1 Design Energy (37635)                 | BMS1 BAT Energy Design                  |
+| BMS1 Design Energy (37635)                 | BMS1 BAT Energy Nominal                 |
 | BMS1 FCC Capacity (37633)                  | BMS1 BAT Capacity Full Charge           |
 | BMS1 Fault1 (37626)                        | BMS1 BAT Fault1 Raw                     |
 | BMS1 Fault2 (37627)                        | BMS1 BAT Fault2 Raw                     |
@@ -119,10 +119,10 @@
 | Feed-in Today                              | Grid Energy Export Today                |
 | Feed-in Total                              | Grid Energy Export Total                |
 | Fixed active power (dispatch) (49008)      | Inverter Active Power Dispatch Setpoint |
-| Force Charge Max SoC                       | Inverter BAT SoC Charge Force Max       |
+| Force Charge Max SoC                       | Inverter BAT SoC Force Charge Max       |
 | Force Charge Mode                          | Inverter Remote Control Mode            |
-| Force Charge Power                         | Inverter BAT Power Charge Force         |
-| Force Discharge Power                      | Inverter BAT Power Discharge Force      |
+| Force Charge Power                         | Inverter BAT Power Force Charge         |
+| Force Discharge Power                      | Inverter BAT Power Force Discharge      |
 | GFCI Current (49249)                       | Inverter GFCI Current                   |
 | Grid CT                                    | Meter CT1 Power                         |
 | Grid CT (Apparent)                         | Meter CT1 Apparent Power                |
@@ -174,8 +174,8 @@
 | Idle Loadpower Threshold (49230)           | Load Power Idle Threshold               |
 | Import Current Limit (46618)               | Inverter Current Import Limit           |
 | Import Power Limit                         | Inverter Power Import Limit             |
-| Input Energy Today                         | Inverter Input Energy Today             |
-| Input Energy Total                         | Inverter Input Energy Total             |
+| Input Energy Today                         | Inverter Energy Input Today             |
+| Input Energy Total                         | Inverter Energy Input Total             |
 | Inverter Battery 1 Current                 | Inverter BAT1 Current                   |
 | Inverter Battery 1 Power                   | Inverter BAT1 Power                     |
 | Inverter Battery 1 Voltage                 | Inverter BAT1 Voltage                   |
@@ -353,5 +353,5 @@
 | Version: Master                            | Inverter Master Version                 |
 | Version: Slave                             | Inverter Slave Version                  |
 | Work Mode                                  | Inverter Work Mode                      |
-| Yield Today                                | Inverter Yield Energy Today             |
-| Yield Total                                | Inverter Yield Energy Total             |
+| Yield Today                                | Inverter Energy Yield Today             |
+| Yield Total                                | Inverter Energy Yield Total             |

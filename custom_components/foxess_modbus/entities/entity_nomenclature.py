@@ -19,7 +19,7 @@ from .inverter_model_spec import ModbusAddressSpecBase
 _REGISTER_NAMES = {
     37003: "BMS1 BAT Master Version",
     37633: "BMS1 BAT Capacity Full Charge",
-    37635: "BMS1 BAT Energy Design",
+    37635: "BMS1 BAT Energy Nominal",
     39051: "PV String Count",
     39052: "MPPT Count",
     39053: "Inverter Power Rated",
@@ -79,17 +79,17 @@ _KEY_NAMES = {
     "reg_39142_ambtemp_candidate": "Inverter Ambient Temperature Candidate",
     "ambtemp": "Inverter Ambient Temperature",
     "balance_mode": "Inverter Balance Mode",
-    "bms_charge_rate": "BMS BAT Current Charge",
-    "bms_discharge_rate": "BMS BAT Current Discharge",
+    "bms_charge_rate": "BMS BAT Current Charge Max",
+    "bms_discharge_rate": "BMS BAT Current Discharge Max",
     "bms_cycle_count": "BMS BAT Cycle Count",
     "bms_max_current": "BMS BAT Current Max",
     "bms_watthours_total": "BMS BAT Energy Throughput Total",
     "export_power_limit": "Inverter Power Export Limit",
     "import_power_limit": "Inverter Power Import Limit",
-    "force_charge_max_soc": "Inverter BAT SoC Charge Force Max",
+    "force_charge_max_soc": "Inverter BAT SoC Force Charge Max",
     "force_charge_mode": "Inverter Remote Control Mode",
-    "force_charge_power": "Inverter BAT Power Charge Force",
-    "force_discharge_power": "Inverter BAT Power Discharge Force",
+    "force_charge_power": "Inverter BAT Power Force Charge",
+    "force_discharge_power": "Inverter BAT Power Force Discharge",
     "invtemp": "Inverter Temperature",
     "max_charge_current": "Inverter BAT Current Charge Max",
     "max_discharge_current": "Inverter BAT Current Discharge Max",
@@ -187,8 +187,12 @@ def entity_display_name(key: str, name: str, address: int | None = None) -> str:
         return f"PV{match[1]} Energy Total"
     match = re.fullmatch(r"(solar_energy|total_yield|input_energy)_(today|total)", key)
     if match:
-        subject = {"solar_energy": "PV", "total_yield": "Inverter Yield", "input_energy": "Inverter Input"}[match[1]]
-        return f"{subject} Energy {match[2].title()}"
+        energy = {
+            "solar_energy": "PV Energy",
+            "total_yield": "Inverter Energy Yield",
+            "input_energy": "Inverter Energy Input",
+        }[match[1]]
+        return f"{energy} {match[2].title()}"
     if key == "load_power_total":
         return "Load Energy Total"
     match = re.fullmatch(r"(feed_in|grid_consumption)(?:_energy_(today|total)|_([RST]))?", key)

@@ -38,7 +38,7 @@ Three-phase models: 234 entities; single-phase models: 200 (the rows marked _3-p
 | `reg_37631_bms1_fault6`                      | BMS1 BAT Fault6 Raw                     | 37631                                    |                |      |        |              | developer |
 | `bms_kwh_remaining`                          | BMS1 BAT Energy Remaining               | 37632                                    | × 0.01         | kWh  |        |              | default   |
 | `reg_37633_bms1_fcc_capacity`                | BMS1 BAT Capacity Full Charge           | 37633                                    | × 0.1          | Ah   |        |              | disabled  |
-| `reg_37635_bms1_design_energy`               | BMS1 BAT Energy Design                  | 37635                                    | × 10           | Wh   |        |              | disabled  |
+| `reg_37635_bms1_design_energy`               | BMS1 BAT Energy Nominal                 | 37635                                    | × 10           | Wh   |        |              | disabled  |
 | `register_37636_raw`                         | Register 37636 Raw                      | 37636                                    |                |      |        |              | developer |
 | `register_38801_raw`                         | Register 38801 Raw                      | 38801                                    |                |      |        |              | developer |
 | `reg_38802_grid_ct1_r_phase_voltage`         | Meter CT1 R Voltage                     | 38802–38803 (32-bit, high word first)    | × 0.1          | V    | signed |              | disabled  |

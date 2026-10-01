@@ -50,14 +50,14 @@
 | Battery 1 Discharge                        | Inverter BAT1 Power Discharge           |
 | Battery 1 SoC                              | BMS1 BAT SoC                            |
 | Battery 1 SoH                              | BMS1 BAT SoH                            |
-| Battery 1 Temp                             | BMS1 BAT Temperature                    |
+| Battery 1 Temp                             | BMS1 Temperature                        |
 | Battery 1 Voltage                          | BMS1 BAT Voltage                        |
 | Battery 2 Charge                           | Inverter BAT2 Power Charge              |
 | Battery 2 Current                          | BMS2 BAT Current                        |
 | Battery 2 Discharge                        | Inverter BAT2 Power Discharge           |
 | Battery 2 SoC                              | BMS2 BAT SoC                            |
 | Battery 2 SoH                              | BMS2 BAT SoH                            |
-| Battery 2 Temp                             | BMS2 BAT Temperature                    |
+| Battery 2 Temp                             | BMS2 Temperature                        |
 | Battery 2 Voltage                          | BMS2 BAT Voltage                        |
 | Battery Charge                             | Inverter BAT Power Charge               |
 | Battery Charge Today                       | Inverter BAT Energy Charge Today        |
@@ -75,7 +75,8 @@
 | Battery SoH                                | BMS1 BAT SoH                            |
 | Battery SoH                                | System SoC                              |
 | Battery Temp                               | BMS BAT Temperature                     |
-| Battery Temp                               | BMS1 BAT Temperature                    |
+| Battery Temp                               | BMS Temperature                         |
+| Battery Temp                               | BMS1 Temperature                        |
 | Battery Voltage                            | BAT Voltage Source Unconfirmed          |
 | Battery Voltage                            | BMS1 BAT Voltage                        |
 | Battery Voltage                            | Inverter BAT Voltage                    |

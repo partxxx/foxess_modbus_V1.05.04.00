@@ -69,6 +69,8 @@ def test_experimental_selection() -> None:
     assert not is_experimental("reg_37615_bms_max_current_candidate")  # proven: the API's maxChargeCurrent
     assert not is_experimental("reg_38832_grid_ct1_r_phase_apparent")  # proven: S = U * I
     assert is_experimental("reg_39142_ambtemp_candidate")
+    assert is_experimental("reg_37613_bms_charge_voltage_max")  # BMS voltage limits: no second source yet
+    assert is_experimental("reg_37614_bms_discharge_voltage_min")
 
 
 def test_only_measured_quantities_are_sensors() -> None:

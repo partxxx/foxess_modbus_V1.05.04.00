@@ -1346,6 +1346,33 @@ _DEVELOPER = [
         scale=0.1,
         signed=True,
     ),
+    # BMS voltage limits, undocumented and not yet proven by a second source (experimental): 37613 = 432.0 V and
+    # 37614 = 336.0 V, i.e. 3.6 V and 2.8 V per cell for 120 LFP cells, the usual charge / discharge voltage limits
+    # a BMS sends to the inverter next to the current limits 37615 / 37616
+    _named(
+        37613,
+        [37613],
+        "BMS Charge Voltage Limit (37613)",
+        key="reg_37613_bms_charge_voltage_max",
+        unit="V",
+        device_class=SensorDeviceClass.VOLTAGE,
+        state_class=SensorStateClass.MEASUREMENT,
+        scale=0.1,
+        signed=False,
+        poll_once=False,
+    ),
+    _named(
+        37614,
+        [37614],
+        "BMS Discharge Voltage Limit (37614)",
+        key="reg_37614_bms_discharge_voltage_min",
+        unit="V",
+        device_class=SensorDeviceClass.VOLTAGE,
+        state_class=SensorStateClass.MEASUREMENT,
+        scale=0.1,
+        signed=False,
+        poll_once=False,
+    ),
     # BMS current limits, undocumented: 37615 = max charge current (31039 and the FoxESS Cloud API's maxChargeCurrent),
     # 37616 = max discharge current (the API's maxDischargeCurrent and the FoxESS web page, 27 A). Proven, so not
     # behind the raw register option; the 37615 key keeps its old name, as it is the unique id.

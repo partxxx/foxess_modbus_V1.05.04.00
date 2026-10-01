@@ -147,6 +147,8 @@ EXPERIMENTAL_KEYS = frozenset(
         "reg_46020_pwr_limit_bat_dn",
         "reg_37633_bms1_fcc_capacity",
         "reg_49249_gfci_current",
+        "reg_37613_bms_charge_voltage_max",
+        "reg_37614_bms_discharge_voltage_min",
     }
 )
 

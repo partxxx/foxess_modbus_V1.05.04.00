@@ -457,17 +457,6 @@
     "key": "export_power_limit",
     "name": "Inverter Power Export Limit",
     "scale": null,
-    "signed": true,
-    "type": "sensor"
-  },
-  {
-    "addresses": [
-      46617,
-      46616
-    ],
-    "key": "export_power_limit",
-    "name": "Inverter Power Export Limit",
-    "scale": null,
     "type": "number"
   },
   {
@@ -674,17 +663,6 @@
     "name": "Grid T Voltage",
     "scale": 0.1,
     "signed": false,
-    "type": "sensor"
-  },
-  {
-    "addresses": [
-      46502,
-      46501
-    ],
-    "key": "import_power_limit",
-    "name": "Inverter Power Import Limit",
-    "scale": null,
-    "signed": true,
     "type": "sensor"
   },
   {
@@ -1091,27 +1069,7 @@
     "key": "max_charge_current",
     "name": "Inverter BAT Current Charge Max",
     "scale": 0.1,
-    "signed": true,
-    "type": "sensor"
-  },
-  {
-    "addresses": [
-      46607
-    ],
-    "key": "max_charge_current",
-    "name": "Inverter BAT Current Charge Max",
-    "scale": 0.1,
     "type": "number"
-  },
-  {
-    "addresses": [
-      46608
-    ],
-    "key": "max_discharge_current",
-    "name": "Inverter BAT Current Discharge Max",
-    "scale": 0.1,
-    "signed": true,
-    "type": "sensor"
   },
   {
     "addresses": [
@@ -1129,16 +1087,6 @@
     "key": "max_soc",
     "name": "Inverter BAT SoC Max",
     "scale": null,
-    "signed": true,
-    "type": "sensor"
-  },
-  {
-    "addresses": [
-      46610
-    ],
-    "key": "max_soc",
-    "name": "Inverter BAT SoC Max",
-    "scale": null,
     "type": "number"
   },
   {
@@ -1148,27 +1096,7 @@
     "key": "min_soc",
     "name": "Inverter BAT SoC Min",
     "scale": null,
-    "signed": true,
-    "type": "sensor"
-  },
-  {
-    "addresses": [
-      46609
-    ],
-    "key": "min_soc",
-    "name": "Inverter BAT SoC Min",
-    "scale": null,
     "type": "number"
-  },
-  {
-    "addresses": [
-      46611
-    ],
-    "key": "min_soc_on_grid",
-    "name": "Inverter BAT SoC Min On Grid",
-    "scale": null,
-    "signed": true,
-    "type": "sensor"
   },
   {
     "addresses": [

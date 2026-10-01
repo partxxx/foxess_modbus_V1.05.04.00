@@ -1,6 +1,7 @@
 """Sensors, diagnostics and the experimental device; keys and unique ids don't change."""
 
 from types import SimpleNamespace
+from typing import Any
 from unittest.mock import MagicMock
 from unittest.mock import Mock
 
@@ -16,6 +17,7 @@ from custom_components.foxess_modbus.const import FRIENDLY_NAME
 from custom_components.foxess_modbus.const import INVERTER_CONN
 from custom_components.foxess_modbus.const import INVERTER_MODEL
 from custom_components.foxess_modbus.entities.entity_descriptions import ENTITIES
+from custom_components.foxess_modbus.entities.entity_grouping import CONFIG_KEYS
 from custom_components.foxess_modbus.entities.entity_grouping import DIAGNOSTIC_KEYS
 from custom_components.foxess_modbus.entities.entity_grouping import EXPERIMENTAL_KEYS
 from custom_components.foxess_modbus.entities.entity_grouping import is_diagnostic
@@ -24,15 +26,23 @@ from custom_components.foxess_modbus.entities.modbus_entity_mixin import ModbusE
 from custom_components.foxess_modbus.services import utils
 
 
-def _h3_193() -> list:
+def _h3_193() -> list[Any]:
     return [f for f in ENTITIES if f.serialize(Inv.H3_193, RegisterType.HOLDING) is not None]
 
 
+def _all() -> list[Any]:
+    return list(ENTITIES)
+
+
+def _is_sensor(factory: Any) -> bool:
+    return isinstance(factory, SensorEntityDescription)
+
+
 def test_grouped_keys_exist() -> None:
-    keys = {f.key for f in ENTITIES}
+    keys = {f.key for f in _all()}
     # connection_status is created by the platform; state_code is replaced by inverter_state on H3_193
     assert DIAGNOSTIC_KEYS - keys == {"connection_status"}
-    assert EXPERIMENTAL_KEYS <= {f.key for f in _h3_193()}
+    assert {f.key for f in _h3_193()} >= EXPERIMENTAL_KEYS
     assert not DIAGNOSTIC_KEYS & EXPERIMENTAL_KEYS
 
 
@@ -40,12 +50,16 @@ def test_categories() -> None:
     for factory in _h3_193():
         key = factory.key
         if not isinstance(factory, SensorEntityDescription):
-            assert factory.entity_category is None, key  # numbers and selects stay controls
+            # writable settings are Configuration; remote control (force charge / discharge) stays in Controls
+            expected = EntityCategory.CONFIG if key in CONFIG_KEYS else None
+            assert factory.entity_category == expected, key
         elif is_diagnostic(factory):
             assert factory.entity_category == EntityCategory.DIAGNOSTIC, key
         elif key.startswith(("reg_", "register_")):
             assert factory.entity_category is None, key
-        if isinstance(factory, SensorEntityDescription) and (key in DIAGNOSTIC_KEYS or key.startswith(("reg_", "register_"))):
+        if isinstance(factory, SensorEntityDescription) and (
+            key in DIAGNOSTIC_KEYS or key.startswith(("reg_", "register_"))
+        ):
             assert factory.entity_registry_enabled_default, key
 
 
@@ -59,21 +73,41 @@ def test_experimental_selection() -> None:
 
 def test_only_measured_quantities_are_sensors() -> None:
     by_key = {f.key: f for f in _h3_193() if isinstance(f, SensorEntityDescription)}
-    for key in ("battery_soc", "battery_soh", "batvolt", "pv1_current", "load_power", "solar_energy_total", "invtemp",
-                "inverter_date_time"):
+    for key in (
+        "battery_soc",
+        "battery_soh",
+        "batvolt",
+        "pv1_current",
+        "load_power",
+        "solar_energy_total",
+        "invtemp",
+        "inverter_date_time",
+    ):
         assert by_key[key].entity_category is None, key
-    for key in ("master_version", "inverter_state", "inverter_fault_code", "max_soc", "grid_standard",
-                "meter1_ct1_type", "bms_max_current", "reg_39053_rated_power_pn", "reg_39067_alarm_1"):
+    for key in (
+        "master_version",
+        "inverter_state",
+        "inverter_fault_code",
+        "import_power_limit",
+        "grid_standard",
+        "meter1_ct1_type",
+        "bms_max_current",
+        "reg_39053_rated_power_pn",
+        "reg_39067_alarm_1",
+    ):
         assert by_key[key].entity_category == EntityCategory.DIAGNOSTIC, key
     assert by_key["inverter_date_time"].entity_registry_enabled_default
 
 
-def _device(key: str) -> dict:
+def _device(key: str) -> dict[str, Any]:
     entity = SimpleNamespace(
         entity_description=SimpleNamespace(key=key),
-        _controller=SimpleNamespace(inverter_details={FRIENDLY_NAME: "inv", INVERTER_MODEL: "H3", INVERTER_CONN: "AUX"}),
+        _controller=SimpleNamespace(
+            inverter_details={FRIENDLY_NAME: "inv", INVERTER_MODEL: "H3", INVERTER_CONN: "AUX"}
+        ),
     )
-    return ModbusEntityMixin.device_info.fget(entity)  # type: ignore[attr-defined]
+    info: dict[str, Any] = ModbusEntityMixin.device_info.fget(entity)  # type: ignore[attr-defined]
+    return info
 
 
 def test_experimental_device() -> None:
@@ -89,5 +123,26 @@ def test_services_resolve_the_experimental_device(monkeypatch: pytest.MonkeyPatc
     controller = MagicMock()
     controller.inverter_details = {FRIENDLY_NAME: "inv"}
     device = SimpleNamespace(identifiers=_device("register_39134_raw")["identifiers"])
-    monkeypatch.setattr(device_registry, "async_get", lambda _hass: SimpleNamespace(async_get=Mock(return_value=device)))
+    monkeypatch.setattr(
+        device_registry, "async_get", lambda _hass: SimpleNamespace(async_get=Mock(return_value=device))
+    )
     assert utils.get_controller_from_friendly_name_or_device_id("id", [controller], MagicMock()) is controller
+
+
+def test_configuration_controls_replace_their_read_back_sensors() -> None:
+    for inv in Inv:
+        controls = {
+            f.key
+            for f in _all()
+            if not isinstance(f, SensorEntityDescription)
+            and f.key in CONFIG_KEYS
+            and f.serialize(inv, RegisterType.HOLDING) is not None
+        }
+        sensors = {
+            f.key
+            for f in _all()
+            if _is_sensor(f) and any(f.serialize(inv, register_type) is not None for register_type in RegisterType)
+        }
+        assert not controls & sensors, (inv, controls & sensors)
+    h3 = {f.key for f in _h3_193() if not isinstance(f, SensorEntityDescription)}
+    assert {"max_soc", "min_soc", "export_power_limit", "work_mode", "balance_mode"} <= h3

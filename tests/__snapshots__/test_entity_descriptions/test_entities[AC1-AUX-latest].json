@@ -615,27 +615,7 @@
     "key": "max_charge_current",
     "name": "Inverter BAT Current Charge Max",
     "scale": 0.1,
-    "signed": true,
-    "type": "sensor"
-  },
-  {
-    "addresses": [
-      41007
-    ],
-    "key": "max_charge_current",
-    "name": "Inverter BAT Current Charge Max",
-    "scale": 0.1,
     "type": "number"
-  },
-  {
-    "addresses": [
-      41008
-    ],
-    "key": "max_discharge_current",
-    "name": "Inverter BAT Current Discharge Max",
-    "scale": 0.1,
-    "signed": true,
-    "type": "sensor"
   },
   {
     "addresses": [
@@ -653,16 +633,6 @@
     "key": "max_soc",
     "name": "Inverter BAT SoC Max",
     "scale": null,
-    "signed": true,
-    "type": "sensor"
-  },
-  {
-    "addresses": [
-      41010
-    ],
-    "key": "max_soc",
-    "name": "Inverter BAT SoC Max",
-    "scale": null,
     "type": "number"
   },
   {
@@ -672,27 +642,7 @@
     "key": "min_soc",
     "name": "Inverter BAT SoC Min",
     "scale": null,
-    "signed": true,
-    "type": "sensor"
-  },
-  {
-    "addresses": [
-      41009
-    ],
-    "key": "min_soc",
-    "name": "Inverter BAT SoC Min",
-    "scale": null,
     "type": "number"
-  },
-  {
-    "addresses": [
-      41011
-    ],
-    "key": "min_soc_on_grid",
-    "name": "Inverter BAT SoC Min On Grid",
-    "scale": null,
-    "signed": true,
-    "type": "sensor"
   },
   {
     "addresses": [

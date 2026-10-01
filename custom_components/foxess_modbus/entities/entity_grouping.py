@@ -3,8 +3,11 @@
 - Sensor: a physically measured quantity (SoC, SoH, voltage, current, power, energy, temperature, frequency, power
   factor, time) whose meaning is proven: it matches the FoxESS Cloud API, is physically consistent with proven
   entities (e.g. S = U * I, PF = P / S), or equals a known value.
-- Diagnostic: everything that isn't a measured quantity: states, statuses and fault codes, settings (read-backs of
-  writable registers), limits, versions, names and types (nameplate values).
+- Diagnostic: everything that isn't a measured quantity: states, statuses and fault codes, settings without a
+  control (read-backs of writable registers), limits, versions, names and types (nameplate values).
+- Configuration: the writable device settings (numbers and selects). Their state is the value read back from the
+  register, so a separate read-back sensor with the same key is dropped for the models which have the control.
+  Remote control (force charge / discharge) stays in Controls: those are actions, not settings.
 - Experimental: unnamed (raw) registers and registers whose meaning isn't proven yet. They are enabled by default,
   but belong to a separate "Experimental" device next to the inverter (see ModbusEntityMixin.device_info).
 
@@ -12,6 +15,7 @@ Evidence (H3-5.0-E, Manager 1.95, night of 2026-09-30): ha_export_20260930_1000/
 foxx-modbus workspace.
 """
 
+import copy
 from dataclasses import replace
 from typing import Any
 from typing import Iterable
@@ -19,6 +23,7 @@ from typing import Iterable
 from homeassistant.components.sensor import SensorEntityDescription
 from homeassistant.const import EntityCategory
 
+from ..common.types import Inv
 from .entity_factory import EntityFactory
 
 DIAGNOSTIC_KEYS = frozenset(
@@ -99,6 +104,21 @@ DIAGNOSTIC_KEYS = frozenset(
     }
 )
 
+# Writable device settings: numbers and selects which belong to the Configuration group
+CONFIG_KEYS = frozenset(
+    {
+        "max_charge_current",
+        "max_discharge_current",
+        "min_soc",
+        "max_soc",
+        "min_soc_on_grid",
+        "export_power_limit",
+        "import_power_limit",
+        "work_mode",
+        "balance_mode",
+    }
+)
+
 # Diagnostic by kind, for every inverter family: versions, fault codes, states, charge period settings
 _DIAGNOSTIC_CLASSES = frozenset(
     {
@@ -136,7 +156,7 @@ def is_experimental(key: str) -> bool:
 
 
 def _is_discovered(key: str) -> bool:
-    return key.startswith(("reg_", "register_")) or key.startswith("time_group_1_")
+    return key.startswith(("reg_", "register_", "time_group_1_"))
 
 
 def is_diagnostic(description: Any) -> bool:
@@ -157,9 +177,57 @@ def _grouped(description: Any) -> Any:
     return replace(description, **changes) if changes else description
 
 
+_SPEC_FIELDS = ("addresses", "address")
+
+
+def _models(description: Any) -> Inv:
+    models = Inv(0)
+    for field_name in _SPEC_FIELDS:
+        for spec in getattr(description, field_name, None) or []:
+            models |= getattr(spec, "_models", Inv(0))
+    return models
+
+
+def _without_models(description: Any, models: Inv) -> Any | None:
+    """Copy of the description which no longer applies to the given models, or None if nothing is left"""
+    changes = {}
+    for field_name in _SPEC_FIELDS:
+        specs = getattr(description, field_name, None)
+        if not isinstance(specs, list) or not any(hasattr(spec, "_models") for spec in specs):
+            continue
+        kept = []
+        for spec in specs:
+            if spec._models & models:  # noqa: SLF001
+                spec = copy.copy(spec)
+                spec._models = spec._models & ~models  # noqa: SLF001
+                if not spec._models:  # noqa: SLF001
+                    continue
+            kept.append(spec)
+        if not kept:
+            return None
+        changes[field_name] = kept
+    return replace(description, **changes) if changes else description
+
+
 def apply_entity_grouping(entities: Iterable[EntityFactory]) -> list[EntityFactory]:
-    """Set the entity category and default enablement by group; keys, unique ids and values are unchanged."""
-    # Only sensors: a number or select with the same key as its read-back sensor stays a control
-    return [
-        _grouped(factory) if isinstance(factory, SensorEntityDescription) else factory for factory in entities
-    ]
+    """Group entities (category, default enablement); keys, unique ids and values are unchanged."""
+    # hass type hints: mypy doesn't see the dataclass fields of the EntityDescriptions
+    descriptions: list[Any] = list(entities)
+    controlled: dict[str, Inv] = {}
+    for description in descriptions:
+        if not isinstance(description, SensorEntityDescription) and description.key in CONFIG_KEYS:
+            controlled[description.key] = controlled.get(description.key, Inv(0)) | _models(description)
+    result: list[EntityFactory] = []
+    for description in descriptions:
+        if isinstance(description, SensorEntityDescription):
+            if description.key in controlled:
+                # The control shows the read-back value itself
+                description = _without_models(description, controlled[description.key])
+                if description is None:
+                    continue
+            result.append(_grouped(description))
+        elif description.key in CONFIG_KEYS:
+            result.append(replace(description, entity_category=EntityCategory.CONFIG))
+        else:
+            result.append(description)
+    return result

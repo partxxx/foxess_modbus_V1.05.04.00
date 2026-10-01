@@ -1256,6 +1256,26 @@
   },
   {
     "addresses": [
+      37613
+    ],
+    "key": "reg_37613_bms_charge_voltage_max",
+    "name": "BMS1 BAT Voltage Charge Max",
+    "scale": 0.1,
+    "signed": false,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      37614
+    ],
+    "key": "reg_37614_bms_discharge_voltage_min",
+    "name": "BMS1 BAT Voltage Discharge Min",
+    "scale": 0.1,
+    "signed": false,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
       37615
     ],
     "key": "reg_37615_bms_max_current_candidate",

@@ -23,6 +23,7 @@ from ..const import INVERTER_CONN
 from ..const import INVERTER_MODEL
 from ..const import UNIQUE_ID_PREFIX
 from .base_validator import BaseValidator
+from .entity_grouping import is_experimental
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -107,9 +108,19 @@ class ModbusEntityMixin(
         else:
             attr_name = "FoxESS - Modbus"
 
+        # services/utils.py relies on the order of entries here (friendly name 4th). Update that if you update this!
+        inverter = (DOMAIN, inv_model, conn_type, friendly_name)
+        if is_experimental(self.entity_description.key):
+            # Unnamed or unproven registers: a separate device next to the inverter (see entity_grouping.py)
+            return DeviceInfo(
+                identifiers={(*inverter, "experimental")},  # type: ignore
+                name=f"{attr_name} Experimental",
+                model=f"{inv_model} - {conn_type} (experimental registers)",
+                manufacturer="FoxESS",
+                via_device=inverter,  # type: ignore
+            )
         return DeviceInfo(
-            # services/utils.py relies on the order of entries here. Update that if you update this!
-            identifiers={(DOMAIN, inv_model, conn_type, friendly_name)},  # type: ignore
+            identifiers={inverter},  # type: ignore
             name=attr_name,
             model=f"{inv_model} - {conn_type}",
             manufacturer="FoxESS",

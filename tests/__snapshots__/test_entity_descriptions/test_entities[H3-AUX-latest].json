@@ -1320,7 +1320,7 @@
       37615
     ],
     "key": "reg_37615_bms_max_current_candidate",
-    "name": "BMS1 BAT Current Max Candidate",
+    "name": "BMS1 BAT Current Charge Max",
     "scale": 0.1,
     "signed": false,
     "type": "sensor"

@@ -1346,13 +1346,32 @@ _DEVELOPER = [
         scale=0.1,
         signed=True,
     ),
-    # bms_max_current (31039): undocumented 37615 read the same 14 A
-    _developer(
+    # BMS current limits, undocumented: 37615 = max charge current (31039 and the FoxESS Cloud API's maxChargeCurrent),
+    # 37616 = max discharge current (the API's maxDischargeCurrent and the FoxESS web page, 27 A). Proven, so not
+    # behind the raw register option; the 37615 key keeps its old name, as it is the unique id.
+    _named(
+        37615,
         [37615],
-        "BMS Max Current candidate (37615)",
+        "BMS Max Charge Current (37615)",
         key="reg_37615_bms_max_current_candidate",
         unit="A",
+        device_class=SensorDeviceClass.CURRENT,
+        state_class=SensorStateClass.MEASUREMENT,
         scale=0.1,
+        signed=False,
+        poll_once=False,
+    ),
+    _named(
+        37616,
+        [37616],
+        "BMS Max Discharge Current (37616)",
+        key="reg_37616_bms_max_discharge_current",
+        unit="A",
+        device_class=SensorDeviceClass.CURRENT,
+        state_class=SensorStateClass.MEASUREMENT,
+        scale=0.1,
+        signed=False,
+        poll_once=False,
     ),
     # inverter_fault_code (31044-31051): the documented new alarm and BMS fault words, and the legacy words themselves
     *(_developer([a], f"Alarm {i} ({a})", key=f"reg_{a}_alarm_{i}") for i, a in enumerate(range(39067, 39070), 1)),

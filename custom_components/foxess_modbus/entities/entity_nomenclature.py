@@ -76,6 +76,7 @@ _REGISTER_NAMES = {
 
 _KEY_NAMES = {
     "reg_37615_bms_max_current_candidate": "BMS1 BAT Current Charge Max",
+    "reg_37616_bms_max_discharge_current": "BMS1 BAT Current Discharge Max",
     "reg_39142_ambtemp_candidate": "Inverter Ambient Temperature Candidate",
     "ambtemp": "Inverter Ambient Temperature",
     "balance_mode": "Inverter Balance Mode",

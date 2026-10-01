@@ -146,3 +146,12 @@ def test_configuration_controls_replace_their_read_back_sensors() -> None:
         assert not controls & sensors, (inv, controls & sensors)
     h3 = {f.key for f in _h3_193() if not isinstance(f, SensorEntityDescription)}
     assert {"max_soc", "min_soc", "export_power_limit", "work_mode", "balance_mode"} <= h3
+
+
+def test_bms_current_limits_are_live_diagnostics() -> None:
+    by_key = {f.key: f for f in _h3_193()}
+    for key in ("reg_37615_bms_max_current_candidate", "reg_37616_bms_max_discharge_current"):
+        factory = by_key[key]
+        assert factory.entity_category == EntityCategory.DIAGNOSTIC, key
+        assert factory.entity_registry_enabled_default, key
+        assert not getattr(factory, "raw", False), key  # not behind the raw register option

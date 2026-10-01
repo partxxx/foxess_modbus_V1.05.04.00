@@ -64,9 +64,10 @@ DIAGNOSTIC_KEYS = frozenset(
         "reg_39059_max_reactive_power_fed_qmax",
         "reg_39061_max_reactive_power_absorbed_qmax",
         "reg_37635_bms1_design_energy",
-        # BMS limits (37615 = the API's maxChargeCurrent, same as 31039)
+        # BMS limits (37615 / 37616 = the API's maxChargeCurrent / maxDischargeCurrent)
         "bms_max_current",
         "reg_37615_bms_max_current_candidate",
+        "reg_37616_bms_max_discharge_current",
         # Read-backs of writable registers
         "max_charge_current",
         "max_discharge_current",

@@ -1266,6 +1266,16 @@
   },
   {
     "addresses": [
+      37616
+    ],
+    "key": "reg_37616_bms_max_discharge_current",
+    "name": "BMS1 BAT Current Discharge Max",
+    "scale": 0.1,
+    "signed": false,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
       37626
     ],
     "key": "reg_37626_bms1_fault1",

@@ -24,7 +24,8 @@ Three-phase models: 234 entities; single-phase models: 200 (the rows marked _3-p
 | `bat_current_1`                              | BMS1 BAT Current                        | 37610                                    | × 0.1          | A    | signed |              | disabled  |
 | `battery_temp`                               | BMS1 Temperature                        | 37611                                    | × 0.1          | °C   | signed |              | default   |
 | `battery_soc`                                | BMS1 BAT SoC                            | 37612                                    |                | %    |        |              | default   |
-| `reg_37615_bms_max_current_candidate`        | BMS1 BAT Current Max Candidate          | 37615                                    | × 0.1          | A    |        |              | developer |
+| `reg_37615_bms_max_current_candidate`        | BMS1 BAT Current Charge Max             | 37615                                    | × 0.1          | A    |        |              | default   |
+| `reg_37616_bms_max_discharge_current`        | BMS1 BAT Current Discharge Max          | 37616                                    | × 0.1          | A    |        |              | default   |
 | `bms_cell_temp_high`                         | BMS1 BAT Cell Temperature Max           | 37617                                    | × 0.1          | °C   | signed |              | default   |
 | `bms_cell_temp_low`                          | BMS1 BAT Cell Temperature Min           | 37618                                    | × 0.1          | °C   | signed |              | default   |
 | `bms_cell_mv_high`                           | BMS1 BAT Cell Voltage Max               | 37619                                    |                | mV   |        |              | default   |

@@ -124,10 +124,8 @@ _SWAPS: dict[str, tuple[list[int], float | None, bool]] = {
     "load_power_T": ([39224, 39223], 0.001, True),
     "load_power_total": ([39630, 39629], 0.01, False),
     "pv1_current": ([39071], 0.01, True),
-    "pv1_power": ([39280, 39279], 0.001, True),
     "pv1_voltage": ([39070], 0.1, True),
     "pv2_current": ([39073], 0.01, True),
-    "pv2_power": ([39282, 39281], 0.001, True),
     "pv2_voltage": ([39072], 0.1, True),
     "rfreq": ([39139], 0.01, True),
     "solar_energy_today": ([39604, 39603], 0.01, False),
@@ -135,6 +133,23 @@ _SWAPS: dict[str, tuple[list[int], float | None, bool]] = {
     "total_yield_today": ([39624, 39623], 0.01, False),
     "total_yield_total": ([39622, 39621], 0.01, False),
 }
+
+# Kept on the legacy register, as the FoxESS Cloud and 39118 (Total PV input power) use that definition: legacy PV1
+# power 31002 equals 39118 to the watt, while 39279 (PV1 Power) is the DC voltage x current, about 4% higher. The
+# documented register is shown as a palette twin (newmap_<key>). key -> (addresses, scale, signed)
+_NEW_MAP_TWINS: dict[str, tuple[list[int], float | None, bool]] = {
+    "pv1_power": ([39280, 39279], 0.001, True),
+    "pv2_power": ([39282, 39281], 0.001, True),
+}
+
+# The inverter phase powers (39248 / 39250 / 39252) send small negative values without sign extension (high word
+# 0x0000, low word >= 0x8000), which reads as 32.768 - 65.535 kW; a phase never delivers that much
+_MISSING_SIGN_EXTENSION = {"inv_power_R", "inv_power_S", "inv_power_T"}
+
+
+def _fix_missing_sign_extension(value: float) -> float:
+    return value - 65.536 if 32.768 <= value < 65.536 else value
+
 
 # Entities which don't apply to H3_193: computed (pv_power_now = PV1 + PV2, read from 39118 instead, see
 # _PV_POWER)
@@ -1495,6 +1510,23 @@ def _without_h3_193(description: EntityFactory) -> EntityFactory:
     return replace(description, **changes) if changes else description  # type: ignore[type-var]
 
 
+def _h3_193_only(description: EntityFactory, key: str) -> EntityFactory:
+    """Copy of the description restricted to Inv.H3_193 (its legacy registers), under another key: a palette twin"""
+    changes: dict[str, Any] = {"key": key}
+    for field_name in _SPEC_FIELDS:
+        specs = getattr(description, field_name, None)
+        if not isinstance(specs, list) or not any(hasattr(s, "_models") for s in specs):
+            continue
+        kept = []
+        for spec in specs:
+            if spec._models & Inv.H3_193:  # noqa: SLF001
+                spec = copy.copy(spec)
+                spec._models = Inv.H3_193  # noqa: SLF001
+                kept.append(spec)
+        changes[field_name] = kept
+    return replace(description, **changes)  # type: ignore[type-var]
+
+
 def _h3_smart_holding(description: ModbusSensorDescription) -> list[int]:
     for spec in description.addresses:
         if spec._models & Inv.H3_SMART:  # noqa: SLF001
@@ -1516,6 +1548,7 @@ def apply_discovered_registers(
     """Adjust the entity list for Inv.H3_193 and add the discovered registers"""
     result: list[EntityFactory] = []
     swapped: set[str] = set()
+    twinned: set[str] = set()
     ported: set[str] = set()
     smart_templates: dict[str, EntityFactory] = {}
     pro_templates: dict[str, EntityFactory] = {}
@@ -1547,6 +1580,8 @@ def apply_discovered_registers(
             if getattr(description, "bms_connect_state_address", None) is not None:
                 # 37002: 0 init, 1 OK, 2 NG, the same meaning ModbusBatterySensor expects
                 swap_changes["bms_connect_state_address"] = [ModbusAddressSpec(holding=37002, models=Inv.H3_193)]
+            if key in _MISSING_SIGN_EXTENSION:
+                swap_changes["post_process"] = _fix_missing_sign_extension
             result.append(
                 replace(
                     description,
@@ -1556,6 +1591,8 @@ def apply_discovered_registers(
                     **swap_changes,
                 )
             )
+            # Register palette: the legacy register stays visible next to the documented one
+            result.append(_h3_193_only(description, f"legacy_{key}"))
             swapped.add(key)
         elif key in _VERSIONS and isinstance(description, ModbusVersionSensorDescription):
             address, is_hex = _VERSIONS[key]
@@ -1590,9 +1627,24 @@ def apply_discovered_registers(
                 )
             )
             ported.add(key)
+        elif key in _NEW_MAP_TWINS and isinstance(description, ModbusSensorDescription) and key not in twinned:
+            addresses, scale, signed = _NEW_MAP_TWINS[key]
+            result.append(description)
+            twin = _h3_193_only(description, f"newmap_{key}")
+            result.append(
+                replace(
+                    twin,  # type: ignore[type-var]
+                    addresses=[ModbusAddressesSpec(holding=addresses, models=Inv.H3_193)],
+                    scale=scale,
+                    signed=signed,
+                )
+            )
+            twinned.add(key)
         else:
             result.append(description)
 
+    missing = set(_NEW_MAP_TWINS) - twinned
+    assert not missing, f"New-map twins without an H3_193 entity: {missing}"
     missing = set(_SWAPS) - swapped
     assert not missing, f"Swaps without an H3_193 entity: {missing}"
     missing = (set(_VERSIONS) | set(_WRITABLE_PORTS) | set(_SELECT_PORTS)) - ported
@@ -1685,6 +1737,18 @@ def _add_unified_map(entities: list[EntityFactory]) -> list[EntityFactory]:
     for description in entities:
         key = cast(EntityDescription, description).key
         unified = Inv.UNIFIED_3PH if _is_phase_s_or_t(key) else Inv.UNIFIED_SET
+        if key.startswith("newmap_"):
+            # A documented-map palette twin on H3_193 is the entity itself on the unified map
+            base = key.removeprefix("newmap_")
+            result.append(description)
+            unified_only = []
+            for spec in cast(Any, description).addresses:
+                spec = copy.copy(spec)
+                spec._models = unified  # noqa: SLF001
+                unified_only.append(spec)
+            result.append(replace(cast(Any, description), key=base, addresses=unified_only))
+            unified_keys.add(base)
+            continue
         if key in _UNIFIED_FROM_H3_SMART and _supports(description, Inv.H3_SMART):
             field = "models" if isinstance(description, ModbusIntegrationSensorDescription) else "addresses"
             smart_specs = getattr(description, field)

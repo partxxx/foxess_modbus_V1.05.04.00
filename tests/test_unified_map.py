@@ -25,7 +25,7 @@ from custom_components.foxess_modbus.entities.entity_descriptions import ENTITIE
 from custom_components.foxess_modbus.inverter_profiles import INVERTER_PROFILES
 
 
-@pytest.mark.parametrize("inv,expected_count", [(Inv.UNIFIED_1PH, 203), (Inv.UNIFIED_3PH, 237)])
+@pytest.mark.parametrize("inv,expected_count", [(Inv.UNIFIED_1PH, 201), (Inv.UNIFIED_3PH, 235)])
 def test_unified_entities(inv: Inv, expected_count: int, snapshot: SnapshotAssertion) -> None:
     entities: list[dict[str, Any]] = []
     for factory in ENTITIES:

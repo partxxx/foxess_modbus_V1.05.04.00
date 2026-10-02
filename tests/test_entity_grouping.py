@@ -14,15 +14,20 @@ from custom_components.foxess_modbus.common.types import Inv
 from custom_components.foxess_modbus.common.types import RegisterType
 from custom_components.foxess_modbus.const import DOMAIN
 from custom_components.foxess_modbus.const import FRIENDLY_NAME
+from custom_components.foxess_modbus.const import INVERTER_BASE
 from custom_components.foxess_modbus.const import INVERTER_CONN
 from custom_components.foxess_modbus.const import INVERTER_MODEL
 from custom_components.foxess_modbus.entities.entity_descriptions import ENTITIES
 from custom_components.foxess_modbus.entities.entity_grouping import CONFIG_KEYS
 from custom_components.foxess_modbus.entities.entity_grouping import DIAGNOSTIC_KEYS
 from custom_components.foxess_modbus.entities.entity_grouping import EXPERIMENTAL_KEYS
+from custom_components.foxess_modbus.entities.entity_grouping import INTEGRATED_PV_ENERGY_KEYS
+from custom_components.foxess_modbus.entities.entity_grouping import MODBUS_PV_ENERGY_KEY
 from custom_components.foxess_modbus.entities.entity_grouping import is_diagnostic
 from custom_components.foxess_modbus.entities.entity_grouping import is_experimental
 from custom_components.foxess_modbus.entities.modbus_entity_mixin import ModbusEntityMixin
+from custom_components.foxess_modbus.flow.flow_handler import FlowHandler
+from custom_components.foxess_modbus.inverter_profiles import INVERTER_PROFILES
 from custom_components.foxess_modbus.services import utils
 
 
@@ -157,3 +162,26 @@ def test_bms_current_limits_are_live_diagnostics() -> None:
         assert factory.entity_category == EntityCategory.DIAGNOSTIC, key
         assert factory.entity_registry_enabled_default, key
         assert not getattr(factory, "raw", False), key  # not behind the raw register option
+
+
+def test_pv_energy_is_read_where_the_inverter_counts_it() -> None:
+    """Every inverter has exactly one PV energy source: its own counter, or else the energy integrated in HA"""
+    keys = {MODBUS_PV_ENERGY_KEY, *INTEGRATED_PV_ENERGY_KEYS}
+    for model, profile in INVERTER_PROFILES.items():
+        for connection_type, connection_type_profile in profile.connection_types.items():
+            for inv in connection_type_profile.versions.values():
+                serialized = [f.serialize(inv, connection_type_profile.register_type) for f in ENTITIES]
+                found = {s["key"] for s in serialized if s is not None and s["key"] in keys}
+                assert found in ({MODBUS_PV_ENERGY_KEY}, set(INTEGRATED_PV_ENERGY_KEYS)), (model, connection_type, inv)
+
+
+@pytest.mark.parametrize(
+    ("base_model", "connection_type", "expected"),
+    [
+        ("H3", "AUX", [MODBUS_PV_ENERGY_KEY]),
+        ("H1", "LAN", sorted(INTEGRATED_PV_ENERGY_KEYS)),
+    ],
+)
+def test_energy_dashboard_solar_source(base_model: str, connection_type: str, expected: list[str]) -> None:
+    flow = SimpleNamespace(_inverter_data_to_dict=lambda _: {INVERTER_BASE: base_model, INVERTER_CONN: connection_type})
+    assert FlowHandler._solar_energy_keys(flow, None) == expected  # type: ignore[arg-type]  # noqa: SLF001

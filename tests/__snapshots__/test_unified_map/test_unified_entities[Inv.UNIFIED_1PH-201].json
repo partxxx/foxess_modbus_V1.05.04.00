@@ -261,28 +261,6 @@
   },
   {
     "addresses": [
-      39213,
-      39212
-    ],
-    "key": "eps_power_S",
-    "name": "EPS S Power",
-    "scale": 0.001,
-    "signed": true,
-    "type": "sensor"
-  },
-  {
-    "addresses": [
-      39215,
-      39214
-    ],
-    "key": "eps_power_T",
-    "name": "EPS T Power",
-    "scale": 0.001,
-    "signed": true,
-    "type": "sensor"
-  },
-  {
-    "addresses": [
       39205,
       39204
     ],
@@ -294,52 +272,10 @@
   },
   {
     "addresses": [
-      39207,
-      39206
-    ],
-    "key": "eps_rcurrent_S",
-    "name": "EPS S Current",
-    "scale": 0.001,
-    "signed": true,
-    "type": "sensor"
-  },
-  {
-    "addresses": [
-      39209,
-      39208
-    ],
-    "key": "eps_rcurrent_T",
-    "name": "EPS T Current",
-    "scale": 0.001,
-    "signed": true,
-    "type": "sensor"
-  },
-  {
-    "addresses": [
       39201
     ],
     "key": "eps_rvolt_R",
     "name": "EPS R Voltage",
-    "scale": 0.1,
-    "signed": false,
-    "type": "sensor"
-  },
-  {
-    "addresses": [
-      39202
-    ],
-    "key": "eps_rvolt_S",
-    "name": "EPS S Voltage",
-    "scale": 0.1,
-    "signed": false,
-    "type": "sensor"
-  },
-  {
-    "addresses": [
-      39203
-    ],
-    "key": "eps_rvolt_T",
-    "name": "EPS T Voltage",
     "scale": 0.1,
     "signed": false,
     "type": "sensor"
@@ -373,28 +309,6 @@
     ],
     "key": "feed_in_R",
     "name": "Grid R Power Export",
-    "scale": 0.0001,
-    "signed": true,
-    "type": "sensor"
-  },
-  {
-    "addresses": [
-      38819,
-      38818
-    ],
-    "key": "feed_in_S",
-    "name": "Grid S Power Export",
-    "scale": 0.0001,
-    "signed": true,
-    "type": "sensor"
-  },
-  {
-    "addresses": [
-      38821,
-      38820
-    ],
-    "key": "feed_in_T",
-    "name": "Grid T Power Export",
     "scale": 0.0001,
     "signed": true,
     "type": "sensor"
@@ -445,28 +359,6 @@
   },
   {
     "addresses": [
-      38819,
-      38818
-    ],
-    "key": "grid_consumption_S",
-    "name": "Grid S Power Import",
-    "scale": 0.0001,
-    "signed": true,
-    "type": "sensor"
-  },
-  {
-    "addresses": [
-      38821,
-      38820
-    ],
-    "key": "grid_consumption_T",
-    "name": "Grid T Power Import",
-    "scale": 0.0001,
-    "signed": true,
-    "type": "sensor"
-  },
-  {
-    "addresses": [
       39620,
       39619
     ],
@@ -511,28 +403,6 @@
   },
   {
     "addresses": [
-      38819,
-      38818
-    ],
-    "key": "grid_ct_S",
-    "name": "Meter CT1 S Power",
-    "scale": 0.0001,
-    "signed": true,
-    "type": "sensor"
-  },
-  {
-    "addresses": [
-      38821,
-      38820
-    ],
-    "key": "grid_ct_T",
-    "name": "Meter CT1 T Power",
-    "scale": 0.0001,
-    "signed": true,
-    "type": "sensor"
-  },
-  {
-    "addresses": [
       38839,
       38838
     ],
@@ -555,28 +425,6 @@
   },
   {
     "addresses": [
-      38843,
-      38842
-    ],
-    "key": "grid_ct_pf_S",
-    "name": "Meter CT1 S Power Factor",
-    "scale": 0.001,
-    "signed": true,
-    "type": "sensor"
-  },
-  {
-    "addresses": [
-      38845,
-      38844
-    ],
-    "key": "grid_ct_pf_T",
-    "name": "Meter CT1 T Power Factor",
-    "scale": 0.001,
-    "signed": true,
-    "type": "sensor"
-  },
-  {
-    "addresses": [
       49079
     ],
     "key": "grid_standard",
@@ -591,26 +439,6 @@
     ],
     "key": "grid_voltage_R",
     "name": "Grid R Voltage",
-    "scale": 0.1,
-    "signed": true,
-    "type": "sensor"
-  },
-  {
-    "addresses": [
-      39124
-    ],
-    "key": "grid_voltage_S",
-    "name": "Grid S Voltage",
-    "scale": 0.1,
-    "signed": true,
-    "type": "sensor"
-  },
-  {
-    "addresses": [
-      39125
-    ],
-    "key": "grid_voltage_T",
-    "name": "Grid T Voltage",
     "scale": 0.1,
     "signed": true,
     "type": "sensor"
@@ -661,55 +489,11 @@
   },
   {
     "addresses": [
-      39129,
-      39128
-    ],
-    "key": "inv_current_S",
-    "name": "Inverter S Current",
-    "scale": 0.001,
-    "signed": true,
-    "type": "sensor"
-  },
-  {
-    "addresses": [
-      39131,
-      39130
-    ],
-    "key": "inv_current_T",
-    "name": "Inverter T Current",
-    "scale": 0.001,
-    "signed": true,
-    "type": "sensor"
-  },
-  {
-    "addresses": [
       39249,
       39248
     ],
     "key": "inv_power_R",
     "name": "Inverter R Power",
-    "scale": 0.001,
-    "signed": true,
-    "type": "sensor"
-  },
-  {
-    "addresses": [
-      39251,
-      39250
-    ],
-    "key": "inv_power_S",
-    "name": "Inverter S Power",
-    "scale": 0.001,
-    "signed": true,
-    "type": "sensor"
-  },
-  {
-    "addresses": [
-      39253,
-      39252
-    ],
-    "key": "inv_power_T",
-    "name": "Inverter T Power",
     "scale": 0.001,
     "signed": true,
     "type": "sensor"
@@ -872,28 +656,6 @@
   },
   {
     "addresses": [
-      39222,
-      39221
-    ],
-    "key": "load_power_S",
-    "name": "Load S Power",
-    "scale": 0.001,
-    "signed": true,
-    "type": "sensor"
-  },
-  {
-    "addresses": [
-      39224,
-      39223
-    ],
-    "key": "load_power_T",
-    "name": "Load T Power",
-    "scale": 0.001,
-    "signed": true,
-    "type": "sensor"
-  },
-  {
-    "addresses": [
       39630,
       39629
     ],
@@ -1003,14 +765,6 @@
     "type": "sensor"
   },
   {
-    "key": "pv1_energy_total",
-    "method": "left",
-    "name": "PV1 Energy Total",
-    "source": "pv1_power",
-    "type": "integration-sensor",
-    "unit_time": "h"
-  },
-  {
     "addresses": [
       39280,
       39279
@@ -1040,14 +794,6 @@
     "scale": 0.01,
     "signed": true,
     "type": "sensor"
-  },
-  {
-    "key": "pv2_energy_total",
-    "method": "left",
-    "name": "PV2 Energy Total",
-    "source": "pv2_power",
-    "type": "integration-sensor",
-    "unit_time": "h"
   },
   {
     "addresses": [
@@ -1253,55 +999,11 @@
   },
   {
     "addresses": [
-      38805,
-      38804
-    ],
-    "key": "reg_38804_grid_ct1_s_phase_voltage",
-    "name": "Meter CT1 S Voltage",
-    "scale": 0.1,
-    "signed": true,
-    "type": "sensor"
-  },
-  {
-    "addresses": [
-      38807,
-      38806
-    ],
-    "key": "reg_38806_grid_ct1_t_phase_voltage",
-    "name": "Meter CT1 T Voltage",
-    "scale": 0.1,
-    "signed": true,
-    "type": "sensor"
-  },
-  {
-    "addresses": [
       38809,
       38808
     ],
     "key": "reg_38808_grid_ct1_r_phase_current",
     "name": "Meter CT1 R Current",
-    "scale": 0.001,
-    "signed": true,
-    "type": "sensor"
-  },
-  {
-    "addresses": [
-      38811,
-      38810
-    ],
-    "key": "reg_38810_grid_ct1_s_phase_current",
-    "name": "Meter CT1 S Current",
-    "scale": 0.001,
-    "signed": true,
-    "type": "sensor"
-  },
-  {
-    "addresses": [
-      38813,
-      38812
-    ],
-    "key": "reg_38812_grid_ct1_t_phase_current",
-    "name": "Meter CT1 T Current",
     "scale": 0.001,
     "signed": true,
     "type": "sensor"
@@ -1330,28 +1032,6 @@
   },
   {
     "addresses": [
-      38827,
-      38826
-    ],
-    "key": "reg_38826_grid_ct1_s_phase_reactive",
-    "name": "Meter CT1 S Reactive Power",
-    "scale": 0.1,
-    "signed": true,
-    "type": "sensor"
-  },
-  {
-    "addresses": [
-      38829,
-      38828
-    ],
-    "key": "reg_38828_grid_ct1_t_phase_reactive",
-    "name": "Meter CT1 T Reactive Power",
-    "scale": 0.1,
-    "signed": true,
-    "type": "sensor"
-  },
-  {
-    "addresses": [
       38831,
       38830
     ],
@@ -1368,28 +1048,6 @@
     ],
     "key": "reg_38832_grid_ct1_r_phase_apparent",
     "name": "Meter CT1 R Apparent Power",
-    "scale": 0.1,
-    "signed": true,
-    "type": "sensor"
-  },
-  {
-    "addresses": [
-      38835,
-      38834
-    ],
-    "key": "reg_38834_grid_ct1_s_phase_apparent",
-    "name": "Meter CT1 S Apparent Power",
-    "scale": 0.1,
-    "signed": true,
-    "type": "sensor"
-  },
-  {
-    "addresses": [
-      38837,
-      38836
-    ],
-    "key": "reg_38836_grid_ct1_t_phase_apparent",
-    "name": "Meter CT1 T Apparent Power",
     "scale": 0.1,
     "signed": true,
     "type": "sensor"
@@ -1570,26 +1228,6 @@
     ],
     "key": "reg_39272_inv_frequency_r",
     "name": "Inverter R Frequency",
-    "scale": 0.01,
-    "signed": true,
-    "type": "sensor"
-  },
-  {
-    "addresses": [
-      39273
-    ],
-    "key": "reg_39273_inv_frequency_s",
-    "name": "Inverter S Frequency",
-    "scale": 0.01,
-    "signed": true,
-    "type": "sensor"
-  },
-  {
-    "addresses": [
-      39274
-    ],
-    "key": "reg_39274_inv_frequency_t",
-    "name": "Inverter T Frequency",
     "scale": 0.01,
     "signed": true,
     "type": "sensor"
@@ -2431,28 +2069,6 @@
     ],
     "key": "rpower_S_R",
     "name": "Inverter R Apparent Power",
-    "scale": 0.001,
-    "signed": true,
-    "type": "sensor"
-  },
-  {
-    "addresses": [
-      39267,
-      39266
-    ],
-    "key": "rpower_S_S",
-    "name": "Inverter S Apparent Power",
-    "scale": 0.001,
-    "signed": true,
-    "type": "sensor"
-  },
-  {
-    "addresses": [
-      39269,
-      39268
-    ],
-    "key": "rpower_S_T",
-    "name": "Inverter T Apparent Power",
     "scale": 0.001,
     "signed": true,
     "type": "sensor"

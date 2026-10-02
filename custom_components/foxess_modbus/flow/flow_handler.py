@@ -25,9 +25,13 @@ from ..const import CONFIG_ENTRY_TITLE
 from ..const import CONFIG_SAVE_TIME
 from ..const import DOMAIN
 from ..const import INVERTERS
+from ..entities.entity_descriptions import ENTITIES
+from ..entities.entity_grouping import INTEGRATED_PV_ENERGY_KEYS
+from ..entities.entity_grouping import MODBUS_PV_ENERGY_KEY
 from ..inverter_adapters import ADAPTERS
 from ..inverter_adapters import InverterAdapter
 from ..inverter_adapters import InverterAdapterType
+from ..inverter_profiles import inverter_connection_type_profile_from_config
 from .adapter_flow_segment import AdapterFlowSegment
 from .flow_handler_mixin import FlowHandlerMixin
 from .inverter_data import InverterData
@@ -239,6 +243,26 @@ class FlowHandler(FlowHandlerMixin, config_entries.ConfigFlow, domain=DOMAIN):
             description_placeholders=description_placeholders,
         )
 
+    def _solar_energy_keys(self, inverter: InverterData) -> list[str]:
+        """The inverter's PV energy counter, or the energy integrated from the PV1/PV2 power where it has none"""
+        profile = inverter_connection_type_profile_from_config(self._inverter_data_to_dict(inverter))
+        models = list(profile.versions.values())
+        if profile.unified_inv is not None:
+            models.append(profile.unified_inv)
+        keys = {MODBUS_PV_ENERGY_KEY, *INTEGRATED_PV_ENERGY_KEYS}
+        supported = [
+            {
+                serialized["key"]
+                for factory in ENTITIES
+                if (serialized := factory.serialize(model, profile.register_type)) is not None
+                and serialized["key"] in keys
+            }
+            for model in models
+        ]
+        if all(MODBUS_PV_ENERGY_KEY in model_keys for model_keys in supported):
+            return [MODBUS_PV_ENERGY_KEY]
+        return sorted(INTEGRATED_PV_ENERGY_KEYS)
+
     async def _setup_energy_dashboard(self) -> None:
         """Setup Energy Dashboard"""
 
@@ -250,19 +274,17 @@ class FlowHandler(FlowHandlerMixin, config_entries.ConfigFlow, domain=DOMAIN):
             return f"sensor.{name}_" if name else "sensor."
 
         energy_prefs = EnergyPreferencesUpdate(energy_sources=[])  # type: ignore
-        for entity_id_prefix in entity_id_prefixes:
-            name_prefix = _prefix_name(entity_id_prefix)
+        for inverter in self._all_inverters:
+            name_prefix = _prefix_name(inverter.entity_id_prefix)
             energy_prefs["energy_sources"].extend(
                 [
-                    SolarSourceType(
-                        type="solar",
-                        stat_energy_from=f"{name_prefix}pv1_energy_total",
-                        config_entry_solar_forecast=None,
-                    ),
-                    SolarSourceType(
-                        type="solar",
-                        stat_energy_from=f"{name_prefix}pv2_energy_total",
-                        config_entry_solar_forecast=None,
+                    *(
+                        SolarSourceType(
+                            type="solar",
+                            stat_energy_from=f"{name_prefix}{key}",
+                            config_entry_solar_forecast=None,
+                        )
+                        for key in self._solar_energy_keys(inverter)
                     ),
                     BatterySourceType(
                         type="battery",

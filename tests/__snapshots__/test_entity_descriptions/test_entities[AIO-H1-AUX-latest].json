@@ -664,14 +664,6 @@
     "type": "sensor"
   },
   {
-    "key": "pv1_energy_total",
-    "method": "left",
-    "name": "PV1 Energy Total",
-    "source": "pv1_power",
-    "type": "integration-sensor",
-    "unit_time": "h"
-  },
-  {
     "addresses": [
       11002
     ],
@@ -700,14 +692,6 @@
     "scale": 0.1,
     "signed": true,
     "type": "sensor"
-  },
-  {
-    "key": "pv2_energy_total",
-    "method": "left",
-    "name": "PV2 Energy Total",
-    "source": "pv2_power",
-    "type": "integration-sensor",
-    "unit_time": "h"
   },
   {
     "addresses": [

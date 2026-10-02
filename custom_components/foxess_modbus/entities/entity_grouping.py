@@ -232,16 +232,40 @@ def _without_models(description: Any, models: Inv) -> Any | None:
     return replace(description, **changes) if changes else description
 
 
+MODBUS_PV_ENERGY_KEY = "solar_energy_total"
+# Integrated in HA from the PV power (left Riemann sum), not read from the inverter
+INTEGRATED_PV_ENERGY_KEYS = frozenset({"pv1_energy_total", "pv2_energy_total"})
+
+
+def _without_integrated_pv_energy(description: Any, models: Inv) -> Any | None:
+    """The integrated PV energy only for the models which have no PV energy register"""
+    specs = []
+    for spec in description.models:
+        spec = copy.copy(spec)
+        spec._models = spec._models & ~models  # noqa: SLF001
+        if spec._models:  # noqa: SLF001
+            specs.append(spec)
+    return replace(description, models=specs) if specs else None
+
+
 def apply_entity_grouping(entities: Iterable[EntityFactory]) -> list[EntityFactory]:
     """Group entities (category, default enablement); keys, unique ids and values are unchanged."""
     # hass type hints: mypy doesn't see the dataclass fields of the EntityDescriptions
     descriptions: list[Any] = list(entities)
     controlled: dict[str, Inv] = {}
+    modbus_pv_energy = Inv(0)
     for description in descriptions:
         if not isinstance(description, SensorEntityDescription) and description.key in CONFIG_KEYS:
             controlled[description.key] = controlled.get(description.key, Inv(0)) | _models(description)
+        if description.key == MODBUS_PV_ENERGY_KEY:
+            modbus_pv_energy |= _models(description)
     result: list[EntityFactory] = []
     for description in descriptions:
+        if description.key in INTEGRATED_PV_ENERGY_KEYS:
+            # Only Modbus reads where the inverter has its own counter (template-like entities aren't wanted)
+            description = _without_integrated_pv_energy(description, modbus_pv_energy)
+            if description is None:
+                continue
         if isinstance(description, SensorEntityDescription):
             if description.key in controlled:
                 # The control shows the read-back value itself

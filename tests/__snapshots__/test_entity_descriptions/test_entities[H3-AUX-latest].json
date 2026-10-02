@@ -947,6 +947,604 @@
   },
   {
     "addresses": [
+      31035
+    ],
+    "key": "legacy_bat_current",
+    "name": "Inverter BAT Current Legacy",
+    "scale": 0.1,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      31036
+    ],
+    "key": "legacy_battery_charge",
+    "name": "Inverter BAT Power Charge Legacy",
+    "scale": 0.001,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      32004,
+      32003
+    ],
+    "key": "legacy_battery_charge_total",
+    "name": "Inverter BAT Energy Charge Total Legacy",
+    "scale": 0.1,
+    "signed": false,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      31036
+    ],
+    "key": "legacy_battery_discharge",
+    "name": "Inverter BAT Power Discharge Legacy",
+    "scale": 0.001,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      32007,
+      32006
+    ],
+    "key": "legacy_battery_discharge_total",
+    "name": "Inverter BAT Energy Discharge Total Legacy",
+    "scale": 0.1,
+    "signed": false,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      31038
+    ],
+    "key": "legacy_battery_soc",
+    "name": "BMS BAT SoC Legacy",
+    "scale": null,
+    "signed": false,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      31090
+    ],
+    "key": "legacy_battery_soh",
+    "name": "BMS BAT SoH Legacy",
+    "scale": null,
+    "signed": false,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      31037
+    ],
+    "key": "legacy_battery_temp",
+    "name": "BMS Temperature Legacy",
+    "scale": 0.1,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      31034
+    ],
+    "key": "legacy_batvolt",
+    "name": "Inverter BAT Voltage Legacy",
+    "scale": 0.1,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      31134
+    ],
+    "key": "legacy_bms_cell_mv_high",
+    "name": "BMS BAT Cell Voltage Max Legacy",
+    "scale": null,
+    "signed": false,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      31135
+    ],
+    "key": "legacy_bms_cell_mv_low",
+    "name": "BMS BAT Cell Voltage Min Legacy",
+    "scale": null,
+    "signed": false,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      31102
+    ],
+    "key": "legacy_bms_cell_temp_high",
+    "name": "BMS BAT Cell Temperature Max Legacy",
+    "scale": 0.1,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      31103
+    ],
+    "key": "legacy_bms_cell_temp_low",
+    "name": "BMS BAT Cell Temperature Min Legacy",
+    "scale": 0.1,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      31123
+    ],
+    "key": "legacy_bms_kwh_remaining",
+    "name": "BMS BAT Energy Remaining Legacy",
+    "scale": 0.01,
+    "signed": false,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      31025
+    ],
+    "key": "legacy_eps_frequency",
+    "name": "EPS Frequency Legacy",
+    "scale": 0.01,
+    "signed": false,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      31022
+    ],
+    "key": "legacy_eps_power_R",
+    "name": "EPS R Power Legacy",
+    "scale": 0.001,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      31023
+    ],
+    "key": "legacy_eps_power_S",
+    "name": "EPS S Power Legacy",
+    "scale": 0.001,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      31024
+    ],
+    "key": "legacy_eps_power_T",
+    "name": "EPS T Power Legacy",
+    "scale": 0.001,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      31026
+    ],
+    "key": "legacy_feed_in_R",
+    "name": "Grid R Power Export Legacy",
+    "scale": 0.001,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      31027
+    ],
+    "key": "legacy_feed_in_S",
+    "name": "Grid S Power Export Legacy",
+    "scale": 0.001,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      31028
+    ],
+    "key": "legacy_feed_in_T",
+    "name": "Grid T Power Export Legacy",
+    "scale": 0.001,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      32011
+    ],
+    "key": "legacy_feed_in_energy_today",
+    "name": "Grid Energy Export Today Legacy",
+    "scale": 0.1,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      32010,
+      32009
+    ],
+    "key": "legacy_feed_in_energy_total",
+    "name": "Grid Energy Export Total Legacy",
+    "scale": 0.1,
+    "signed": false,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      31026
+    ],
+    "key": "legacy_grid_consumption_R",
+    "name": "Grid R Power Import Legacy",
+    "scale": 0.001,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      31027
+    ],
+    "key": "legacy_grid_consumption_S",
+    "name": "Grid S Power Import Legacy",
+    "scale": 0.001,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      31028
+    ],
+    "key": "legacy_grid_consumption_T",
+    "name": "Grid T Power Import Legacy",
+    "scale": 0.001,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      32014
+    ],
+    "key": "legacy_grid_consumption_energy_today",
+    "name": "Grid Energy Import Today Legacy",
+    "scale": 0.1,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      32013,
+      32012
+    ],
+    "key": "legacy_grid_consumption_energy_total",
+    "name": "Grid Energy Import Total Legacy",
+    "scale": 0.1,
+    "signed": false,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      31026
+    ],
+    "key": "legacy_grid_ct_R",
+    "name": "Meter CT1 R Power Legacy",
+    "scale": 0.001,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      31027
+    ],
+    "key": "legacy_grid_ct_S",
+    "name": "Meter CT1 S Power Legacy",
+    "scale": 0.001,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      31028
+    ],
+    "key": "legacy_grid_ct_T",
+    "name": "Meter CT1 T Power Legacy",
+    "scale": 0.001,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      31006
+    ],
+    "key": "legacy_grid_voltage_R",
+    "name": "Grid R Voltage Legacy",
+    "scale": 0.1,
+    "signed": false,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      31007
+    ],
+    "key": "legacy_grid_voltage_S",
+    "name": "Grid S Voltage Legacy",
+    "scale": 0.1,
+    "signed": false,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      31008
+    ],
+    "key": "legacy_grid_voltage_T",
+    "name": "Grid T Voltage Legacy",
+    "scale": 0.1,
+    "signed": false,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      32020
+    ],
+    "key": "legacy_input_energy_today",
+    "name": "Inverter Energy Input Today Legacy",
+    "scale": 0.1,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      32019,
+      32018
+    ],
+    "key": "legacy_input_energy_total",
+    "name": "Inverter Energy Input Total Legacy",
+    "scale": 0.1,
+    "signed": false,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      31009
+    ],
+    "key": "legacy_inv_current_R",
+    "name": "Inverter R Current Legacy",
+    "scale": 0.1,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      31010
+    ],
+    "key": "legacy_inv_current_S",
+    "name": "Inverter S Current Legacy",
+    "scale": 0.1,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      31011
+    ],
+    "key": "legacy_inv_current_T",
+    "name": "Inverter T Current Legacy",
+    "scale": 0.1,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      31012
+    ],
+    "key": "legacy_inv_power_R",
+    "name": "Inverter R Power Legacy",
+    "scale": 0.001,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      31013
+    ],
+    "key": "legacy_inv_power_S",
+    "name": "Inverter S Power Legacy",
+    "scale": 0.001,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      31014
+    ],
+    "key": "legacy_inv_power_T",
+    "name": "Inverter T Power Legacy",
+    "scale": 0.001,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      31036
+    ],
+    "key": "legacy_invbatpower",
+    "name": "Inverter BAT Power Legacy",
+    "scale": 0.001,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      31032
+    ],
+    "key": "legacy_invtemp",
+    "name": "Inverter Temperature Legacy",
+    "scale": 0.1,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      32023
+    ],
+    "key": "legacy_load_energy_today",
+    "name": "Load Energy Today Legacy",
+    "scale": 0.1,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      31127
+    ],
+    "key": "legacy_load_power",
+    "name": "Load Power Legacy",
+    "scale": 0.001,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      31129
+    ],
+    "key": "legacy_load_power_R",
+    "name": "Load R Power Legacy",
+    "scale": 0.001,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      31131
+    ],
+    "key": "legacy_load_power_S",
+    "name": "Load S Power Legacy",
+    "scale": 0.001,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      31133
+    ],
+    "key": "legacy_load_power_T",
+    "name": "Load T Power Legacy",
+    "scale": 0.001,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      32022,
+      32021
+    ],
+    "key": "legacy_load_power_total",
+    "name": "Load Energy Total Legacy",
+    "scale": 0.1,
+    "signed": false,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      31001
+    ],
+    "key": "legacy_pv1_current",
+    "name": "PV1 Current Legacy",
+    "scale": 0.1,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      31000
+    ],
+    "key": "legacy_pv1_voltage",
+    "name": "PV1 Voltage Legacy",
+    "scale": 0.1,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      31004
+    ],
+    "key": "legacy_pv2_current",
+    "name": "PV2 Current Legacy",
+    "scale": 0.1,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      31003
+    ],
+    "key": "legacy_pv2_voltage",
+    "name": "PV2 Voltage Legacy",
+    "scale": 0.1,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      31015
+    ],
+    "key": "legacy_rfreq",
+    "name": "Grid Frequency Legacy",
+    "scale": 0.01,
+    "signed": false,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      32002
+    ],
+    "key": "legacy_solar_energy_today",
+    "name": "PV Energy Today Legacy",
+    "scale": 0.1,
+    "signed": false,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      32001,
+      32000
+    ],
+    "key": "legacy_solar_energy_total",
+    "name": "PV Energy Total Legacy",
+    "scale": 0.1,
+    "signed": false,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      32017
+    ],
+    "key": "legacy_total_yield_today",
+    "name": "Inverter Energy Yield Today Legacy",
+    "scale": 0.1,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      32016,
+      32015
+    ],
+    "key": "legacy_total_yield_total",
+    "name": "Inverter Energy Yield Total Legacy",
+    "scale": 0.1,
+    "signed": false,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
       39632,
       39631
     ],
@@ -1097,6 +1695,28 @@
   },
   {
     "addresses": [
+      39280,
+      39279
+    ],
+    "key": "newmap_pv1_power",
+    "name": "PV1 Power New Map",
+    "scale": 0.001,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      39282,
+      39281
+    ],
+    "key": "newmap_pv2_power",
+    "name": "PV2 Power New Map",
+    "scale": 0.001,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
       39071
     ],
     "key": "pv1_current",
@@ -1115,8 +1735,7 @@
   },
   {
     "addresses": [
-      39280,
-      39279
+      31002
     ],
     "key": "pv1_power",
     "name": "PV1 Power",
@@ -1154,8 +1773,7 @@
   },
   {
     "addresses": [
-      39282,
-      39281
+      31005
     ],
     "key": "pv2_power",
     "name": "PV2 Power",

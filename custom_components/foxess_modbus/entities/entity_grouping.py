@@ -153,6 +153,20 @@ EXPERIMENTAL_KEYS = frozenset(
 )
 
 
+PALETTE_PREFIXES = ("legacy_", "newmap_")
+
+
+def is_palette(key: str) -> bool:
+    """The other register (legacy or documented map) of an entity, shown next to it on the playground"""
+    return key.startswith(PALETTE_PREFIXES)
+
+
+def _base_key(key: str) -> str:
+    for prefix in PALETTE_PREFIXES:
+        key = key.removeprefix(prefix)
+    return key
+
+
 def is_experimental(key: str) -> bool:
     """Unnamed raw registers and named registers whose meaning isn't proven"""
     return key.startswith("register_") or key in EXPERIMENTAL_KEYS
@@ -163,7 +177,7 @@ def _is_discovered(key: str) -> bool:
 
 
 def is_diagnostic(description: Any) -> bool:
-    return description.key in DIAGNOSTIC_KEYS or type(description).__name__ in _DIAGNOSTIC_CLASSES
+    return _base_key(description.key) in DIAGNOSTIC_KEYS or type(description).__name__ in _DIAGNOSTIC_CLASSES
 
 
 def _grouped(description: Any) -> Any:
@@ -174,7 +188,13 @@ def _grouped(description: Any) -> Any:
     elif key in _PROMOTED_KEYS or is_experimental(key) or _is_discovered(key):
         # Experimental entities are grouped by their device; proven discovered ones are plain sensors
         changes["entity_category"] = None
-    if key in DIAGNOSTIC_KEYS or key in _PROMOTED_KEYS or is_experimental(key) or _is_discovered(key):
+    if (
+        is_palette(key)
+        or key in DIAGNOSTIC_KEYS
+        or key in _PROMOTED_KEYS
+        or is_experimental(key)
+        or _is_discovered(key)
+    ):
         # Discovered registers were off by default while unproven; they are live now, in their group
         changes["entity_registry_enabled_default"] = True
     return replace(description, **changes) if changes else description

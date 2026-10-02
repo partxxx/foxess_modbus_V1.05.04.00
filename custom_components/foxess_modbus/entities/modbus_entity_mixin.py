@@ -24,6 +24,7 @@ from ..const import INVERTER_MODEL
 from ..const import UNIQUE_ID_PREFIX
 from .base_validator import BaseValidator
 from .entity_grouping import is_experimental
+from .entity_grouping import is_palette
 
 _LOGGER = logging.getLogger(__name__)
 
@@ -110,6 +111,15 @@ class ModbusEntityMixin(
 
         # services/utils.py relies on the order of entries here (friendly name 4th). Update that if you update this!
         inverter = (DOMAIN, inv_model, conn_type, friendly_name)
+        if is_palette(self.entity_description.key):
+            # The other register (legacy or documented map) of an entity: a separate device next to the inverter
+            return DeviceInfo(
+                identifiers={(*inverter, "palette")},  # type: ignore
+                name=f"{attr_name} Register Palette",
+                model=f"{inv_model} - {conn_type} (legacy and documented-map registers)",
+                manufacturer="FoxESS",
+                via_device=inverter,  # type: ignore
+            )
         if is_experimental(self.entity_description.key):
             # Unnamed or unproven registers: a separate device next to the inverter (see entity_grouping.py)
             return DeviceInfo(

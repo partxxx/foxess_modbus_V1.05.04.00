@@ -97,7 +97,9 @@ def test_no_duplicate_register_sensors(inv: Inv) -> None:
             keys_by_addresses[tuple(sorted(serialized["addresses"]))].add(serialized["key"])
     for keys in keys_by_addresses.values():
         if len(keys) > 1:
-            assert any(keys <= group for group in _SHARED_REGISTER_GROUPS), keys
+            # Register palette twins (legacy_ / newmap_) share registers like the entities they mirror
+            base = {key.removeprefix("legacy_").removeprefix("newmap_") for key in keys}
+            assert any(base <= group for group in _SHARED_REGISTER_GROUPS), keys
 
 
 @pytest.mark.parametrize("inv", [Inv.H3_193, Inv.UNIFIED_1PH, Inv.UNIFIED_3PH])

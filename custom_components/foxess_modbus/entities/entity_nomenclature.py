@@ -173,6 +173,9 @@ def _battery_name(key: str, address: int | None) -> str | None:
 
 def entity_display_name(key: str, name: str, address: int | None = None) -> str:
     """Return a display name; never change identifiers, units, scaling or values."""
+    for prefix, suffix in (("legacy_", " Legacy"), ("newmap_", " New Map")):
+        if key.startswith(prefix):  # register palette twin: named like the entity it mirrors
+            return entity_display_name(key.removeprefix(prefix), name, address) + suffix
     if key.startswith("register_"):
         return name.removesuffix(" raw") + " Raw" if name.endswith(" raw") else name
     if key.startswith("reg_") and "legacy_fault_word" in key:

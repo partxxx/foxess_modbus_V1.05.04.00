@@ -2066,6 +2066,182 @@
   },
   {
     "addresses": [
+      48010,
+      48011,
+      48012,
+      48013,
+      48014,
+      48015,
+      48016
+    ],
+    "key": "time_group_1",
+    "name": "Time Group1 Settings",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48100,
+      48101,
+      48102,
+      48103,
+      48104,
+      48105,
+      48106
+    ],
+    "key": "time_group_10",
+    "name": "Time Group10 Settings",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48110,
+      48111,
+      48112,
+      48113,
+      48114,
+      48115,
+      48116
+    ],
+    "key": "time_group_11",
+    "name": "Time Group11 Settings",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48120,
+      48121,
+      48122,
+      48123,
+      48124,
+      48125,
+      48126
+    ],
+    "key": "time_group_12",
+    "name": "Time Group12 Settings",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48130,
+      48131,
+      48132,
+      48133,
+      48134,
+      48135,
+      48136
+    ],
+    "key": "time_group_13",
+    "name": "Time Group13 Settings",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48140,
+      48141,
+      48142,
+      48143,
+      48144,
+      48145,
+      48146
+    ],
+    "key": "time_group_14",
+    "name": "Time Group14 Settings",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48150,
+      48151,
+      48152,
+      48153,
+      48154,
+      48155,
+      48156
+    ],
+    "key": "time_group_15",
+    "name": "Time Group15 Settings",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48160,
+      48161,
+      48162,
+      48163,
+      48164,
+      48165,
+      48166
+    ],
+    "key": "time_group_16",
+    "name": "Time Group16 Settings",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48170,
+      48171,
+      48172,
+      48173,
+      48174,
+      48175,
+      48176
+    ],
+    "key": "time_group_17",
+    "name": "Time Group17 Settings",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48180,
+      48181,
+      48182,
+      48183,
+      48184,
+      48185,
+      48186
+    ],
+    "key": "time_group_18",
+    "name": "Time Group18 Settings",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48190,
+      48191,
+      48192,
+      48193,
+      48194,
+      48195,
+      48196
+    ],
+    "key": "time_group_19",
+    "name": "Time Group19 Settings",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
       48010
     ],
     "key": "time_group_1_enable",
@@ -2120,6 +2296,1366 @@
     ],
     "key": "time_group_1_work_mode",
     "name": "Time Group1 Work Mode",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48020,
+      48021,
+      48022,
+      48023,
+      48024,
+      48025,
+      48026
+    ],
+    "key": "time_group_2",
+    "name": "Time Group2 Settings",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48200,
+      48201,
+      48202,
+      48203,
+      48204,
+      48205,
+      48206
+    ],
+    "key": "time_group_20",
+    "name": "Time Group20 Settings",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48210,
+      48211,
+      48212,
+      48213,
+      48214,
+      48215,
+      48216
+    ],
+    "key": "time_group_21",
+    "name": "Time Group21 Settings",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48220,
+      48221,
+      48222,
+      48223,
+      48224,
+      48225,
+      48226
+    ],
+    "key": "time_group_22",
+    "name": "Time Group22 Settings",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48230,
+      48231,
+      48232,
+      48233,
+      48234,
+      48235,
+      48236
+    ],
+    "key": "time_group_23",
+    "name": "Time Group23 Settings",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48240,
+      48241,
+      48242,
+      48243,
+      48244,
+      48245,
+      48246
+    ],
+    "key": "time_group_24",
+    "name": "Time Group24 Settings",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48250,
+      48251,
+      48252,
+      48253,
+      48254,
+      48255,
+      48256
+    ],
+    "key": "time_group_25",
+    "name": "Time Group25 Settings",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48260,
+      48261,
+      48262,
+      48263,
+      48264,
+      48265,
+      48266
+    ],
+    "key": "time_group_26",
+    "name": "Time Group26 Settings",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48270,
+      48271,
+      48272,
+      48273,
+      48274,
+      48275,
+      48276
+    ],
+    "key": "time_group_27",
+    "name": "Time Group27 Settings",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48280,
+      48281,
+      48282,
+      48283,
+      48284,
+      48285,
+      48286
+    ],
+    "key": "time_group_28",
+    "name": "Time Group28 Settings",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48290,
+      48291,
+      48292,
+      48293,
+      48294,
+      48295,
+      48296
+    ],
+    "key": "time_group_29",
+    "name": "Time Group29 Settings",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48030,
+      48031,
+      48032,
+      48033,
+      48034,
+      48035,
+      48036
+    ],
+    "key": "time_group_3",
+    "name": "Time Group3 Settings",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48300,
+      48301,
+      48302,
+      48303,
+      48304,
+      48305,
+      48306
+    ],
+    "key": "time_group_30",
+    "name": "Time Group30 Settings",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48310,
+      48311,
+      48312,
+      48313,
+      48314,
+      48315,
+      48316
+    ],
+    "key": "time_group_31",
+    "name": "Time Group31 Settings",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48320,
+      48321,
+      48322,
+      48323,
+      48324,
+      48325,
+      48326
+    ],
+    "key": "time_group_32",
+    "name": "Time Group32 Settings",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48330,
+      48331,
+      48332,
+      48333,
+      48334,
+      48335,
+      48336
+    ],
+    "key": "time_group_33",
+    "name": "Time Group33 Settings",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48340,
+      48341,
+      48342,
+      48343,
+      48344,
+      48345,
+      48346
+    ],
+    "key": "time_group_34",
+    "name": "Time Group34 Settings",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48350,
+      48351,
+      48352,
+      48353,
+      48354,
+      48355,
+      48356
+    ],
+    "key": "time_group_35",
+    "name": "Time Group35 Settings",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48360,
+      48361,
+      48362,
+      48363,
+      48364,
+      48365,
+      48366
+    ],
+    "key": "time_group_36",
+    "name": "Time Group36 Settings",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48370,
+      48371,
+      48372,
+      48373,
+      48374,
+      48375,
+      48376
+    ],
+    "key": "time_group_37",
+    "name": "Time Group37 Settings",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48380,
+      48381,
+      48382,
+      48383,
+      48384,
+      48385,
+      48386
+    ],
+    "key": "time_group_38",
+    "name": "Time Group38 Settings",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48390,
+      48391,
+      48392,
+      48393,
+      48394,
+      48395,
+      48396
+    ],
+    "key": "time_group_39",
+    "name": "Time Group39 Settings",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48040,
+      48041,
+      48042,
+      48043,
+      48044,
+      48045,
+      48046
+    ],
+    "key": "time_group_4",
+    "name": "Time Group4 Settings",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48400,
+      48401,
+      48402,
+      48403,
+      48404,
+      48405,
+      48406
+    ],
+    "key": "time_group_40",
+    "name": "Time Group40 Settings",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48410,
+      48411,
+      48412,
+      48413,
+      48414,
+      48415,
+      48416
+    ],
+    "key": "time_group_41",
+    "name": "Time Group41 Settings",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48420,
+      48421,
+      48422,
+      48423,
+      48424,
+      48425,
+      48426
+    ],
+    "key": "time_group_42",
+    "name": "Time Group42 Settings",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48430,
+      48431,
+      48432,
+      48433,
+      48434,
+      48435,
+      48436
+    ],
+    "key": "time_group_43",
+    "name": "Time Group43 Settings",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48440,
+      48441,
+      48442,
+      48443,
+      48444,
+      48445,
+      48446
+    ],
+    "key": "time_group_44",
+    "name": "Time Group44 Settings",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48450,
+      48451,
+      48452,
+      48453,
+      48454,
+      48455,
+      48456
+    ],
+    "key": "time_group_45",
+    "name": "Time Group45 Settings",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48460,
+      48461,
+      48462,
+      48463,
+      48464,
+      48465,
+      48466
+    ],
+    "key": "time_group_46",
+    "name": "Time Group46 Settings",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48470,
+      48471,
+      48472,
+      48473,
+      48474,
+      48475,
+      48476
+    ],
+    "key": "time_group_47",
+    "name": "Time Group47 Settings",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48480,
+      48481,
+      48482,
+      48483,
+      48484,
+      48485,
+      48486
+    ],
+    "key": "time_group_48",
+    "name": "Time Group48 Settings",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48490,
+      48491,
+      48492,
+      48493,
+      48494,
+      48495,
+      48496
+    ],
+    "key": "time_group_49",
+    "name": "Time Group49 Settings",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48050,
+      48051,
+      48052,
+      48053,
+      48054,
+      48055,
+      48056
+    ],
+    "key": "time_group_5",
+    "name": "Time Group5 Settings",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48500,
+      48501,
+      48502,
+      48503,
+      48504,
+      48505,
+      48506
+    ],
+    "key": "time_group_50",
+    "name": "Time Group50 Settings",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48510,
+      48511,
+      48512,
+      48513,
+      48514,
+      48515,
+      48516
+    ],
+    "key": "time_group_51",
+    "name": "Time Group51 Settings",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48520,
+      48521,
+      48522,
+      48523,
+      48524,
+      48525,
+      48526
+    ],
+    "key": "time_group_52",
+    "name": "Time Group52 Settings",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48530,
+      48531,
+      48532,
+      48533,
+      48534,
+      48535,
+      48536
+    ],
+    "key": "time_group_53",
+    "name": "Time Group53 Settings",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48540,
+      48541,
+      48542,
+      48543,
+      48544,
+      48545,
+      48546
+    ],
+    "key": "time_group_54",
+    "name": "Time Group54 Settings",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48550,
+      48551,
+      48552,
+      48553,
+      48554,
+      48555,
+      48556
+    ],
+    "key": "time_group_55",
+    "name": "Time Group55 Settings",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48560,
+      48561,
+      48562,
+      48563,
+      48564,
+      48565,
+      48566
+    ],
+    "key": "time_group_56",
+    "name": "Time Group56 Settings",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48570,
+      48571,
+      48572,
+      48573,
+      48574,
+      48575,
+      48576
+    ],
+    "key": "time_group_57",
+    "name": "Time Group57 Settings",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48580,
+      48581,
+      48582,
+      48583,
+      48584,
+      48585,
+      48586
+    ],
+    "key": "time_group_58",
+    "name": "Time Group58 Settings",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48590,
+      48591,
+      48592,
+      48593,
+      48594,
+      48595,
+      48596
+    ],
+    "key": "time_group_59",
+    "name": "Time Group59 Settings",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48060,
+      48061,
+      48062,
+      48063,
+      48064,
+      48065,
+      48066
+    ],
+    "key": "time_group_6",
+    "name": "Time Group6 Settings",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48600,
+      48601,
+      48602,
+      48603,
+      48604,
+      48605,
+      48606
+    ],
+    "key": "time_group_60",
+    "name": "Time Group60 Settings",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48610,
+      48611,
+      48612,
+      48613,
+      48614,
+      48615,
+      48616
+    ],
+    "key": "time_group_61",
+    "name": "Time Group61 Settings",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48620,
+      48621,
+      48622,
+      48623,
+      48624,
+      48625,
+      48626
+    ],
+    "key": "time_group_62",
+    "name": "Time Group62 Settings",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48630,
+      48631,
+      48632,
+      48633,
+      48634,
+      48635,
+      48636
+    ],
+    "key": "time_group_63",
+    "name": "Time Group63 Settings",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48640,
+      48641,
+      48642,
+      48643,
+      48644,
+      48645,
+      48646
+    ],
+    "key": "time_group_64",
+    "name": "Time Group64 Settings",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48650,
+      48651,
+      48652,
+      48653,
+      48654,
+      48655,
+      48656
+    ],
+    "key": "time_group_65",
+    "name": "Time Group65 Settings",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48660,
+      48661,
+      48662,
+      48663,
+      48664,
+      48665,
+      48666
+    ],
+    "key": "time_group_66",
+    "name": "Time Group66 Settings",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48670,
+      48671,
+      48672,
+      48673,
+      48674,
+      48675,
+      48676
+    ],
+    "key": "time_group_67",
+    "name": "Time Group67 Settings",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48680,
+      48681,
+      48682,
+      48683,
+      48684,
+      48685,
+      48686
+    ],
+    "key": "time_group_68",
+    "name": "Time Group68 Settings",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48690,
+      48691,
+      48692,
+      48693,
+      48694,
+      48695,
+      48696
+    ],
+    "key": "time_group_69",
+    "name": "Time Group69 Settings",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48070,
+      48071,
+      48072,
+      48073,
+      48074,
+      48075,
+      48076
+    ],
+    "key": "time_group_7",
+    "name": "Time Group7 Settings",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48700,
+      48701,
+      48702,
+      48703,
+      48704,
+      48705,
+      48706
+    ],
+    "key": "time_group_70",
+    "name": "Time Group70 Settings",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48710,
+      48711,
+      48712,
+      48713,
+      48714,
+      48715,
+      48716
+    ],
+    "key": "time_group_71",
+    "name": "Time Group71 Settings",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48720,
+      48721,
+      48722,
+      48723,
+      48724,
+      48725,
+      48726
+    ],
+    "key": "time_group_72",
+    "name": "Time Group72 Settings",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48730,
+      48731,
+      48732,
+      48733,
+      48734,
+      48735,
+      48736
+    ],
+    "key": "time_group_73",
+    "name": "Time Group73 Settings",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48740,
+      48741,
+      48742,
+      48743,
+      48744,
+      48745,
+      48746
+    ],
+    "key": "time_group_74",
+    "name": "Time Group74 Settings",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48750,
+      48751,
+      48752,
+      48753,
+      48754,
+      48755,
+      48756
+    ],
+    "key": "time_group_75",
+    "name": "Time Group75 Settings",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48760,
+      48761,
+      48762,
+      48763,
+      48764,
+      48765,
+      48766
+    ],
+    "key": "time_group_76",
+    "name": "Time Group76 Settings",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48770,
+      48771,
+      48772,
+      48773,
+      48774,
+      48775,
+      48776
+    ],
+    "key": "time_group_77",
+    "name": "Time Group77 Settings",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48780,
+      48781,
+      48782,
+      48783,
+      48784,
+      48785,
+      48786
+    ],
+    "key": "time_group_78",
+    "name": "Time Group78 Settings",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48790,
+      48791,
+      48792,
+      48793,
+      48794,
+      48795,
+      48796
+    ],
+    "key": "time_group_79",
+    "name": "Time Group79 Settings",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48080,
+      48081,
+      48082,
+      48083,
+      48084,
+      48085,
+      48086
+    ],
+    "key": "time_group_8",
+    "name": "Time Group8 Settings",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48800,
+      48801,
+      48802,
+      48803,
+      48804,
+      48805,
+      48806
+    ],
+    "key": "time_group_80",
+    "name": "Time Group80 Settings",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48810,
+      48811,
+      48812,
+      48813,
+      48814,
+      48815,
+      48816
+    ],
+    "key": "time_group_81",
+    "name": "Time Group81 Settings",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48820,
+      48821,
+      48822,
+      48823,
+      48824,
+      48825,
+      48826
+    ],
+    "key": "time_group_82",
+    "name": "Time Group82 Settings",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48830,
+      48831,
+      48832,
+      48833,
+      48834,
+      48835,
+      48836
+    ],
+    "key": "time_group_83",
+    "name": "Time Group83 Settings",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48840,
+      48841,
+      48842,
+      48843,
+      48844,
+      48845,
+      48846
+    ],
+    "key": "time_group_84",
+    "name": "Time Group84 Settings",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48850,
+      48851,
+      48852,
+      48853,
+      48854,
+      48855,
+      48856
+    ],
+    "key": "time_group_85",
+    "name": "Time Group85 Settings",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48860,
+      48861,
+      48862,
+      48863,
+      48864,
+      48865,
+      48866
+    ],
+    "key": "time_group_86",
+    "name": "Time Group86 Settings",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48870,
+      48871,
+      48872,
+      48873,
+      48874,
+      48875,
+      48876
+    ],
+    "key": "time_group_87",
+    "name": "Time Group87 Settings",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48880,
+      48881,
+      48882,
+      48883,
+      48884,
+      48885,
+      48886
+    ],
+    "key": "time_group_88",
+    "name": "Time Group88 Settings",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48890,
+      48891,
+      48892,
+      48893,
+      48894,
+      48895,
+      48896
+    ],
+    "key": "time_group_89",
+    "name": "Time Group89 Settings",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48090,
+      48091,
+      48092,
+      48093,
+      48094,
+      48095,
+      48096
+    ],
+    "key": "time_group_9",
+    "name": "Time Group9 Settings",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48900,
+      48901,
+      48902,
+      48903,
+      48904,
+      48905,
+      48906
+    ],
+    "key": "time_group_90",
+    "name": "Time Group90 Settings",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48910,
+      48911,
+      48912,
+      48913,
+      48914,
+      48915,
+      48916
+    ],
+    "key": "time_group_91",
+    "name": "Time Group91 Settings",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48920,
+      48921,
+      48922,
+      48923,
+      48924,
+      48925,
+      48926
+    ],
+    "key": "time_group_92",
+    "name": "Time Group92 Settings",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48930,
+      48931,
+      48932,
+      48933,
+      48934,
+      48935,
+      48936
+    ],
+    "key": "time_group_93",
+    "name": "Time Group93 Settings",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48940,
+      48941,
+      48942,
+      48943,
+      48944,
+      48945,
+      48946
+    ],
+    "key": "time_group_94",
+    "name": "Time Group94 Settings",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48950,
+      48951,
+      48952,
+      48953,
+      48954,
+      48955,
+      48956
+    ],
+    "key": "time_group_95",
+    "name": "Time Group95 Settings",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48960,
+      48961,
+      48962,
+      48963,
+      48964,
+      48965,
+      48966
+    ],
+    "key": "time_group_96",
+    "name": "Time Group96 Settings",
     "scale": null,
     "signed": true,
     "type": "sensor"

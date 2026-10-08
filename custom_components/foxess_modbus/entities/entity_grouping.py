@@ -114,6 +114,9 @@ DIAGNOSTIC_KEYS = frozenset(
     }
 )
 
+# The 96 time group summaries (48010 + 10 * (N - 1)): read-backs of the scheduler settings
+DIAGNOSTIC_KEYS = DIAGNOSTIC_KEYS | {f"time_group_{n}" for n in range(1, 97)}
+
 # Writable device settings: numbers and selects which belong to the Configuration group
 CONFIG_KEYS = frozenset(
     {

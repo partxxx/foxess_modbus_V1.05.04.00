@@ -100,3 +100,16 @@ def test_web_setting_codes() -> None:
     assert by_key["time_group_1_start"].formatter([0x0A1E]) == "10:30"  # type: ignore[attr-defined]
     assert by_key["time_group_1_end"].formatter([0x0B2D]) == "11:45"  # type: ignore[attr-defined]
     assert by_key["time_group_1_work_mode"].formatter([1]) == "Self Use"  # type: ignore[attr-defined]
+
+
+def test_all_96_time_groups() -> None:
+    entities = _h3_193()
+    for n in (1, 2, 50, 96):
+        start = 48010 + 10 * (n - 1)
+        assert entities[f"time_group_{n}"]["addresses"] == list(range(start, start + 7)), n
+        assert entities[f"time_group_{n}"]["name"] == f"Time Group{n} Settings"
+    assert "time_group_97" not in entities
+    by_key = {getattr(f, "key", None): f for f in ENTITIES}
+    # Group 1 during the 2026-10-08 write test, as the FoxESS web settings showed it
+    values = [0, 0x0A1E, 0x0B2D, 1, 0x640A, 10, 1234]
+    assert by_key["time_group_1"].formatter(values) == "Disabled 10:30-11:45 Self Use, SoC 100/10%, FD 10% 1234 W"  # type: ignore[attr-defined]

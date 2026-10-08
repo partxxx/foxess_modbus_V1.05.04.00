@@ -764,7 +764,7 @@
     ],
     "key": "import_power_limit",
     "name": "Inverter Importlimit",
-    "scale": null,
+    "scale": 0.001,
     "signed": true,
     "type": "sensor"
   },
@@ -1219,6 +1219,96 @@
   },
   {
     "addresses": [
+      44024
+    ],
+    "key": "legacy_chr_in_low_end_time1_hour",
+    "name": "Inverter ChrInLowEndTime1Hour Legacy",
+    "scale": null,
+    "signed": false,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      44025
+    ],
+    "key": "legacy_chr_in_low_end_time1_minute",
+    "name": "Inverter ChrInLowEndTime1Minute Legacy",
+    "scale": null,
+    "signed": false,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      44028
+    ],
+    "key": "legacy_chr_in_low_end_time2_hour",
+    "name": "Inverter ChrInLowEndTime2Hour Legacy",
+    "scale": null,
+    "signed": false,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      44029
+    ],
+    "key": "legacy_chr_in_low_end_time2_minute",
+    "name": "Inverter ChrInLowEndTime2Minute Legacy",
+    "scale": null,
+    "signed": false,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      44021
+    ],
+    "key": "legacy_chr_in_low_import",
+    "name": "Inverter ChrInLowImport Legacy",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      44022
+    ],
+    "key": "legacy_chr_in_low_start_time1_hour",
+    "name": "Inverter ChrInLowStartTime1Hour Legacy",
+    "scale": null,
+    "signed": false,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      44023
+    ],
+    "key": "legacy_chr_in_low_start_time1_minute",
+    "name": "Inverter ChrInLowStartTime1Minute Legacy",
+    "scale": null,
+    "signed": false,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      44026
+    ],
+    "key": "legacy_chr_in_low_start_time2_hour",
+    "name": "Inverter ChrInLowStartTime2Hour Legacy",
+    "scale": null,
+    "signed": false,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      44027
+    ],
+    "key": "legacy_chr_in_low_start_time2_minute",
+    "name": "Inverter ChrInLowStartTime2Minute Legacy",
+    "scale": null,
+    "signed": false,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
       31025
     ],
     "key": "legacy_eps_frequency",
@@ -1417,6 +1507,17 @@
     "name": "Grid T Voltage Legacy",
     "scale": 0.1,
     "signed": false,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      44017,
+      44016
+    ],
+    "key": "legacy_import_power_limit",
+    "name": "Inverter Importlimit Legacy",
+    "scale": 0.001,
+    "signed": true,
     "type": "sensor"
   },
   {
@@ -1628,6 +1729,27 @@
     "key": "legacy_pv2_voltage",
     "name": "PV2 Voltage Legacy",
     "scale": 0.1,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      44018
+    ],
+    "key": "legacy_reg_46503_threshold_soc",
+    "name": "Threshold SOC Legacy",
+    "scale": null,
+    "signed": false,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      44020,
+      44019
+    ],
+    "key": "legacy_reg_46504_export_peak_limit",
+    "name": "Export Peak Limit Legacy",
+    "scale": 0.001,
     "signed": true,
     "type": "sensor"
   },

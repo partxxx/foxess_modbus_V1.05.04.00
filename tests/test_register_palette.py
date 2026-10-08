@@ -127,3 +127,16 @@ def test_peak_shaving_and_balance_as_on_the_web() -> None:
     assert entities["reg_46504_export_peak_limit"]["name"] == "Inverter Exportpeaklimit"
     by_key = {getattr(f, "key", None): f for f in ENTITIES}
     assert by_key["chr_in_low_import"].formatter([2]) == "TimingMode"  # type: ignore[attr-defined]
+
+
+def test_peak_shaving_legacy_block() -> None:
+    """44016-44029 mirror 46501-46514: unique values written to every field showed up at both (2026-10-08)"""
+    entities = _h3_193()
+    assert entities["legacy_import_power_limit"]["addresses"] == [44017, 44016]
+    assert entities["legacy_reg_46503_threshold_soc"]["addresses"] == [44018]
+    assert entities["legacy_reg_46504_export_peak_limit"]["addresses"] == [44020, 44019]
+    assert entities["legacy_chr_in_low_import"]["addresses"] == [44021]
+    assert entities["legacy_chr_in_low_start_time1_hour"]["addresses"] == [44022]
+    assert entities["legacy_chr_in_low_end_time2_minute"]["addresses"] == [44029]
+    assert entities["legacy_chr_in_low_import"]["name"] == "Inverter ChrInLowImport Legacy"
+    assert entities["import_power_limit"]["name"] == "Inverter Importlimit"

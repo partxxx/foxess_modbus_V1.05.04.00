@@ -503,7 +503,7 @@
       41007
     ],
     "key": "max_charge_current",
-    "name": "Inverter BAT Current Charge Max",
+    "name": "Inverter MaximumSetChargeCurrent",
     "scale": 0.1,
     "type": "number"
   },
@@ -512,7 +512,7 @@
       41008
     ],
     "key": "max_discharge_current",
-    "name": "Inverter BAT Current Discharge Max",
+    "name": "Inverter MaximumSetDischargeCurrent",
     "scale": 0.1,
     "type": "number"
   },
@@ -521,7 +521,7 @@
       41010
     ],
     "key": "max_soc",
-    "name": "Inverter BAT SoC Max",
+    "name": "Inverter MaximumSoC",
     "scale": null,
     "type": "number"
   },
@@ -530,7 +530,7 @@
       41009
     ],
     "key": "min_soc",
-    "name": "Inverter BAT SoC Min",
+    "name": "Inverter MinimumSoC",
     "scale": null,
     "type": "number"
   },
@@ -539,7 +539,7 @@
       41011
     ],
     "key": "min_soc_on_grid",
-    "name": "Inverter BAT SoC Min On Grid",
+    "name": "Inverter MinimumSoC-OnGrid",
     "scale": null,
     "type": "number"
   },

@@ -51,7 +51,7 @@ from custom_components.foxess_modbus.entities.remote_control_description import 
         ("rpower_S_T", "Inverter Power (Apparent) T", 39268, "Inverter T Apparent Power"),
         ("feed_in_S", "Feed-in S", 38818, "Grid S Power Export"),
         ("grid_ct_pf_R", "Grid CT Power Factor R", 38840, "Meter CT1 R Power Factor"),
-        ("eps_frequency_select", "EPS Frequency (46612)", 46612, "EPS Frequency Setting"),
+        ("eps_frequency_select", "EPS Frequency (46612)", 46612, "EPS EpsFrequencySelect"),
         ("reg_46018_pwr_limit_bat_up", "Pwr_limit Bat_Up (46018)", 46018, "Inverter BAT Power Discharge Available"),
         ("reg_46020_pwr_limit_bat_dn", "Pwr_limit Bat_Dn (46020)", 46020, "Inverter BAT Power Charge Available"),
         ("time_period_1_start", "Period 1 - Start", None, "Time Period1 Start"),

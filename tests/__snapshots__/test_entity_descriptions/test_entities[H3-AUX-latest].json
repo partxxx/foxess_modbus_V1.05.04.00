@@ -256,7 +256,7 @@
       49206
     ],
     "key": "drm_state",
-    "name": "Inverter DRM State",
+    "name": "Inverter DRMState",
     "scale": null,
     "signed": true,
     "type": "sensor"
@@ -276,7 +276,7 @@
       46612
     ],
     "key": "eps_frequency_select",
-    "name": "EPS Frequency Setting",
+    "name": "EPS EpsFrequencySelect",
     "scale": null,
     "signed": true,
     "type": "sensor"
@@ -622,7 +622,7 @@
       49079
     ],
     "key": "grid_standard",
-    "name": "Grid Standard",
+    "name": "Inverter GridCode",
     "scale": null,
     "signed": true,
     "type": "sensor"
@@ -940,7 +940,7 @@
       49077
     ],
     "key": "inverter_power_on",
-    "name": "Inverter System On/Off",
+    "name": "Inverter SysOn/Off",
     "scale": null,
     "signed": true,
     "type": "sensor"
@@ -1405,7 +1405,7 @@
       41014
     ],
     "key": "legacy_inverter_power_on",
-    "name": "Inverter System On/Off Legacy",
+    "name": "Inverter SysOn/Off Legacy",
     "scale": null,
     "signed": true,
     "type": "sensor"
@@ -1557,7 +1557,7 @@
       44031
     ],
     "key": "legacy_standby_state",
-    "name": "Inverter Standby State Legacy",
+    "name": "Inverter StandbyState Legacy",
     "scale": null,
     "signed": true,
     "type": "sensor"
@@ -1672,7 +1672,7 @@
       46607
     ],
     "key": "max_charge_current",
-    "name": "Inverter BAT Current Charge Max",
+    "name": "Inverter MaximumSetChargeCurrent",
     "scale": 0.1,
     "type": "number"
   },
@@ -1681,7 +1681,7 @@
       46608
     ],
     "key": "max_discharge_current",
-    "name": "Inverter BAT Current Discharge Max",
+    "name": "Inverter MaximumSetDischargeCurrent",
     "scale": 0.1,
     "type": "number"
   },
@@ -1690,7 +1690,7 @@
       46610
     ],
     "key": "max_soc",
-    "name": "Inverter BAT SoC Max",
+    "name": "Inverter MaximumSoC",
     "scale": null,
     "type": "number"
   },
@@ -1699,7 +1699,7 @@
       49207
     ],
     "key": "meter1_ct1_type",
-    "name": "Meter1/CT1 Type",
+    "name": "Meter1 Meter",
     "scale": null,
     "signed": true,
     "type": "sensor"
@@ -1709,7 +1709,7 @@
       49208
     ],
     "key": "meter2_ct2_type",
-    "name": "Meter2/CT2 Type",
+    "name": "Meter2 Meter2",
     "scale": null,
     "signed": true,
     "type": "sensor"
@@ -1719,7 +1719,7 @@
       46609
     ],
     "key": "min_soc",
-    "name": "Inverter BAT SoC Min",
+    "name": "Inverter MinimumSoC",
     "scale": null,
     "type": "number"
   },
@@ -1728,7 +1728,7 @@
       46611
     ],
     "key": "min_soc_on_grid",
-    "name": "Inverter BAT SoC Min On Grid",
+    "name": "Inverter MinimumSoC-OnGrid",
     "scale": null,
     "type": "number"
   },
@@ -2604,7 +2604,7 @@
       49007
     ],
     "key": "reg_49007_active_power_percentage",
-    "name": "Inverter Active Power Percentage",
+    "name": "Inverter PowerLimit",
     "scale": 0.1,
     "signed": true,
     "type": "sensor"
@@ -2657,7 +2657,7 @@
       49230
     ],
     "key": "reg_49230_idle_loadpower_threshold",
-    "name": "Load Power Idle Threshold",
+    "name": "Inverter StandbyLoadPowerThreshold",
     "scale": null,
     "signed": false,
     "type": "sensor"
@@ -2707,7 +2707,7 @@
       49248
     ],
     "key": "reg_49248_meter_compensation",
-    "name": "Meter Power Compensation",
+    "name": "Meter MeterCompensation",
     "scale": null,
     "signed": true,
     "type": "sensor"
@@ -3199,7 +3199,7 @@
       49229
     ],
     "key": "standby_state",
-    "name": "Inverter Standby State",
+    "name": "Inverter StandbyState",
     "scale": null,
     "signed": true,
     "type": "sensor"

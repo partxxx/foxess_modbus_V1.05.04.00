@@ -73,17 +73,17 @@ def test_web_settings_are_named() -> None:
     """FoxESS web settings matched to documented registers by name and value (2026-10-08)"""
     entities = _h3_193()
     expected = {
-        "inverter_power_on": ([49077], "Inverter System On/Off"),
-        "drm_state": ([49206], "Inverter DRM State"),
-        "meter2_ct2_type": ([49208], "Meter2/CT2 Type"),
-        "standby_state": ([49229], "Inverter Standby State"),
+        "inverter_power_on": ([49077], "Inverter SysOn/Off"),
+        "drm_state": ([49206], "Inverter DRMState"),
+        "meter2_ct2_type": ([49208], "Meter2 Meter2"),
+        "standby_state": ([49229], "Inverter StandbyState"),
         "time_mode": ([48000], "Time Group Mode"),
         "time_group_1_enable": ([48010], "Time Group1 Enable"),
         "time_group_1_start": ([48011], "Time Group1 Time Start"),
         "time_group_1_end": ([48012], "Time Group1 Time End"),
         "time_group_1_work_mode": ([48013], "Time Group1 Work Mode"),
-        "legacy_inverter_power_on": ([41014], "Inverter System On/Off Legacy"),
-        "legacy_standby_state": ([44031], "Inverter Standby State Legacy"),
+        "legacy_inverter_power_on": ([41014], "Inverter SysOn/Off Legacy"),
+        "legacy_standby_state": ([44031], "Inverter StandbyState Legacy"),
     }
     for key, (addresses, name) in expected.items():
         assert entities[key]["addresses"] == addresses, key
@@ -94,7 +94,7 @@ def test_web_settings_are_named() -> None:
 
 def test_web_setting_codes() -> None:
     by_key = {getattr(f, "key", None): f for f in ENTITIES}
-    assert by_key["standby_state"].formatter([1]) == "Enabled"  # type: ignore[attr-defined]
+    assert by_key["standby_state"].formatter([1]) == "On"  # type: ignore[attr-defined]
     assert by_key["inverter_power_on"].formatter([0]) == "Unknown (0)"  # type: ignore[attr-defined]
     # Written 0x0A1E / 0x0B2D, the FoxESS web settings showed 10:30 / 11:45 (2026-10-08)
     assert by_key["time_group_1_start"].formatter([0x0A1E]) == "10:30"  # type: ignore[attr-defined]

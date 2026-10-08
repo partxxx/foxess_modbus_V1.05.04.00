@@ -47,8 +47,8 @@ _REGISTER_NAMES = {
     46007: "Inverter Remote Control Countdown",
     46018: "Inverter BAT Power Discharge Available",
     46020: "Inverter BAT Power Charge Available",
-    46503: "Inverter BAT SoC Threshold",
-    46504: "Inverter Power Export Peak Limit",
+    46503: "Inverter ThresholdSOC",
+    46504: "Inverter Exportpeaklimit",
     46607: "Inverter MaximumSetChargeCurrent",
     46608: "Inverter MaximumSetDischargeCurrent",
     46609: "Inverter MinimumSoC",
@@ -60,8 +60,8 @@ _REGISTER_NAMES = {
     46618: "Inverter Current Import Limit",
     46619: "Inverter Current Export Limit",
     46620: "Inverter BAT SoC Max From Grid",
-    48015: "Time Group1 FC/FD SoC Candidate",
-    48016: "Time Group1 FC/FD Power Candidate",
+    48015: "Inverter Time1FC/FDSOC",
+    48016: "Inverter Time1FC/FDPWR",
     49007: "Inverter PowerLimit",
     49008: "Inverter Active Power Dispatch Setpoint",
     49010: "Inverter Reactive Power Night",
@@ -83,24 +83,26 @@ _KEY_NAMES = {
     "meter2_ct2_type": "Meter2 Meter2",
     "standby_state": "Inverter StandbyState",
     "time_mode": "Time Group Mode",
-    "time_group_1_enable": "Time Group1 Enable",
-    "time_group_1_start": "Time Group1 Time Start",
-    "time_group_1_end": "Time Group1 Time End",
-    "time_group_1_work_mode": "Time Group1 Work Mode",
+    "time_group_1_enable": "Inverter Time1Disable/Enable",
+    "time_group_1_start": "Inverter StartTime1",
+    "time_group_1_end": "Inverter EndTime1",
+    "time_group_1_work_mode": "Inverter Time1WorkMode",
     "reg_37615_bms_max_current_candidate": "BMS1 BAT Current Charge Max",
     "reg_37616_bms_max_discharge_current": "BMS1 BAT Current Discharge Max",
     "reg_37613_bms_charge_voltage_max": "BMS1 BAT Voltage Charge Max",
     "reg_37614_bms_discharge_voltage_min": "BMS1 BAT Voltage Discharge Min",
     "reg_39142_ambtemp_candidate": "Inverter Ambient Temperature Candidate",
     "ambtemp": "Inverter Ambient Temperature",
-    "balance_mode": "Inverter Balance Mode",
+    "balance_mode": "Inverter BalanceLoad",
+    "balance_logic_first": "Inverter BalanceLogicFirst",
+    "chr_in_low_import": "Inverter ChrInLowImport",
     "bms_charge_rate": "BMS BAT Current Charge Max",
     "bms_discharge_rate": "BMS BAT Current Discharge Max",
     "bms_cycle_count": "BMS BAT Cycle Count",
     "bms_max_current": "BMS BAT Current Max",
     "bms_watthours_total": "BMS BAT Energy Throughput Total",
     "export_power_limit": "Inverter Power Export Limit",
-    "import_power_limit": "Inverter Power Import Limit",
+    "import_power_limit": "Inverter Importlimit",
     "force_charge_max_soc": "Inverter BAT SoC Force Charge Max",
     "force_charge_mode": "Inverter Remote Control Mode",
     "force_charge_power": "Inverter BAT Power Force Charge",
@@ -112,8 +114,8 @@ _KEY_NAMES = {
     "max_soc": "Inverter MaximumSoC",
     "min_soc_on_grid": "Inverter MinimumSoC-OnGrid",
     "work_mode": "Inverter Work Mode",
-    "time_group_1_max_soc_from_grid": "Time Group1 SoC Max From Grid",
-    "time_group_1_min_soc_on_grid": "Time Group1 SoC Min On Grid",
+    "time_group_1_max_soc_from_grid": "Inverter Time1MaxSoCFromGrid",
+    "time_group_1_min_soc_on_grid": "Inverter Time1MinSoCOnGrid",
 }
 
 _BMS_QUANTITIES = {
@@ -204,9 +206,12 @@ def entity_display_name(key: str, name: str, address: int | None = None) -> str:
     if battery_name:
         return battery_name
 
+    match = re.fullmatch(r"chr_in_low_(start|end)_time([12])_(hour|minute)", key)
+    if match:
+        return f"Inverter ChrInLow{match[1].title()}Time{match[2]}{match[3].title()}"
     match = re.fullmatch(r"time_group_(\d+)", key)
     if match:
-        return f"Time Group{match[1]} Settings"
+        return f"Inverter Time{match[1]}"
     match = re.fullmatch(r"(master|slave|manager)_version", key)
     if match:
         return f"Inverter {match[1].title()} Version"

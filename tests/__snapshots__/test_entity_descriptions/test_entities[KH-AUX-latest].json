@@ -312,7 +312,7 @@
       46501
     ],
     "key": "import_power_limit",
-    "name": "Inverter Power Import Limit",
+    "name": "Inverter Importlimit",
     "scale": null,
     "type": "number"
   },
@@ -804,9 +804,9 @@
     "name": "Inverter Work Mode",
     "type": "select",
     "values": {
-      "0": "Self Use",
-      "1": "Feed-in First",
-      "2": "Back-up"
+      "0": "SelfUse",
+      "1": "Feedin",
+      "2": "Backup"
     }
   }
 ]

@@ -227,7 +227,7 @@
       46616
     ],
     "key": "export_power_limit",
-    "name": "Inverter Power Export Limit",
+    "name": "Inverter ExportLimit",
     "scale": null,
     "type": "number"
   },

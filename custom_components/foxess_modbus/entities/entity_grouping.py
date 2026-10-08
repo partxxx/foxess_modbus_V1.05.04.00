@@ -108,6 +108,9 @@ DIAGNOSTIC_KEYS = frozenset(
         "standby_state",
         "time_mode",
         "time_group_1_enable",
+        "time_group_1_start",
+        "time_group_1_end",
+        "time_group_1_work_mode",
     }
 )
 
@@ -155,10 +158,6 @@ EXPERIMENTAL_KEYS = frozenset(
         "reg_49249_gfci_current",
         "reg_37613_bms_charge_voltage_max",
         "reg_37614_bms_discharge_voltage_min",
-        # Time group encoding not proven yet (every group is empty)
-        "time_group_1_start",
-        "time_group_1_end",
-        "time_group_1_work_mode",
     }
 )
 

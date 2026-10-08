@@ -96,4 +96,7 @@ def test_web_setting_codes() -> None:
     by_key = {getattr(f, "key", None): f for f in ENTITIES}
     assert by_key["standby_state"].formatter([1]) == "Enabled"  # type: ignore[attr-defined]
     assert by_key["inverter_power_on"].formatter([0]) == "Unknown (0)"  # type: ignore[attr-defined]
+    # Written 0x0A1E / 0x0B2D, the FoxESS web settings showed 10:30 / 11:45 (2026-10-08)
     assert by_key["time_group_1_start"].formatter([0x0A1E]) == "10:30"  # type: ignore[attr-defined]
+    assert by_key["time_group_1_end"].formatter([0x0B2D]) == "11:45"  # type: ignore[attr-defined]
+    assert by_key["time_group_1_work_mode"].formatter([1]) == "Self Use"  # type: ignore[attr-defined]

@@ -487,10 +487,12 @@ _DECODED: list[EntityFactory] = [
     _text("standby_state", [49229], "Idle State (49229)", _code({0: "Disabled", 1: "Enabled"})),
     _text("time_mode", [48000], "Time Mode Flag (48000)", _code({0: "Disabled"})),
     _text("time_group_1_enable", [48010], "Time Group 1 Enable (48010)", _code({0: "Disabled"})),
-    # Hour and minute in one register; the byte order is assumed like 48014 (all zero so far, not proven)
+    # Hour in the high byte, minute in the low byte: 0x0A1E / 0x0B2D written with FC16 showed as 10:30 / 11:45 in the
+    # web settings (2026-10-08). The time group registers refuse FC06 (Illegal Function). Writing a start time made
+    # the firmware set the work mode of all 96 groups from 0 (Invalid) to 1 (SelfUse)
     _text("time_group_1_start", [48011], "Time Group 1 Start Time (48011)", _hour_minute),
     _text("time_group_1_end", [48012], "Time Group 1 End Time (48012)", _hour_minute),
-    _text("time_group_1_work_mode", [48013], "Time Group 1 Work Mode (48013)", _code({0: "Invalid"})),
+    _text("time_group_1_work_mode", [48013], "Time Group 1 Work Mode (48013)", _code({0: "Invalid", 1: "Self Use"})),
     # Legacy registers with the same values (read 2026-10-08), shown on the register palette. 41014 was already 1 on
     # 2026-09-30 while 49229 was still 0, so it pairs with 49077, not with 49229
     _text("legacy_inverter_power_on", [41014], "Power on (41014)", _code({1: "On"})),

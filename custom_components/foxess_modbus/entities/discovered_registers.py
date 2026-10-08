@@ -184,7 +184,8 @@ _WRITABLE_PORT_SIGNED = {"min_soc": False, "max_soc": False, "min_soc_on_grid": 
 _SELECT_PORTS: dict[str, tuple[int, dict[int, str] | None]] = {
     "work_mode": (
         49203,
-        {1: "Self Use", 2: "Feed-in First", 3: "Back-up", 4: "Peak Shaving"},
+        # As the FoxESS web settings show them
+        {1: "SelfUse", 2: "Feedin", 3: "Backup", 4: "PeakShaving"},
     ),
     "balance_mode": (46614, None),
 }
@@ -425,10 +426,23 @@ def _hour_minute(values: list[int]) -> str:
     return f"{values[0] >> 8:02d}:{values[0] & 0xFF:02d}"
 
 
-_TIME_GROUP_WORK_MODES = {0: "Invalid", 1: "Self Use"}
-_ENABLED = {0: "Disabled", 1: "Enabled"}
+# Time1WorkMode as the FoxESS web settings show it. Only 0 and 1 are measured; 2, 3, 6, 7 follow the definition's
+# Time Group Work Mode table, whose 4 / 5 the web doesn't offer. The web's ForceCharge(BAT) / ForceDischarge(BAT)
+# codes are unknown, so they show as "Unknown (n)"
+_TIME_GROUP_WORK_MODES = {
+    0: "Invalid",
+    1: "SelfUse",
+    2: "Feedin",
+    3: "Backup",
+    4: "PeakShaving",
+    5: "PowerStation",
+    6: "ForceCharge",
+    7: "ForceDischarge",
+}
+_ENABLED = {0: "disable", 1: "enable"}
 
 
+# Field names as in the web settings; "MaxSoC_FromGrid" without the underscore, like its pair "MinSoCOnGrid"
 def _time_group(values: list[int]) -> str:
     # 48010 + 10 * (N - 1): enable, start, end, work mode, max SoC from grid (high byte) / min SoC on grid (low byte),
     # FC/FD SoC, FC/FD power
@@ -437,7 +451,7 @@ def _time_group(values: list[int]) -> str:
         f"{_ENABLED.get(enable, f'Unknown ({enable})')} "
         f"{_hour_minute([start])}-{_hour_minute([end])} "
         f"{_TIME_GROUP_WORK_MODES.get(mode, f'Unknown ({mode})')}, "
-        f"SoC {soc >> 8}/{soc & 0xFF}%, FD {fd_soc}% {fd_power} W"
+        f"MaxSoCFromGrid {soc >> 8}%, MinSoCOnGrid {soc & 0xFF}%, FC/FDSOC {fd_soc}%, FC/FDPWR {fd_power} W"
     )
 
 
@@ -505,7 +519,7 @@ _DECODED: list[EntityFactory] = [
     # Standby: 0 until the user enabled it in the app (2026-09-30), 1 since
     _text("standby_state", [49229], "Idle State (49229)", _code({0: "Off", 1: "On"})),
     _text("time_mode", [48000], "Time Mode Flag (48000)", _code({0: "Disabled"})),
-    _text("time_group_1_enable", [48010], "Time Group 1 Enable (48010)", _code({0: "Disabled"})),
+    _text("time_group_1_enable", [48010], "Time Group 1 Enable (48010)", _code(_ENABLED)),
     # Hour in the high byte, minute in the low byte: 0x0A1E / 0x0B2D written with FC16 showed as 10:30 / 11:45 in the
     # web settings (2026-10-08). The time group registers refuse FC06 (Illegal Function). Writing a start time made
     # the firmware set the work mode of all 96 groups from 0 (Invalid) to 1 (SelfUse)
@@ -526,6 +540,11 @@ _DECODED: list[EntityFactory] = [
     # 2026-09-30 while 49229 was still 0, so it pairs with 49077, not with 49229
     _text("legacy_inverter_power_on", [41014], "Power on (41014)", _code({1: "On"})),
     _text("legacy_standby_state", [44031], "Idle State (44031)", _code({0: "Off", 1: "On"})),
+    # BalanceLogicFirst (web: Enable / Disable); 41026 follows 46615, proven by the 2026-10-01 write test
+    _text("balance_logic_first", [46615], "Balance Logic First (46615)", _code({0: "Disable", 1: "Enable"})),
+    _text("legacy_balance_logic_first", [41026], "Balance Logic First (41026)", _code({0: "Disable", 1: "Enable"})),
+    # PeakShavingSet: ChrInLowImport and its two time windows, as the web settings show them
+    _text("chr_in_low_import", [46506], "ChrInLowImport (46506)", _code({0: "NOMode", 1: "NCMode", 2: "TimingMode"})),
     _text(
         "inverter_date_time",
         [49222, 49223, 49224, 49225, 49226, 49227],
@@ -630,6 +649,102 @@ _PV_POWER = ModbusSensorDescription(
 )
 
 _NAMED = [
+    _named(
+        46507,
+        [46507],
+        "ChrInLow Start Time1 Hour (46507)",
+        key="chr_in_low_start_time1_hour",
+        unit=None,
+        device_class=None,
+        state_class=None,
+        scale=None,
+        signed=False,
+        poll_once=False,
+    ),
+    _named(
+        46508,
+        [46508],
+        "ChrInLow Start Time1 Minute (46508)",
+        key="chr_in_low_start_time1_minute",
+        unit=None,
+        device_class=None,
+        state_class=None,
+        scale=None,
+        signed=False,
+        poll_once=False,
+    ),
+    _named(
+        46509,
+        [46509],
+        "ChrInLow End Time1 Hour (46509)",
+        key="chr_in_low_end_time1_hour",
+        unit=None,
+        device_class=None,
+        state_class=None,
+        scale=None,
+        signed=False,
+        poll_once=False,
+    ),
+    _named(
+        46510,
+        [46510],
+        "ChrInLow End Time1 Minute (46510)",
+        key="chr_in_low_end_time1_minute",
+        unit=None,
+        device_class=None,
+        state_class=None,
+        scale=None,
+        signed=False,
+        poll_once=False,
+    ),
+    _named(
+        46511,
+        [46511],
+        "ChrInLow Start Time2 Hour (46511)",
+        key="chr_in_low_start_time2_hour",
+        unit=None,
+        device_class=None,
+        state_class=None,
+        scale=None,
+        signed=False,
+        poll_once=False,
+    ),
+    _named(
+        46512,
+        [46512],
+        "ChrInLow Start Time2 Minute (46512)",
+        key="chr_in_low_start_time2_minute",
+        unit=None,
+        device_class=None,
+        state_class=None,
+        scale=None,
+        signed=False,
+        poll_once=False,
+    ),
+    _named(
+        46513,
+        [46513],
+        "ChrInLow End Time2 Hour (46513)",
+        key="chr_in_low_end_time2_hour",
+        unit=None,
+        device_class=None,
+        state_class=None,
+        scale=None,
+        signed=False,
+        poll_once=False,
+    ),
+    _named(
+        46514,
+        [46514],
+        "ChrInLow End Time2 Minute (46514)",
+        key="chr_in_low_end_time2_minute",
+        unit=None,
+        device_class=None,
+        state_class=None,
+        scale=None,
+        signed=False,
+        poll_once=False,
+    ),
     _named(
         37633,
         [37633],
@@ -1188,10 +1303,11 @@ _NAMED = [
         [46505, 46504],
         "Export Peak Limit (46504)",
         key="reg_46504_export_peak_limit",
-        unit="W",
+        # kW, as the FoxESS web settings show it
+        unit="kW",
         device_class=SensorDeviceClass.POWER,
         state_class=None,
-        scale=None,
+        scale=0.001,
         signed=True,
         poll_once=False,
     ),
@@ -1496,16 +1612,6 @@ _RAW = [
     _raw(39258, [39259, 39258], poll_once=False),
     _raw(39260, [39261, 39260], poll_once=False),
     _raw(46001, [46001], poll_once=False),
-    _raw(46506, [46506], poll_once=False),
-    _raw(46507, [46507], poll_once=False),
-    _raw(46508, [46508], poll_once=False),
-    _raw(46509, [46509], poll_once=False),
-    _raw(46510, [46510], poll_once=False),
-    _raw(46511, [46511], poll_once=False),
-    _raw(46512, [46512], poll_once=False),
-    _raw(46513, [46513], poll_once=False),
-    _raw(46514, [46514], poll_once=False),
-    _raw(46615, [46615], poll_once=False),
     _raw(49000, [49001, 49000], poll_once=False),
     _raw(49005, [49005], poll_once=False),
     _raw(49006, [49006], poll_once=False),

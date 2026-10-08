@@ -2561,7 +2561,7 @@ def _configuration_entities() -> Iterable[EntityFactory]:
             ModbusAddressSpec(holding=41000, models=Inv.H1_G1 | Inv.KH_PRE133 | Inv.KH_133),
         ],
         name="Work Mode",
-        options_map={0: "Self Use", 1: "Feed-in First", 2: "Back-up"},
+        options_map={0: "SelfUse", 1: "Feedin", 2: "Backup"},
     )
 
     yield ModbusWorkModeSelectDescription(
@@ -2571,10 +2571,10 @@ def _configuration_entities() -> Iterable[EntityFactory]:
         ],
         name="Work Mode",
         options_map={
-            1: "Self Use",
-            2: "Feed-in First",
-            3: "Back-up",
-            4: "Peak Shaving",
+            1: "SelfUse",
+            2: "Feedin",
+            3: "Backup",
+            4: "PeakShaving",
         },
     )
     yield ModbusSelectDescription(
@@ -2583,7 +2583,7 @@ def _configuration_entities() -> Iterable[EntityFactory]:
             ModbusAddressSpec(holding=41025, models=Inv.H3_SET & ~Inv.AIO_H3_PRE101),
         ],
         name="Balance Mode",
-        options_map={0: "Disabled", 1: "Total", 2: "Per Phase"},
+        options_map={0: "Disable", 1: "Total", 2: "Perphase"},
     )
     yield ModbusWorkModeSelectDescription(
         key="work_mode",
@@ -2591,7 +2591,7 @@ def _configuration_entities() -> Iterable[EntityFactory]:
             ModbusAddressSpec(holding=41000, models=Inv.H1_G2_SET | Inv.H3_SET & ~Inv.AIO_H3_PRE101),
         ],
         name="Work Mode",
-        options_map={0: "Self Use", 1: "Feed-in First", 2: "Back-up", 4: "Peak Shaving"},
+        options_map={0: "SelfUse", 1: "Feedin", 2: "Backup", 4: "PeakShaving"},
     )
 
     # Sensors are a bit nicer to look at: keep for consistency with other numbers

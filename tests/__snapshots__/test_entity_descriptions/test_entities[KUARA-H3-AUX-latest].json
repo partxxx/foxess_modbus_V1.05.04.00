@@ -14,12 +14,12 @@
       41025
     ],
     "key": "balance_mode",
-    "name": "Inverter Balance Mode",
+    "name": "Inverter BalanceLoad",
     "type": "select",
     "values": {
-      "0": "Disabled",
+      "0": "Disable",
       "1": "Total",
-      "2": "Per Phase"
+      "2": "Perphase"
     }
   },
   {
@@ -861,10 +861,10 @@
     "name": "Inverter Work Mode",
     "type": "select",
     "values": {
-      "0": "Self Use",
-      "1": "Feed-in First",
-      "2": "Back-up",
-      "4": "Peak Shaving"
+      "0": "SelfUse",
+      "1": "Feedin",
+      "2": "Backup",
+      "4": "PeakShaving"
     }
   }
 ]

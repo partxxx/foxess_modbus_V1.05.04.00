@@ -1534,10 +1534,10 @@
     "name": "Inverter Work Mode",
     "type": "select",
     "values": {
-      "1": "Self Use",
-      "2": "Feed-in First",
-      "3": "Back-up",
-      "4": "Peak Shaving"
+      "1": "SelfUse",
+      "2": "Feedin",
+      "3": "Backup",
+      "4": "PeakShaving"
     }
   }
 ]

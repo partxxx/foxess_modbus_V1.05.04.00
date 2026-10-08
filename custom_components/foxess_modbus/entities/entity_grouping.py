@@ -111,6 +111,9 @@ DIAGNOSTIC_KEYS = frozenset(
         "time_group_1_start",
         "time_group_1_end",
         "time_group_1_work_mode",
+        "balance_logic_first",
+        "chr_in_low_import",
+        *(f"chr_in_low_{e}_time{n}_{u}" for e in ("start", "end") for n in (1, 2) for u in ("hour", "minute")),
     }
 )
 

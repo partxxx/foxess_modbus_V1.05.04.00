@@ -78,10 +78,10 @@ def test_web_settings_are_named() -> None:
         "meter2_ct2_type": ([49208], "Meter2 Meter2"),
         "standby_state": ([49229], "Inverter StandbyState"),
         "time_mode": ([48000], "Time Group Mode"),
-        "time_group_1_enable": ([48010], "Time Group1 Enable"),
-        "time_group_1_start": ([48011], "Time Group1 Time Start"),
-        "time_group_1_end": ([48012], "Time Group1 Time End"),
-        "time_group_1_work_mode": ([48013], "Time Group1 Work Mode"),
+        "time_group_1_enable": ([48010], "Inverter Time1Disable/Enable"),
+        "time_group_1_start": ([48011], "Inverter StartTime1"),
+        "time_group_1_end": ([48012], "Inverter EndTime1"),
+        "time_group_1_work_mode": ([48013], "Inverter Time1WorkMode"),
         "legacy_inverter_power_on": ([41014], "Inverter SysOn/Off Legacy"),
         "legacy_standby_state": ([44031], "Inverter StandbyState Legacy"),
     }
@@ -99,7 +99,7 @@ def test_web_setting_codes() -> None:
     # Written 0x0A1E / 0x0B2D, the FoxESS web settings showed 10:30 / 11:45 (2026-10-08)
     assert by_key["time_group_1_start"].formatter([0x0A1E]) == "10:30"  # type: ignore[attr-defined]
     assert by_key["time_group_1_end"].formatter([0x0B2D]) == "11:45"  # type: ignore[attr-defined]
-    assert by_key["time_group_1_work_mode"].formatter([1]) == "Self Use"  # type: ignore[attr-defined]
+    assert by_key["time_group_1_work_mode"].formatter([1]) == "SelfUse"  # type: ignore[attr-defined]
 
 
 def test_all_96_time_groups() -> None:
@@ -107,9 +107,23 @@ def test_all_96_time_groups() -> None:
     for n in (1, 2, 50, 96):
         start = 48010 + 10 * (n - 1)
         assert entities[f"time_group_{n}"]["addresses"] == list(range(start, start + 7)), n
-        assert entities[f"time_group_{n}"]["name"] == f"Time Group{n} Settings"
+        assert entities[f"time_group_{n}"]["name"] == f"Inverter Time{n}"
     assert "time_group_97" not in entities
     by_key = {getattr(f, "key", None): f for f in ENTITIES}
     # Group 1 during the 2026-10-08 write test, as the FoxESS web settings showed it
     values = [0, 0x0A1E, 0x0B2D, 1, 0x640A, 10, 1234]
-    assert by_key["time_group_1"].formatter(values) == "Disabled 10:30-11:45 Self Use, SoC 100/10%, FD 10% 1234 W"  # type: ignore[attr-defined]
+    expected = "disable 10:30-11:45 SelfUse, MaxSoCFromGrid 100%, MinSoCOnGrid 10%, FC/FDSOC 10%, FC/FDPWR 1234 W"
+    assert by_key["time_group_1"].formatter(values) == expected  # type: ignore[attr-defined]
+
+
+def test_peak_shaving_and_balance_as_on_the_web() -> None:
+    entities = _h3_193()
+    assert entities["chr_in_low_import"]["name"] == "Inverter ChrInLowImport"
+    assert entities["chr_in_low_start_time1_hour"]["addresses"] == [46507]
+    assert entities["chr_in_low_end_time2_minute"]["addresses"] == [46514]
+    assert entities["chr_in_low_end_time2_minute"]["name"] == "Inverter ChrInLowEndTime2Minute"
+    assert entities["balance_logic_first"]["addresses"] == [46615]
+    assert entities["legacy_balance_logic_first"]["addresses"] == [41026]
+    assert entities["reg_46504_export_peak_limit"]["name"] == "Inverter Exportpeaklimit"
+    by_key = {getattr(f, "key", None): f for f in ENTITIES}
+    assert by_key["chr_in_low_import"].formatter([2]) == "TimingMode"  # type: ignore[attr-defined]

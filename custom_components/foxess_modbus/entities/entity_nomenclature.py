@@ -82,7 +82,7 @@ _KEY_NAMES = {
     "drm_state": "Inverter DRMState",
     "meter2_ct2_type": "Meter2 Meter2",
     "standby_state": "Inverter StandbyState",
-    "time_mode": "Time Group Mode",
+    "time_mode_flag": "Inverter TimeModeFlag",
     "time_group_1_enable": "Inverter Time1Disable/Enable",
     "time_group_1_start": "Inverter StartTime1",
     "time_group_1_end": "Inverter EndTime1",

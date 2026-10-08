@@ -3664,8 +3664,8 @@
     "addresses": [
       48000
     ],
-    "key": "time_mode",
-    "name": "Time Group Mode",
+    "key": "time_mode_flag",
+    "name": "Inverter TimeModeFlag",
     "scale": null,
     "signed": true,
     "type": "sensor"

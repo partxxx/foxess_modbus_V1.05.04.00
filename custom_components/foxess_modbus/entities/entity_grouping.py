@@ -106,7 +106,7 @@ DIAGNOSTIC_KEYS = frozenset(
         "drm_state",
         "meter2_ct2_type",
         "standby_state",
-        "time_mode",
+        "time_mode_flag",
         "time_group_1_enable",
         "time_group_1_start",
         "time_group_1_end",

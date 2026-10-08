@@ -518,7 +518,7 @@ _DECODED: list[EntityFactory] = [
     _text("meter2_ct2_type", [49208], "Meter2 / CT2 Type (49208)", _code({0: "disable"})),
     # Standby: 0 until the user enabled it in the app (2026-09-30), 1 since
     _text("standby_state", [49229], "Idle State (49229)", _code({0: "Off", 1: "On"})),
-    _text("time_mode", [48000], "Time Mode Flag (48000)", _code({0: "Disabled"})),
+    _text("time_mode_flag", [48000], "Time Mode Flag (48000)", _code(_ENABLED)),
     _text("time_group_1_enable", [48010], "Time Group 1 Enable (48010)", _code(_ENABLED)),
     # Hour in the high byte, minute in the low byte: 0x0A1E / 0x0B2D written with FC16 showed as 10:30 / 11:45 in the
     # web settings (2026-10-08). The time group registers refuse FC06 (Illegal Function). Writing a start time made

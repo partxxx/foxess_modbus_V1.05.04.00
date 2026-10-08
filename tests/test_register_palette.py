@@ -77,7 +77,7 @@ def test_web_settings_are_named() -> None:
         "drm_state": ([49206], "Inverter DRMState"),
         "meter2_ct2_type": ([49208], "Meter2 Meter2"),
         "standby_state": ([49229], "Inverter StandbyState"),
-        "time_mode": ([48000], "Time Group Mode"),
+        "time_mode_flag": ([48000], "Inverter TimeModeFlag"),
         "time_group_1_enable": ([48010], "Inverter Time1Disable/Enable"),
         "time_group_1_start": ([48011], "Inverter StartTime1"),
         "time_group_1_end": ([48012], "Inverter EndTime1"),

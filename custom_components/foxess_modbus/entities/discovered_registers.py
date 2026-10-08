@@ -479,7 +479,8 @@ _DECODED: list[EntityFactory] = [
         "eps_frequency_select",
         [46612],
         "EPS Frequency (46612)",
-        _code({1: "50 Hz", 2: "60 Hz"}),
+        # As the FoxESS web settings show it
+        _code({1: "50Hz", 2: "60Hz"}),
     ),
     _text(
         "eps_output_mode",
@@ -492,15 +493,17 @@ _DECODED: list[EntityFactory] = [
         "meter1_ct1_type",
         [49207],
         "Meter1 / CT1 Type (49207)",
-        _code({0: "Off", 1: "Meter 1-phase", 2: "CT", 3: "Meter 3-phase"}),
+        # The FoxESS web settings only show enable / disable (3 = 3-phase meter shows as enable)
+        _code({0: "disable", 3: "enable"}),
     ),
     # FoxESS web settings (protocol D132xx) matched by name and value, 2026-10-08. Only the observed codes are named,
     # any other value shows as "Unknown (n)"
     _text("inverter_power_on", [49077], "Power on (49077)", _code({1: "On"})),
-    _text("drm_state", [49206], "DRM (49206)", _code({0: "Disabled"})),
-    _text("meter2_ct2_type", [49208], "Meter2 / CT2 Type (49208)", _code({0: "Off"})),
+    # States as the FoxESS web settings show them (DRMState "Disable", Meter2 "disable", StandbyState a switch)
+    _text("drm_state", [49206], "DRM (49206)", _code({0: "Disable"})),
+    _text("meter2_ct2_type", [49208], "Meter2 / CT2 Type (49208)", _code({0: "disable"})),
     # Standby: 0 until the user enabled it in the app (2026-09-30), 1 since
-    _text("standby_state", [49229], "Idle State (49229)", _code({0: "Disabled", 1: "Enabled"})),
+    _text("standby_state", [49229], "Idle State (49229)", _code({0: "Off", 1: "On"})),
     _text("time_mode", [48000], "Time Mode Flag (48000)", _code({0: "Disabled"})),
     _text("time_group_1_enable", [48010], "Time Group 1 Enable (48010)", _code({0: "Disabled"})),
     # Hour in the high byte, minute in the low byte: 0x0A1E / 0x0B2D written with FC16 showed as 10:30 / 11:45 in the
@@ -522,7 +525,7 @@ _DECODED: list[EntityFactory] = [
     # Legacy registers with the same values (read 2026-10-08), shown on the register palette. 41014 was already 1 on
     # 2026-09-30 while 49229 was still 0, so it pairs with 49077, not with 49229
     _text("legacy_inverter_power_on", [41014], "Power on (41014)", _code({1: "On"})),
-    _text("legacy_standby_state", [44031], "Idle State (44031)", _code({0: "Disabled", 1: "Enabled"})),
+    _text("legacy_standby_state", [44031], "Idle State (44031)", _code({0: "Off", 1: "On"})),
     _text(
         "inverter_date_time",
         [49222, 49223, 49224, 49225, 49226, 49227],

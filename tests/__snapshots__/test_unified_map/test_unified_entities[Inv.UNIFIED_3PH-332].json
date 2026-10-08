@@ -460,7 +460,7 @@
       46616
     ],
     "key": "export_power_limit",
-    "name": "Inverter Power Export Limit",
+    "name": "Inverter ExportLimit",
     "scale": null,
     "signed": true,
     "type": "sensor"
@@ -856,7 +856,7 @@
       49227
     ],
     "key": "inverter_date_time",
-    "name": "Inverter Date Time",
+    "name": "Inverter RTCTime",
     "scale": null,
     "signed": true,
     "type": "sensor"

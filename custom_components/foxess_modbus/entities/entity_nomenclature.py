@@ -201,6 +201,9 @@ def entity_display_name(key: str, name: str, address: int | None = None) -> str:
     if battery_name:
         return battery_name
 
+    match = re.fullmatch(r"time_group_(\d+)", key)
+    if match:
+        return f"Time Group{match[1]} Settings"
     match = re.fullmatch(r"(master|slave|manager)_version", key)
     if match:
         return f"Inverter {match[1].title()} Version"

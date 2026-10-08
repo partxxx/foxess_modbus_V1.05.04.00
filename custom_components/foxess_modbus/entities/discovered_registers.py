@@ -425,6 +425,22 @@ def _hour_minute(values: list[int]) -> str:
     return f"{values[0] >> 8:02d}:{values[0] & 0xFF:02d}"
 
 
+_TIME_GROUP_WORK_MODES = {0: "Invalid", 1: "Self Use"}
+_ENABLED = {0: "Disabled", 1: "Enabled"}
+
+
+def _time_group(values: list[int]) -> str:
+    # 48010 + 10 * (N - 1): enable, start, end, work mode, max SoC from grid (high byte) / min SoC on grid (low byte),
+    # FC/FD SoC, FC/FD power
+    enable, start, end, mode, soc, fd_soc, fd_power = values
+    return (
+        f"{_ENABLED.get(enable, f'Unknown ({enable})')} "
+        f"{_hour_minute([start])}-{_hour_minute([end])} "
+        f"{_TIME_GROUP_WORK_MODES.get(mode, f'Unknown ({mode})')}, "
+        f"SoC {soc >> 8}/{soc & 0xFF}%, FD {fd_soc}% {fd_power} W"
+    )
+
+
 def _text(
     key: str,
     addresses: list[int],
@@ -492,7 +508,17 @@ _DECODED: list[EntityFactory] = [
     # the firmware set the work mode of all 96 groups from 0 (Invalid) to 1 (SelfUse)
     _text("time_group_1_start", [48011], "Time Group 1 Start Time (48011)", _hour_minute),
     _text("time_group_1_end", [48012], "Time Group 1 End Time (48012)", _hour_minute),
-    _text("time_group_1_work_mode", [48013], "Time Group 1 Work Mode (48013)", _code({0: "Invalid", 1: "Self Use"})),
+    _text("time_group_1_work_mode", [48013], "Time Group 1 Work Mode (48013)", _code(_TIME_GROUP_WORK_MODES)),
+    # All 96 time groups, one summary each (the FoxESS web settings SegmentedTimeMode1-12 show 8 groups per page)
+    *(
+        _text(
+            f"time_group_{n}",
+            list(range(48010 + 10 * (n - 1), 48017 + 10 * (n - 1))),
+            f"Time Group {n} ({48010 + 10 * (n - 1)})",
+            _time_group,
+        )
+        for n in range(1, 97)
+    ),
     # Legacy registers with the same values (read 2026-10-08), shown on the register palette. 41014 was already 1 on
     # 2026-09-30 while 49229 was still 0, so it pairs with 49077, not with 49229
     _text("legacy_inverter_power_on", [41014], "Power on (41014)", _code({1: "On"})),

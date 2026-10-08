@@ -220,6 +220,16 @@
   },
   {
     "addresses": [
+      49206
+    ],
+    "key": "drm_state",
+    "name": "Inverter DRM State",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
       39218
     ],
     "key": "eps_frequency",
@@ -603,6 +613,16 @@
   },
   {
     "addresses": [
+      49077
+    ],
+    "key": "inverter_power_on",
+    "name": "Inverter System On/Off",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
       39063,
       39065,
       39066
@@ -719,6 +739,16 @@
     ],
     "key": "meter1_ct1_type",
     "name": "Meter1/CT1 Type",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      49208
+    ],
+    "key": "meter2_ct2_type",
+    "name": "Meter2/CT2 Type",
     "scale": null,
     "signed": true,
     "type": "sensor"
@@ -1843,56 +1873,6 @@
   },
   {
     "addresses": [
-      48000
-    ],
-    "key": "register_48000_raw",
-    "name": "Register 48000 Raw",
-    "scale": null,
-    "signed": false,
-    "type": "sensor"
-  },
-  {
-    "addresses": [
-      48010
-    ],
-    "key": "register_48010_raw",
-    "name": "Register 48010 Raw",
-    "scale": null,
-    "signed": false,
-    "type": "sensor"
-  },
-  {
-    "addresses": [
-      48011
-    ],
-    "key": "register_48011_raw",
-    "name": "Register 48011 Raw",
-    "scale": null,
-    "signed": false,
-    "type": "sensor"
-  },
-  {
-    "addresses": [
-      48012
-    ],
-    "key": "register_48012_raw",
-    "name": "Register 48012 Raw",
-    "scale": null,
-    "signed": false,
-    "type": "sensor"
-  },
-  {
-    "addresses": [
-      48013
-    ],
-    "key": "register_48013_raw",
-    "name": "Register 48013 Raw",
-    "scale": null,
-    "signed": false,
-    "type": "sensor"
-  },
-  {
-    "addresses": [
       49001,
       49000
     ],
@@ -1924,30 +1904,10 @@
   },
   {
     "addresses": [
-      49077
-    ],
-    "key": "register_49077_raw",
-    "name": "Register 49077 Raw",
-    "scale": null,
-    "signed": false,
-    "type": "sensor"
-  },
-  {
-    "addresses": [
       49078
     ],
     "key": "register_49078_raw",
     "name": "Register 49078 Raw",
-    "scale": null,
-    "signed": false,
-    "type": "sensor"
-  },
-  {
-    "addresses": [
-      49206
-    ],
-    "key": "register_49206_raw",
-    "name": "Register 49206 Raw",
     "scale": null,
     "signed": false,
     "type": "sensor"
@@ -1998,16 +1958,6 @@
     ],
     "key": "register_49228_raw",
     "name": "Register 49228 Raw",
-    "scale": null,
-    "signed": false,
-    "type": "sensor"
-  },
-  {
-    "addresses": [
-      49229
-    ],
-    "key": "register_49229_raw",
-    "name": "Register 49229 Raw",
     "scale": null,
     "signed": false,
     "type": "sensor"
@@ -2106,6 +2056,36 @@
   },
   {
     "addresses": [
+      49229
+    ],
+    "key": "standby_state",
+    "name": "Inverter Standby State",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48010
+    ],
+    "key": "time_group_1_enable",
+    "name": "Time Group1 Enable",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48012
+    ],
+    "key": "time_group_1_end",
+    "name": "Time Group1 Time End",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
       48014
     ],
     "key": "time_group_1_max_soc_from_grid",
@@ -2122,6 +2102,36 @@
     "name": "Time Group1 SoC Min On Grid",
     "scale": null,
     "signed": false,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48011
+    ],
+    "key": "time_group_1_start",
+    "name": "Time Group1 Time Start",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48013
+    ],
+    "key": "time_group_1_work_mode",
+    "name": "Time Group1 Work Mode",
+    "scale": null,
+    "signed": true,
+    "type": "sensor"
+  },
+  {
+    "addresses": [
+      48000
+    ],
+    "key": "time_mode",
+    "name": "Time Group Mode",
+    "scale": null,
+    "signed": true,
     "type": "sensor"
   },
   {

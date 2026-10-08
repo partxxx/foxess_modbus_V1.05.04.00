@@ -75,6 +75,15 @@ _REGISTER_NAMES = {
 }
 
 _KEY_NAMES = {
+    "inverter_power_on": "Inverter System On/Off",
+    "drm_state": "Inverter DRM State",
+    "meter2_ct2_type": "Meter2/CT2 Type",
+    "standby_state": "Inverter Standby State",
+    "time_mode": "Time Group Mode",
+    "time_group_1_enable": "Time Group1 Enable",
+    "time_group_1_start": "Time Group1 Time Start",
+    "time_group_1_end": "Time Group1 Time End",
+    "time_group_1_work_mode": "Time Group1 Work Mode",
     "reg_37615_bms_max_current_candidate": "BMS1 BAT Current Charge Max",
     "reg_37616_bms_max_discharge_current": "BMS1 BAT Current Discharge Max",
     "reg_37613_bms_charge_voltage_max": "BMS1 BAT Voltage Charge Max",

@@ -421,6 +421,10 @@ _GRID_STANDARDS: dict[int, str] = {
 }
 
 
+def _hour_minute(values: list[int]) -> str:
+    return f"{values[0] >> 8:02d}:{values[0] & 0xFF:02d}"
+
+
 def _text(
     key: str,
     addresses: list[int],
@@ -474,6 +478,23 @@ _DECODED: list[EntityFactory] = [
         "Meter1 / CT1 Type (49207)",
         _code({0: "Off", 1: "Meter 1-phase", 2: "CT", 3: "Meter 3-phase"}),
     ),
+    # FoxESS web settings (protocol D132xx) matched by name and value, 2026-10-08. Only the observed codes are named,
+    # any other value shows as "Unknown (n)"
+    _text("inverter_power_on", [49077], "Power on (49077)", _code({1: "On"})),
+    _text("drm_state", [49206], "DRM (49206)", _code({0: "Disabled"})),
+    _text("meter2_ct2_type", [49208], "Meter2 / CT2 Type (49208)", _code({0: "Off"})),
+    # Standby: 0 until the user enabled it in the app (2026-09-30), 1 since
+    _text("standby_state", [49229], "Idle State (49229)", _code({0: "Disabled", 1: "Enabled"})),
+    _text("time_mode", [48000], "Time Mode Flag (48000)", _code({0: "Disabled"})),
+    _text("time_group_1_enable", [48010], "Time Group 1 Enable (48010)", _code({0: "Disabled"})),
+    # Hour and minute in one register; the byte order is assumed like 48014 (all zero so far, not proven)
+    _text("time_group_1_start", [48011], "Time Group 1 Start Time (48011)", _hour_minute),
+    _text("time_group_1_end", [48012], "Time Group 1 End Time (48012)", _hour_minute),
+    _text("time_group_1_work_mode", [48013], "Time Group 1 Work Mode (48013)", _code({0: "Invalid"})),
+    # Legacy registers with the same values (read 2026-10-08), shown on the register palette. 41014 was already 1 on
+    # 2026-09-30 while 49229 was still 0, so it pairs with 49077, not with 49229
+    _text("legacy_inverter_power_on", [41014], "Power on (41014)", _code({1: "On"})),
+    _text("legacy_standby_state", [44031], "Idle State (44031)", _code({0: "Disabled", 1: "Enabled"})),
     _text(
         "inverter_date_time",
         [49222, 49223, 49224, 49225, 49226, 49227],
@@ -1454,23 +1475,15 @@ _RAW = [
     _raw(46513, [46513], poll_once=False),
     _raw(46514, [46514], poll_once=False),
     _raw(46615, [46615], poll_once=False),
-    _raw(48000, [48000], poll_once=False),
-    _raw(48010, [48010], poll_once=False),
-    _raw(48011, [48011], poll_once=False),
-    _raw(48012, [48012], poll_once=False),
-    _raw(48013, [48013], poll_once=False),
     _raw(49000, [49001, 49000], poll_once=False),
     _raw(49005, [49005], poll_once=False),
     _raw(49006, [49006], poll_once=False),
-    _raw(49077, [49077], poll_once=False),
     _raw(49078, [49078], poll_once=False),
-    _raw(49206, [49206], poll_once=False),
     _raw(49209, [49209], poll_once=False),
     _raw(49210, [49210], poll_once=False),
     _raw(49211, [49211], poll_once=False),
     _raw(49212, [49212], poll_once=False),
     _raw(49228, [49228], poll_once=False),
-    _raw(49229, [49229], poll_once=False),
     _raw(49240, [49240], poll_once=False),
     _raw(49241, [49241], poll_once=False),
     _raw(49242, [49242], poll_once=False),

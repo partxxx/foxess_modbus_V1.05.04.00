@@ -429,6 +429,9 @@ def _hour_minute(values: list[int]) -> str:
 # Time1WorkMode as the FoxESS web settings show it. Only 0 and 1 are measured; 2, 3, 6, 7 follow the definition's
 # Time Group Work Mode table, whose 4 / 5 the web doesn't offer. The web's ForceCharge(BAT) / ForceDischarge(BAT)
 # codes are unknown, so they show as "Unknown (n)"
+# PeakShavingSet ChrInLowImport, as the FoxESS web settings show it
+_CHR_IN_LOW_IMPORT = {0: "NOMode", 1: "NCMode", 2: "TimingMode"}
+
 _TIME_GROUP_WORK_MODES = {
     0: "Invalid",
     1: "SelfUse",
@@ -543,8 +546,11 @@ _DECODED: list[EntityFactory] = [
     # BalanceLogicFirst (web: Enable / Disable); 41026 follows 46615, proven by the 2026-10-01 write test
     _text("balance_logic_first", [46615], "Balance Logic First (46615)", _code({0: "Disable", 1: "Enable"})),
     _text("legacy_balance_logic_first", [41026], "Balance Logic First (41026)", _code({0: "Disable", 1: "Enable"})),
+    # Legacy peak shaving block 44016-44029 mirrors 46501-46514 register by register: unique values written to every
+    # field (2026-10-08) showed up at both addresses, and in the web settings
+    _text("legacy_chr_in_low_import", [44021], "ChrInLowImport (44021)", _code(_CHR_IN_LOW_IMPORT)),
     # PeakShavingSet: ChrInLowImport and its two time windows, as the web settings show them
-    _text("chr_in_low_import", [46506], "ChrInLowImport (46506)", _code({0: "NOMode", 1: "NCMode", 2: "TimingMode"})),
+    _text("chr_in_low_import", [46506], "ChrInLowImport (46506)", _code(_CHR_IN_LOW_IMPORT)),
     _text(
         "inverter_date_time",
         [49222, 49223, 49224, 49225, 49226, 49227],
@@ -649,6 +655,138 @@ _PV_POWER = ModbusSensorDescription(
 )
 
 _NAMED = [
+    _named(
+        44022,
+        [44022],
+        "ChrInLow Start Time1 Hour (44022)",
+        key="legacy_chr_in_low_start_time1_hour",
+        unit=None,
+        device_class=None,
+        state_class=None,
+        scale=None,
+        signed=False,
+        poll_once=False,
+    ),
+    _named(
+        44023,
+        [44023],
+        "ChrInLow Start Time1 Minute (44023)",
+        key="legacy_chr_in_low_start_time1_minute",
+        unit=None,
+        device_class=None,
+        state_class=None,
+        scale=None,
+        signed=False,
+        poll_once=False,
+    ),
+    _named(
+        44024,
+        [44024],
+        "ChrInLow End Time1 Hour (44024)",
+        key="legacy_chr_in_low_end_time1_hour",
+        unit=None,
+        device_class=None,
+        state_class=None,
+        scale=None,
+        signed=False,
+        poll_once=False,
+    ),
+    _named(
+        44025,
+        [44025],
+        "ChrInLow End Time1 Minute (44025)",
+        key="legacy_chr_in_low_end_time1_minute",
+        unit=None,
+        device_class=None,
+        state_class=None,
+        scale=None,
+        signed=False,
+        poll_once=False,
+    ),
+    _named(
+        44026,
+        [44026],
+        "ChrInLow Start Time2 Hour (44026)",
+        key="legacy_chr_in_low_start_time2_hour",
+        unit=None,
+        device_class=None,
+        state_class=None,
+        scale=None,
+        signed=False,
+        poll_once=False,
+    ),
+    _named(
+        44027,
+        [44027],
+        "ChrInLow Start Time2 Minute (44027)",
+        key="legacy_chr_in_low_start_time2_minute",
+        unit=None,
+        device_class=None,
+        state_class=None,
+        scale=None,
+        signed=False,
+        poll_once=False,
+    ),
+    _named(
+        44028,
+        [44028],
+        "ChrInLow End Time2 Hour (44028)",
+        key="legacy_chr_in_low_end_time2_hour",
+        unit=None,
+        device_class=None,
+        state_class=None,
+        scale=None,
+        signed=False,
+        poll_once=False,
+    ),
+    _named(
+        44029,
+        [44029],
+        "ChrInLow End Time2 Minute (44029)",
+        key="legacy_chr_in_low_end_time2_minute",
+        unit=None,
+        device_class=None,
+        state_class=None,
+        scale=None,
+        signed=False,
+        poll_once=False,
+    ),
+    _named(
+        44018,
+        [44018],
+        "Threshold SOC (44018)",
+        key="legacy_reg_46503_threshold_soc",
+        unit="%",
+        device_class=None,
+        state_class=None,
+        scale=None,
+        signed=False,
+        poll_once=False,
+    ),
+    _named(
+        44019,
+        [44020, 44019],
+        "Export Peak Limit (44019)",
+        key="legacy_reg_46504_export_peak_limit",
+        unit="kW",
+        device_class=SensorDeviceClass.POWER,
+        state_class=None,
+        scale=0.001,
+        signed=True,
+        poll_once=False,
+    ),
+    _named(
+        44016,
+        [44017, 44016],
+        "Import Limit (44016)",
+        key="legacy_import_power_limit",
+        unit="kW",
+        device_class=SensorDeviceClass.POWER,
+        state_class=None,
+        scale=0.001,
+        signed=True,
+        poll_once=False,
+    ),
     _named(
         46507,
         [46507],
@@ -1803,6 +1941,10 @@ def apply_discovered_registers(
     for key in _FROM_H3_SMART:
         template = cast(ModbusSensorDescription, _template(smart_templates, key))
         changes = {}
+        if key == "import_power_limit":
+            # kW, as the FoxESS web settings show Importlimit
+            changes["scale"] = 0.001
+            changes["native_unit_of_measurement"] = "kW"
         if isinstance(template, ModbusBatterySensorDescription):
             connect_address = template._address_for_inverter_model(  # noqa: SLF001
                 template.bms_connect_state_address, Inv.H3_SMART, RegisterType.HOLDING

@@ -732,7 +732,7 @@
     ],
     "key": "import_power_limit",
     "name": "Inverter Importlimit",
-    "scale": null,
+    "scale": 0.001,
     "signed": true,
     "type": "sensor"
   },

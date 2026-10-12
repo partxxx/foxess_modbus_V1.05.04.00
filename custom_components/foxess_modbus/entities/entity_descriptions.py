@@ -30,6 +30,7 @@ from .modbus_inverter_state_sensor import ModbusG2InverterStateSensorDescription
 from .modbus_inverter_state_sensor import ModbusInverterStateSensorDescription
 from .modbus_lambda_sensor import ModbusLambdaSensorDescription
 from .modbus_number import ModbusNumberDescription
+from .modbus_select import ModbusSelectDescription
 from .modbus_sensor import ModbusSensorDescription
 from .modbus_version_sensor import ModbusVersionSensorDescription
 from .modbus_work_mode_select import ModbusWorkModeSelectDescription
@@ -2582,6 +2583,17 @@ def _configuration_entities() -> Iterable[EntityFactory]:
         ],
         name="Work Mode",
         options_map={0: "Self Use", 1: "Feed-in First", 2: "Back-up", 4: "Peak Shaving"},
+    )
+
+    # 2 (Per Phase) can't be written over Modbus (exception 03)
+    yield ModbusSelectDescription(
+        key="balance_mode",
+        address=[
+            ModbusAddressSpec(holding=46614, models=Inv.H3_193),
+        ],
+        name="Balance Mode",
+        options_map={0: "Disabled", 1: "Total", 2: "Per Phase"},
+        read_only_options=["Per Phase"],
     )
 
     # Sensors are a bit nicer to look at: keep for consistency with other numbers

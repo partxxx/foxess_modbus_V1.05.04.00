@@ -11,6 +11,22 @@
   },
   {
     "addresses": [
+      46614
+    ],
+    "key": "balance_mode",
+    "name": "Balance Mode",
+    "read_only_options": [
+      "Per Phase"
+    ],
+    "type": "select",
+    "values": {
+      "0": "Disabled",
+      "1": "Total",
+      "2": "Per Phase"
+    }
+  },
+  {
+    "addresses": [
       31035
     ],
     "key": "bat_current",

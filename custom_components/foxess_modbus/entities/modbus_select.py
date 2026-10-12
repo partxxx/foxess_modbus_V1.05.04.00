@@ -9,6 +9,7 @@ from typing import cast
 from homeassistant.components.select import SelectEntity
 from homeassistant.components.select import SelectEntityDescription
 from homeassistant.const import Platform
+from homeassistant.exceptions import HomeAssistantError
 from homeassistant.helpers.entity import Entity
 
 from ..common.entity_controller import EntityController
@@ -29,6 +30,8 @@ class ModbusSelectDescription(SelectEntityDescription, EntityFactory):  # type: 
 
     address: list[ModbusAddressSpec]
     options_map: dict[int, str]
+    # Values the inverter shows but doesn't take over Modbus
+    read_only_options: list[str] = field(default_factory=list)
     validate: list[BaseValidator] = field(default_factory=list)
 
     @property
@@ -49,13 +52,16 @@ class ModbusSelectDescription(SelectEntityDescription, EntityFactory):  # type: 
         if addresses is None:
             return None
 
-        return {
+        result: dict[str, Any] = {
             "type": "select",
             "key": self.key,
             "name": self.name,
             "addresses": addresses,
             "values": self.options_map,
         }
+        if self.read_only_options:
+            result["read_only_options"] = self.read_only_options
+        return result
 
 
 class ModbusSelect(ModbusEntityMixin, SelectEntity):
@@ -109,6 +115,8 @@ class ModbusSelect(ModbusEntityMixin, SelectEntity):
                 list(entity_description.options_map.values()),
             )
             return
+        if option in entity_description.read_only_options:
+            raise HomeAssistantError(f"{self.name}: '{option}' can't be set over Modbus")
 
         await self._controller.write_register(self._address, value)
 

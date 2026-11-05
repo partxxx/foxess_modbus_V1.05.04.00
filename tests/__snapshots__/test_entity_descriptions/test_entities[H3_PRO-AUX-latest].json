@@ -435,18 +435,7 @@
       46616
     ],
     "key": "export_power_limit",
-    "name": "Export Power Limit",
-    "scale": null,
-    "signed": true,
-    "type": "sensor"
-  },
-  {
-    "addresses": [
-      46617,
-      46616
-    ],
-    "key": "export_power_limit",
-    "name": "Export Power Limit",
+    "name": "Inverter ExportLimit",
     "scale": null,
     "type": "number"
   },

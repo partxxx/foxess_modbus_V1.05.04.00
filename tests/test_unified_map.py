@@ -75,7 +75,7 @@ async def test_unified_profiles_are_read_only(hass: HomeAssistant) -> None:
                 for address in getattr(sensor, "addresses", []):
                     assert address >= 36000 and not 40000 <= address <= 44999
                     assert not connection_profile.overlaps_invalid_range(address, address, controller)
-    assert offered == 13
+    assert offered == 15
 
 
 # Sensors which read the same registers on purpose: one signed value split by direction, and the two bytes of 48014
